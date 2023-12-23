@@ -7,15 +7,18 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    title: 'home - kian.coffee',
   },
   {
     path: 'about',
-    component: AboutComponent
+    component: AboutComponent,
+    title: 'about - kian.coffee',
   },
   {
     path: 'contact',
-    component: ContactComponent
+    component: ContactComponent,
+    title: 'contact - kian.coffee',
   },
   {
     path: '**',
