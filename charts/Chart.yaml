@@ -1,0 +1,6 @@
+apiVersion: v2
+name: coffee-kian-www
+description: www.kian.coffee
+type: application
+version: 0.1.0
+appVersion: 1.0.0
