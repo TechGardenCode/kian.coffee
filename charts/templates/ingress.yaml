@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: "{{ .Chart.Name }}"-ingress
+  name: "{{ .Chart.Name }}-ingress"
   namespace: coffee-kian
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
@@ -21,4 +21,4 @@ spec:
   tls:
   - hosts:
     - "{{ .Values.host.name }}"
-    secretName: "{{ .Chart.Name }}"-ingress-cert-namecheap-prod
+    secretName: "{{ .Chart.Name }}-ingress-cert-namecheap-prod"

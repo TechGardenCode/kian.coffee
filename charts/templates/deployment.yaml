@@ -6,7 +6,7 @@ metadata:
   labels:
     app: "{{ .Chart.Name }}"
 spec:
-  replicas: "{{ .Values.replicas }}"
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
       app: "{{ .Chart.Name }}"
