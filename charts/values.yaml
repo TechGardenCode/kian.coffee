@@ -3,4 +3,4 @@ image:
   tag: 426f87145131dde2e990fa26d2316264033a937d
 host:
   name: coffee.kianalikhani.com
-replicas: 12
+replicas: 3
