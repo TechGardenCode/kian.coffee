@@ -2,8 +2,10 @@ name: cicd
 
 on:
   push:
+    paths-ignore:
+      - "charts/**"
     branches:
-      - 'main'
+      - "main"
 
 env:
   REGISTRY: ghcr.io
@@ -28,7 +30,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
+          cache: "npm"
       - name: npm install and npm run CI commands
         run: |
           npm i
@@ -63,20 +65,20 @@ jobs:
     needs: build
 
     steps:
-    - name: Check out code
-      uses: actions/checkout@v4
+      - name: Check out code
+        uses: actions/checkout@v4
 
-    - name: Update Image Tag Values
-      run: |
-        chart_dir="charts"
-        new_image_tag=${{ github.sha }}
+      - name: Update Image Tag Values
+        run: |
+          chart_dir="charts"
+          new_image_tag=${{ github.sha }}
 
-        # Update the values.yaml file with the new image tag
-        sed -i "s/^  tag: .*/  tag: $new_image_tag/" "$chart_dir/values.yaml"
+          # Update the values.yaml file with the new image tag
+          sed -i "s/^  tag: .*/  tag: $new_image_tag/" "$chart_dir/values.yaml"
 
-    - name: Commit the changes made
-      run: |
-        git config --global user.name 'TechGardenCode'
-        git config --global user.email 'techgardencode@gmail.com'
-        git commit -am "feat: update image tag"
-        git push
+      - name: Commit the changes made
+        run: |
+          git config --global user.name 'TechGardenCode'
+          git config --global user.email 'techgardencode@gmail.com'
+          git commit -am "feat: update image tag"
+          git push
