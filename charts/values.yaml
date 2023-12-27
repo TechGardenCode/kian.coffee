@@ -2,5 +2,5 @@ image:
   repository: ghcr.io/techgardencode/kian.coffee
   tag: 426f87145131dde2e990fa26d2316264033a937d
 host:
-  name: coffee.kianalikhani.com
+  name: kian.coffee
 replicas: 3
