@@ -23,4 +23,4 @@ spec:
     - hosts:
         - "{{ .Values.host.name }}"
         - "www.{{ .Values.host.name }}"
-      secretName: "{{ .Chart.Name }}-www-ingress-cert-namecheap-prod"
+      secretName: "{{ .Chart.Name }}-ingress-cert-namecheap-prod"
