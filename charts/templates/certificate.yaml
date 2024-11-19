@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: "{{ .Chart.Name }}"
+spec:
+  secretName: kian-coffee-tls
+  issuerRef:
+    name: letsencrypt-namecheap-prod
+    kind: ClusterIssuer
+  commonName: "*.kian.coffee"
+  dnsNames:
+  - "kian.coffee"
+  - "*.kian.coffee"
