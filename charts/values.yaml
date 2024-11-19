@@ -28,10 +28,10 @@ ingressRoute:
   entryPoints:
     - websecure
   hosts:
-    - host: dev.kian.coffee
-    - host: www.dev.kian.coffee
+    - host: kian.coffee
+    - host: www.kian.coffee
   tls:
-    secretName: dev-kian-coffee-tls
+    secretName: kian-coffee-tls
 
 livenessProbe:
   httpGet:
