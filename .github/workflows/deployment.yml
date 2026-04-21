@@ -28,8 +28,13 @@ jobs:
           cache: "npm"
 
       - name: Install and build
+        # Not `npm ci` — our lockfile has transitive refs to wasm32-only
+        # optional packages (via Tailwind v4's Lightning CSS / oxide) that
+        # macOS-generated lockfiles can't resolve cleanly. `npm install`
+        # with a committed lockfile is still reproducible and tolerates
+        # the platform quirk.
         run: |
-          npm ci
+          npm install --prefer-offline --no-audit --no-fund
           npm run build:ci
 
       - name: Set up Docker Buildx
