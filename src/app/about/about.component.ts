@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { NavbarComponent } from '../shared/navbar/navbar.component';
 
 @Component({
     selector: 'app-about',
     templateUrl: './about.component.html',
     styleUrls: ['./about.component.scss'],
-    standalone: false
+    imports: [NavbarComponent]
 })
 export class AboutComponent {
   age;

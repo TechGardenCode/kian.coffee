@@ -1,7 +1,9 @@
-import { provideZoneChangeDetection } from "@angular/core";
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule } from './app/app.module';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
 import posthog from 'posthog-js';
+
+import { AppComponent } from './app/app.component';
+import { routes } from './app/app.routes';
 
 posthog.init('phc_FkPsD9wHkfK8hPtxUlR2SZw3tJBaCkeZbvVzDxQONai', {
   api_host: 'https://us.i.posthog.com',
@@ -9,6 +11,6 @@ posthog.init('phc_FkPsD9wHkfK8hPtxUlR2SZw3tJBaCkeZbvVzDxQONai', {
   defaults: '2025-05-24',
 });
 
-platformBrowserDynamic()
-  .bootstrapModule(AppModule, { applicationProviders: [provideZoneChangeDetection()], })
-  .catch((err) => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [provideRouter(routes)],
+}).catch((err) => console.error(err));
