@@ -75,4 +75,4 @@ jobs:
           token: ${{ secrets.HOMELAB_PAT }}
           repository: techgardencode/homelab
           event-type: update-image
-          client-payload: '{"app": "kian-coffee", "tag": "${{ github.sha }}"}'
+          client-payload: '{"app": "kian-coffee", "tag": "${{ github.sha }}", "env": "dev"}'
