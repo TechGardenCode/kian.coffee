@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <!-- Background: warm cream, matches light-mode paper token -->
+  <rect width="1200" height="630" fill="#f6ecdc" />
+
+  <!-- Subtle grain -->
+  <defs>
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" />
+      <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.04 0" />
+    </filter>
+  </defs>
+  <rect width="1200" height="630" filter="url(#noise)" />
+
+  <!-- Hairline border -->
+  <rect x="40" y="40" width="1120" height="550" fill="none" stroke="#d9c4a9" stroke-width="1" />
+
+  <!-- Eyebrow -->
+  <text x="96" y="132" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="18"
+        fill="#6b4a2b" letter-spacing="4" text-transform="uppercase">KIAN.COFFEE</text>
+
+  <!-- Title -->
+  <text x="96" y="296" font-family="'Fraunces', Georgia, serif" font-size="96"
+        font-weight="400" fill="#2a1a0c" letter-spacing="-2">Kian Alikhani</text>
+
+  <!-- Subtitle -->
+  <text x="96" y="376" font-family="'Fraunces', Georgia, serif" font-size="56"
+        font-weight="400" fill="#4a2e17" letter-spacing="-1">Full-stack architect.</text>
+  <text x="96" y="440" font-family="'Fraunces', Georgia, serif" font-size="56"
+        font-weight="400" fill="#a8632b" letter-spacing="-1">Generalist on purpose.</text>
+
+  <!-- Bottom strip -->
+  <line x1="96" y1="540" x2="1104" y2="540" stroke="#d9c4a9" stroke-width="1" />
+  <text x="96" y="572" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="14"
+        fill="#6b4a2b" letter-spacing="2">Arlington, VA · Mastercard</text>
+  <text x="1104" y="572" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="14"
+        fill="#6b4a2b" letter-spacing="2" text-anchor="end">kian.coffee</text>
+</svg>

@@ -5,9 +5,27 @@
   <title>kian.coffee</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kian Alikhani — full-stack IC architect at Mastercard. Career, side projects, homelab, and current focus.">
+  <meta name="theme-color" content="#15100b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6ecdc" media="(prefers-color-scheme: light)">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="alternate" type="application/rss+xml" title="Elsewhere — link-out feed" href="/elsewhere">
+  <link rel="me" href="https://github.com/TechGardenCode">
+  <link rel="me" href="https://www.linkedin.com/in/kian-alikhani-20b656100">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('kc-theme');
+        var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+        var theme = stored || (prefersLight ? 'light' : 'dark');
+        if (theme === 'dark') document.documentElement.classList.add('dark');
+      } catch (_) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
 </head>
-<body class="bg-[#ece0d1] text-[#38220f] dark:bg-[#1a1a19] dark:text-[#967259]">
+<body class="bg-grain bg-cream-50 text-ink-900 dark:bg-roast-950 dark:text-taupe antialiased">
   <app-root></app-root>
 </body>
 </html>

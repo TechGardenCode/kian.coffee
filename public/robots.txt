@@ -1,0 +1,25 @@
+# kian.coffee — robots policy
+# Indexing is welcome. Please honor Crawl-delay for polite crawling on
+# the self-hosted homelab cluster that serves this site.
+
+User-agent: *
+Allow: /
+Crawl-delay: 2
+
+# AI crawlers — allowed. See /llms.txt for a structured summary.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://kian.coffee/sitemap.xml

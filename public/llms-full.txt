@@ -1,0 +1,123 @@
+# kian.coffee — expanded summary
+
+> Kian Alikhani — full-stack IC architect at Mastercard (Arlington, VA).
+> This is the RAG-friendly long-form companion to /llms.txt. Everything
+> here is sourced from the CV at projects/kian-coffee/docs/cv.md or from
+> public repository state.
+
+## Professional summary
+
+Full-stack IC architect at a 600+ engineer organization, building
+end-to-end across frontend, backend, data, and platform at Mastercard.
+Swiss-army-knife generalist who ships real systems: a real-time,
+event-driven data pipeline at millions of transactions per hour on
+Kafka, Spark, and Hadoop ($6M first-year revenue, concept-to-prod in
+3 months); an enterprise design system and UI library adopted across
+7 global programs and 20+ teams (25% engineering velocity,
+50% DX satisfaction); and, most recently, AI-first foundations
+(MCP servers, reusable skills, knowledge-base standardization) as a
+core member of a CTO-led task force transforming SDLC/PDLC.
+Self-hosted hybrid-cloud home lab on K3s / Talos and Proxmox exercises
+the same generalist instincts on private infrastructure — networking,
+storage, IaC, and a local LLM stack as one layer among many.
+
+## Work experience
+
+### Mastercard — Lead Software Engineer, 2023 – present
+
+- Architected AI-first foundations for the engineering org: reusable
+  skills, MCP servers, agent patterns, and a knowledge-base pipeline
+  that takes raw intake through standardization to a consistent display
+  layer. Leads knowledge-transfer sessions rolling these foundations
+  across teams.
+- Designed and delivered a customer-facing AI-empowered product
+  end-to-end — from design and product framing to executive pitch to
+  integration. Modernized legacy workstreams so they plug into new
+  AI-native workstreams as they come online.
+- Core member of a CTO-led task force transforming the SDLC and PDLC
+  with second-brain capabilities across engineers, product managers,
+  and designers — breaking down silos across 3 service groups and 20+
+  teams.
+- Led the enterprise AI platform POC that established the scalable
+  foundation for compound AI systems across the org.
+- Led planning, design, and rollout of a new design system and UI
+  library adopted across 7 global programs and 20+ engineering teams;
+  improved engineering velocity 25% and developer satisfaction 50%
+  over the previous implementation.
+
+### Mastercard — Senior Software Engineer, 2020 – 2023
+
+- Designed and delivered a highly available data pipeline processing
+  millions of transactions per hour on Kafka, Spark, and Hadoop; took
+  it from concept to production in 3 months and generated $6M in
+  first-year revenue with continued YoY growth.
+- Designed and implemented role-based access control (RBAC) for an
+  internal portal, unifying access to 15 microservices across 6+ user
+  roles.
+- Led the modernization to a micro-frontend architecture, reducing
+  load times, dependency collision, and upgrade complexity across the
+  portfolio.
+- Built scalable retry and circuit-breaker patterns with dynamic
+  queuing and autoscaling to handle burst traffic gracefully.
+
+### Conseqta Technology — Software Engineer, 2019 – 2020
+
+- Led modernization efforts at an 8-person startup: migrated AngularJS
+  to Angular and monolithic REST services to Spring Boot microservices.
+- Owned feature delivery across the full stack — infrastructure,
+  backend, and UI.
+- Established a GitOps deployment pipeline using GitLab Workflows for
+  stateless microservices across on-prem and cloud Kubernetes
+  environments.
+
+### IBM Watson — Software Engineer Intern, Summer 2018
+
+(Per CV: role only. Details pending.)
+
+## Self-hosted projects (from the CV)
+
+- **AI-first monitoring + IaC** — Local LLM drives Ansible-based setup
+  of Prometheus + Grafana stacks, evaluates and reinforces monitoring
+  coverage, triages incoming alerts, and auto-tunes thresholds and
+  alert/scrape parameters based on observed signal. Agentic ops on a
+  self-hosted stack.
+- **Self-hosted hybrid cloud** — Highly available multi-AZ Kubernetes
+  cluster on K3s + Proxmox (currently migrating to Talos), declarative
+  rollouts via Ansible, ArgoCD, and GitHub Actions.
+- **AI-enabled home automation** — Home Assistant + N8N + local LLM
+  orchestration for private, low-latency automation; keeps inference
+  and data on-prem.
+- **Zero-trust home network** — Deny-by-default, allowlist-based access
+  model with VPN, VLAN segmentation, and DMZ firewalls.
+- **Multi-AZ NAS with 3-2-1 backups** — TrueNAS + ZFS with Cloud Sync
+  and RSync for data durability and archival across availability zones.
+
+## Education
+
+- B.S. Computer Science, Case Western Reserve University (2018)
+- Thomas Jefferson High School for Science and Technology (2015)
+
+## Skills (from the CV)
+
+- **Languages:** Java, Python, JavaScript, TypeScript, SQL
+- **Frontend:** Angular, React, Node.js, micro frontends
+- **Backend / Data:** Spring Boot, Kafka, Spark, Hadoop, RabbitMQ,
+  event-driven architecture, circuit breakers, retry/backoff,
+  autoscaling, PostgreSQL, OracleSQL, MongoDB
+- **Infra / DevOps:** Kubernetes (K3s / Talos), Docker, Proxmox,
+  Ansible, ArgoCD, Jenkins, GitHub Actions, GitOps, CI/CD, IaC,
+  multi-AZ HA, PCF, networking (VLANs, VPN, firewalls)
+- **AI / Platform:** MCP servers, agent patterns / orchestration,
+  reusable skills, RAG (Chroma DB), vector search, self-hosted /
+  local LLMs, knowledge-base standardization, org-scale AI foundations
+  (skills repository with deduplication + auto-update), LLM-driven
+  automation (Ansible, monitoring, alerting)
+- **Architecture:** distributed systems, high-throughput data
+  platforms, resilience patterns, design-system rollouts, enterprise
+  SDLC/PDLC transformation
+
+## Contact
+
+- Email: `me@techgarden.gg`
+- LinkedIn: <https://www.linkedin.com/in/kian-alikhani-20b656100>
+- GitHub: <https://github.com/TechGardenCode>

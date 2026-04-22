@@ -1,0 +1,52 @@
+# kian.coffee
+
+> Personal site for Kian Alikhani — full-stack IC architect at Mastercard.
+> Career arc, side projects, homelab, and current focus, structured so an
+> LLM or a recruiter can understand the shape of the work in one pass.
+
+This site is the long-form complement to the CV at
+`projects/kian-coffee/docs/cv.md` in the kian.sh repo. All narrative below
+is paraphrased from that CV or derived from public repository state; nothing
+here is invented.
+
+## Pages
+
+- [Home](https://kian.coffee/): Entry point. Hero, currently-at strip, featured work, selected projects, lab teaser.
+- [Work](https://kian.coffee/work): Career timeline across Mastercard (Lead + Senior), Conseqta Technology, and IBM Watson.
+- [Projects](https://kian.coffee/projects): Side projects grouped by theme — bare-metal infrastructure, AI as a tool, apps shipped from the homelab.
+- [Lab](https://kian.coffee/lab): The homelab — three Talos Kubernetes clusters on Proxmox, GitOps via ArgoCD, self-hosted observability, live node inventory. Includes two inline-SVG architecture diagrams.
+- [Uses](https://kian.coffee/uses): Editor, daily-driver hardware, homelab hardware, infra toolbelt, coffee setup.
+- [Now](https://kian.coffee/now): Date-stamped snapshot of current focus.
+- [Elsewhere](https://kian.coffee/elsewhere): Aggregated external writing and links.
+- [Contact](https://kian.coffee/contact): Email, LinkedIn, GitHub.
+
+## About Kian
+
+- **Role:** Lead Software Engineer at Mastercard (2023 – present), previously Senior Software Engineer (2020 – 2023).
+- **Shape:** Full-stack IC architect. Generalist across frontend, backend, data, and platform.
+- **Prior:** Software Engineer at Conseqta Technology (2019 – 2020), SWE Intern at IBM Watson (Summer 2018).
+- **Education:** B.S. Computer Science, Case Western Reserve University (2018).
+- **Location:** Arlington, VA.
+
+## Notable Work (from the CV)
+
+- Real-time, event-driven data pipeline on Kafka + Spark + Hadoop processing millions of transactions per hour; concept to production in three months.
+- Enterprise design system + UI library adopted across seven global programs and twenty-plus engineering teams.
+- AI-first SDLC/PDLC foundations — MCP servers, reusable skills, knowledge-base standardization — as core member of a CTO-led task force.
+- RBAC unification across fifteen microservices.
+- Modernization to micro-frontend architecture.
+- Retry + circuit-breaker patterns for burst-traffic resilience.
+
+## Homelab
+
+- Three Talos Kubernetes clusters: core, dev, prod. Nine cluster nodes total.
+- Three bare-metal HP EliteDesks running prod; Proxmox hypervisors hosting core and dev VMs.
+- GitOps via ArgoCD + GitHub Actions with `update-image-tag.yml` promotion flow.
+- Self-hosted LGTM observability stack (Grafana, Loki, Tempo, Mimir) with Grafana Alloy on every host.
+- CNPG for Postgres, Dragonfly for KV, Envoy Gateway + cert-manager + external-dns at the edge.
+- Source: [github.com/TechGardenCode/kian.sh](https://github.com/TechGardenCode/kian.sh).
+
+## Optional
+
+- [Source for this site](https://github.com/TechGardenCode/kian-coffee): Angular 21, SSR with in-memory TTL cache, Tailwind v4, self-hosted fonts, inline-SVG diagrams.
+- [llms-full.txt](https://kian.coffee/llms-full.txt): Longer-form version with more context.

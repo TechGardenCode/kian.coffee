@@ -1,0 +1,266 @@
+<!-- HERO -->
+<section #hero class="hero relative overflow-hidden">
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 md:px-10 pt-20 md:pt-32 pb-20 md:pb-28">
+    <app-eyebrow label="[LOCATION · availability · one-liner status]" index="00" />
+
+    <h1
+      appReveal
+      class="font-display text-5xl leading-[1.05] tracking-tight text-ink-900 md:text-[88px] dark:text-foam"
+    >
+      [HERO HEADLINE]<br />
+      <span class="text-ink-700 dark:text-taupe">[Sub-line that extends the headline —</span><br />
+      <span class="text-accent">[emphasis phrase in accent color].</span>
+    </h1>
+
+    <p appReveal class="max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
+      [HERO SUBHEAD — 2–3 sentences. Content to cover: (1) who you are in one clause
+      (name + role/identity), (2) the breadth pitch — the 3–4 domains you operate
+      across and what makes that unusual, (3) a "so what" hook that nudges the reader
+      to keep scrolling. Tone: warm, confident, specific. Avoid buzzwords; lead with
+      what you actually ship.]
+    </p>
+
+    <div appReveal class="flex flex-wrap items-center gap-x-6 gap-y-3">
+      <app-link-arrow href="/work">See the work</app-link-arrow>
+      <app-link-arrow href="/projects">Browse projects</app-link-arrow>
+      <app-link-arrow href="/lab">Peek at the lab</app-link-arrow>
+    </div>
+
+    <!-- Currently strip — stacks vertically on mobile, inline on md+. Wraps cleanly. -->
+    <div
+      appReveal
+      class="mt-4 flex flex-col gap-3 border-l-2 border-crema/80 pl-5 dark:border-roast-700 md:flex-row md:items-center md:gap-x-5 md:gap-y-2 md:flex-wrap"
+    >
+      <span class="label text-ink-700 dark:text-taupe">Currently</span>
+      <ul
+        class="flex flex-wrap items-center gap-x-4 gap-y-2 font-sans text-[15px] text-ink-700 dark:text-taupe"
+      >
+        <li>[focus area 1 — e.g. Reactive data platforms]</li>
+        <li aria-hidden="true" class="opacity-40">·</li>
+        <li>[focus area 2 — e.g. Cloud-native on bare metal]</li>
+        <li aria-hidden="true" class="opacity-40">·</li>
+        <li>[focus area 3 — e.g. Design-system rollouts]</li>
+        <li aria-hidden="true" class="opacity-40">·</li>
+        <li>[focus area 4 — e.g. AI-first SDLC foundations]</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- METRIC / FACTS BAND -
+     The layout is keep-as-is (6-up grid of "big number + small label"), but the
+     CONTENT should change from career metrics to something that reads as a
+     personality snapshot a visitor can scan in 5 seconds. Candidates:
+       · Years shipping software        ·  Open-source repos
+       · Languages you're fluent in     ·  Cities lived in
+       · Homelab nodes / cores / TiB    ·  Current caffeine intake (mg/day)
+       · GitHub commits this year       ·  Favorite coffee brew method
+       · Talks / posts / podcasts       ·  Books read this year
+     Pick 6 that collectively tell a story (craft + breadth + personality).
+-->
+<section class="relative z-10 border-y border-crema/70 bg-cream-100/40 dark:border-roast-700 dark:bg-roast-900/40">
+  <div class="mx-auto grid w-full max-w-6xl grid-cols-2 gap-x-6 gap-y-10 px-6 md:px-10 py-16 md:grid-cols-6">
+    <app-metric value="[N]" label="[fact category 1]" />
+    <app-metric value="[N]" label="[fact category 2]" />
+    <app-metric value="[N]" label="[fact category 3]" />
+    <app-metric value="[N]" label="[fact category 4]" />
+    <app-metric value="[N]" label="[fact category 5]" />
+    <app-metric value="[N]" label="[fact category 6]" />
+  </div>
+</section>
+
+<!-- FEATURED WORK / CASE STUDIES
+     Three cards. Intent: show RANGE by picking three domains that aren't all the
+     same flavor. Suggested slots (in this order, to keep AI from leading):
+       01 — Data / distributed systems piece with a dollar or throughput figure
+       02 — Frontend / platform / DX piece with an adoption or velocity figure
+       03 — AI / org-design piece with a reach or coverage figure
+     Each card carries: eyebrow (domain tag), title (what was built), summary
+     (1–2 sentences of outcome, not features), metrics (2 max), stack (3–5 chips),
+     a link to the long-form case study on /work.
+-->
+<app-section
+  anchor="featured"
+  eyebrow="Selected work"
+  title="[SECTION HEADLINE — what these three cases prove, one sentence.]"
+  index="01"
+  kicker="[Optional right-aligned kicker / framing phrase.]"
+>
+  <div class="grid gap-6 md:grid-cols-3">
+    <div appReveal>
+      <app-case-card
+        eyebrow="[domain tag, e.g. Data · Distributed Systems]"
+        number="01"
+        title="[Case 1 title — the thing that was built.]"
+        summary="[Case 1 summary — 1–2 sentences leading with outcome, not features. What moved, for whom, over what timeline.]"
+        [metrics]="[{value: '[N]', label: '[outcome metric A]'}, {value: '[N]', label: '[outcome metric B]'}]"
+        [stack]="['[stack 1]', '[stack 2]', '[stack 3]']"
+        [links]="[{label: 'Read the case', href: '/work'}]"
+      />
+    </div>
+    <div appReveal>
+      <app-case-card
+        eyebrow="[domain tag, e.g. Frontend · Platform · DX]"
+        number="02"
+        title="[Case 2 title.]"
+        summary="[Case 2 summary — 1–2 sentences.]"
+        [metrics]="[{value: '[N]', label: '[outcome metric A]'}, {value: '[N]', label: '[outcome metric B]'}]"
+        [stack]="['[stack 1]', '[stack 2]', '[stack 3]']"
+        [links]="[{label: 'Read the case', href: '/work'}]"
+      />
+    </div>
+    <div appReveal>
+      <app-case-card
+        eyebrow="[domain tag, e.g. AI Platform · Org Design]"
+        number="03"
+        title="[Case 3 title.]"
+        summary="[Case 3 summary — 1–2 sentences.]"
+        [metrics]="[{value: '[N]', label: '[outcome metric A]'}, {value: '[N]', label: '[outcome metric B]'}]"
+        [stack]="['[stack 1]', '[stack 2]', '[stack 3]']"
+        [links]="[{label: 'Read the case', href: '/work'}]"
+      />
+    </div>
+  </div>
+</app-section>
+
+<!-- PROJECTS TEASER
+     2x2 grid of side projects. Intent: show what the generalist does on their own
+     time, ordered to lead with systems/infra breadth (not AI). Each card:
+       eyebrow (one-word domain), title, 1–2 sentence summary, stack chips (3–5),
+       optional "source" link out to the repo.
+     Cards below are slots — fill with projects from cv.md or newer work.
+-->
+<app-section
+  anchor="projects"
+  eyebrow="The workshop"
+  title="[SECTION HEADLINE — what the side projects say about you, one sentence.]"
+  index="02"
+  kicker="[Optional kicker — e.g. Self-hosted, self-financed.]"
+>
+  <div class="grid gap-6 md:grid-cols-2">
+    <div appReveal>
+      <app-case-card
+        eyebrow="[domain tag, e.g. Infrastructure]"
+        title="[Project 1 title.]"
+        summary="[Project 1 — 1–2 sentences on what it is and why it's interesting.]"
+        [stack]="['[stack 1]', '[stack 2]', '[stack 3]', '[stack 4]']"
+        [links]="[{label: 'Source', href: 'https://github.com/TechGardenCode', external: true}]"
+      />
+    </div>
+    <div appReveal>
+      <app-case-card
+        eyebrow="[domain tag, e.g. Security]"
+        title="[Project 2 title.]"
+        summary="[Project 2 summary.]"
+        [stack]="['[stack 1]', '[stack 2]', '[stack 3]']"
+      />
+    </div>
+    <div appReveal>
+      <app-case-card
+        eyebrow="[domain tag, e.g. Storage]"
+        title="[Project 3 title.]"
+        summary="[Project 3 summary.]"
+        [stack]="['[stack 1]', '[stack 2]', '[stack 3]']"
+      />
+    </div>
+    <div appReveal>
+      <app-case-card
+        eyebrow="[domain tag, e.g. AI Platform]"
+        title="[Project 4 title.]"
+        summary="[Project 4 summary.]"
+        [stack]="['[stack 1]', '[stack 2]', '[stack 3]', '[stack 4]']"
+      />
+    </div>
+  </div>
+
+  <div class="mt-10 flex justify-end">
+    <app-link-arrow href="/projects">See all projects</app-link-arrow>
+  </div>
+</app-section>
+
+<!-- LAB TEASER
+     Two-column: short paragraph on the left, stack chips on the right.
+     Paragraph content to cover (2–3 sentences):
+       · What the lab is and how it's built (one or two infra terms).
+       · How it's managed (GitOps / declarative / CI / whatever is true).
+       · The "proof" line — e.g. "this site is served from it."
+     Chips: the major named tools in the stack. Aim for 8–12 chips so the visual
+     density sells the "serious" part without overwhelming.
+-->
+<app-section
+  anchor="lab"
+  eyebrow="The lab"
+  title="[SECTION HEADLINE — what the homelab says about you, one sentence.]"
+  index="03"
+  kicker="[Optional kicker — e.g. Because enterprise instincts don't pause at home.]"
+>
+  <div class="grid gap-10 md:grid-cols-[1.2fr_1fr] items-start">
+    <p appReveal class="font-sans text-base leading-relaxed text-ink-700 dark:text-taupe max-w-prose">
+      [LAB PARAGRAPH — 2–3 sentences. Describe the cluster + how it's managed + the
+      "this site runs on it" proof line. Prefer concrete nouns (Talos, Proxmox,
+      ArgoCD) over adjectives.]
+    </p>
+    <div appReveal class="flex flex-wrap gap-2">
+      <app-chip>[stack tool 1]</app-chip>
+      <app-chip>[stack tool 2]</app-chip>
+      <app-chip>[stack tool 3]</app-chip>
+      <app-chip>[stack tool 4]</app-chip>
+      <app-chip>[stack tool 5]</app-chip>
+      <app-chip>[stack tool 6]</app-chip>
+      <app-chip>[stack tool 7]</app-chip>
+      <app-chip>[stack tool 8]</app-chip>
+      <app-chip>[stack tool 9]</app-chip>
+      <app-chip>[stack tool 10]</app-chip>
+    </div>
+  </div>
+
+  <div class="mt-10 flex justify-end">
+    <app-link-arrow href="/lab">Tour the lab</app-link-arrow>
+  </div>
+</app-section>
+
+<!-- OPEN-DOOR / GET-IN-TOUCH
+     Intent: NOT a "hire me" pitch. Frame as an open invitation to anyone who
+     finds something here interesting — fellow engineers, students, homelab
+     tinkerers, recruiters, people with weird questions. Warm, low-pressure.
+     Copy to cover (loose — the below are placeholders, edit for voice):
+       · Headline: an invitation, not a demand.
+       · Subcopy: what you're open to — good conversations, shared interests,
+         interesting problems. Not a "send me offers" line.
+       · CTAs: a primary /contact link and optionally a nudge toward the
+         slowest-possible channel (email) as the preferred one.
+-->
+<section class="relative z-10">
+  <div class="mx-auto w-full max-w-6xl px-6 md:px-10 py-28 md:py-36">
+    <div
+      appReveal
+      class="flex flex-col gap-8 border-t border-crema/70 pt-16 md:flex-row md:items-end md:justify-between dark:border-roast-700"
+    >
+      <div class="max-w-xl flex flex-col gap-4">
+        <app-eyebrow label="Open door" index="04" />
+        <h2 class="font-display text-4xl md:text-5xl leading-tight tracking-tight text-ink-900 dark:text-foam">
+          [OPEN-DOOR HEADLINE — a welcoming, curious-tone invitation in one line.]
+        </h2>
+        <p class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+          [OPEN-DOOR BLURB — 1–2 sentences. Say you read everything, you like good
+          questions, and name a couple of things you'd genuinely enjoy hearing about
+          (e.g. homelab war stories, weird k8s bugs, new coffee brew methods,
+          someone's side project). Explicitly NOT a "send me roles" line.]
+        </p>
+      </div>
+      <div class="flex flex-col items-start gap-3 md:items-end">
+        <app-link-arrow href="/contact">Say hello</app-link-arrow>
+        <a
+          href="https://www.linkedin.com/in/kian-alikhani-20b656100"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link-flourish label text-ink-700 dark:text-taupe"
+        >
+          linkedin ↗
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
