@@ -5,7 +5,7 @@
 // that may contain tokens. The inventory itself is public-safe (IPs on a
 // private VLAN, hostnames already documented in projects/wiki).
 
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
@@ -14,6 +14,20 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, '..', '..', '..', '..');
 const inventoryPath = resolve(repoRoot, 'ansible', 'inventory', 'hosts.yml');
 const outPath = resolve(__dirname, '..', 'src', 'app', 'content', 'lab.generated.ts');
+
+// This script runs in two contexts:
+//   1. Local dev — the submodule is checked out inside the parent
+//      `kian.sh` monorepo, so `../../../../ansible/inventory/hosts.yml`
+//      exists and we regenerate from source.
+//   2. CI / Docker — only the submodule is checked out. The inventory
+//      file isn't reachable. Fall back to the committed generated file.
+if (!existsSync(inventoryPath)) {
+  console.log(
+    `lab.generated.ts ← inventory not reachable at ${inventoryPath}; ` +
+      `using committed artifact at ${outPath}`
+  );
+  process.exit(0);
+}
 
 const ROLE_LABELS = {
   proxmox: 'Proxmox host',
