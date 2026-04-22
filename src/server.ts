@@ -18,9 +18,12 @@ const allowedHosts: string[] = [
   'localhost',
   'localhost:4000',
   'localhost:4100',
+  '127.0.0.1',
+  '127.0.0.1:4000',
   'kian.coffee',
-  'kian.sh',
   'www.kian.coffee',
+  'dev.kian.coffee',
+  'kian.sh',
 ];
 
 const angularApp = new AngularNodeAppEngine({ allowedHosts });

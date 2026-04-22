@@ -45,7 +45,7 @@ RUN chown -R node:node /app
 
 ENV NODE_ENV=production
 ENV PORT=4000
-ENV NG_ALLOWED_HOSTS=kian.coffee,www.kian.coffee,kian.sh,www.kian.sh
+ENV NG_ALLOWED_HOSTS=kian.coffee,www.kian.coffee,dev.kian.coffee,kian.sh,www.kian.sh
 
 EXPOSE 4000
 
