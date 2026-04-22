@@ -30,19 +30,18 @@ RUN npm run build
 FROM node:22-alpine AS runtime
 WORKDIR /app
 
-# Non-root user for defense in depth. node:alpine ships with a pre-created
-# `node` user (uid 1000).
-USER node
-
-# Copy only the build output + the package manifests (so npm ci installs
-# production deps for the server to run). The browser bundle lives under
-# dist/www/browser; the server bundle under dist/www/server. Both are
-# referenced by the Express server entrypoint.
-COPY --chown=node:node --from=builder /app/package.json /app/package-lock.json ./
-COPY --chown=node:node --from=builder /app/dist ./dist
+# Install production deps as root (npm needs to create /app/node_modules).
+# We drop to the non-root `node` user at the end, right before CMD.
+COPY --from=builder /app/package.json /app/package-lock.json ./
+COPY --from=builder /app/dist ./dist
 
 # Production deps only — no dev tooling, no Angular CLI.
 RUN npm ci --omit=dev --no-audit --no-fund && npm cache clean --force
+
+# Hand the whole /app tree to the unprivileged `node` user (uid 1000, ships
+# pre-created in node:alpine). Doing this after all writes means npm has
+# permission to install, but the running container can't modify its own code.
+RUN chown -R node:node /app
 
 ENV NODE_ENV=production
 ENV PORT=4000
@@ -55,5 +54,7 @@ EXPOSE 4000
 # its own probe config.
 HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
   CMD wget -q -O /dev/null http://127.0.0.1:4000/health || exit 1
+
+USER node
 
 CMD ["node", "dist/www/server/server.mjs"]
