@@ -202,7 +202,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
       <text x="860" y="340" font-family="var(--font-mono)" font-size="8"
             fill="var(--dg-soft)" letter-spacing="0.10em" text-anchor="end">
-        SOURCE OF TRUTH: .github/workflows + homelab repo
+        SOURCE OF TRUTH: app CI + homelab GitOps repo
       </text>
     </svg>
   `,

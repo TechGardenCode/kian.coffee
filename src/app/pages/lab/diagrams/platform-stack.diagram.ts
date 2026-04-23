@@ -152,7 +152,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <!-- Rendered-from note -->
       <text x="940" y="424" font-family="var(--font-mono)" font-size="8"
             fill="var(--dg-soft)" letter-spacing="0.10em" text-anchor="end">
-        SOURCE OF TRUTH: ansible/inventory + talos/clusters
+        SOURCE OF TRUTH: declarative inventory + cluster configs
       </text>
 
       <!-- ============ Separator before legend already above; nothing else ============ -->

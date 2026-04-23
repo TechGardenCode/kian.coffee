@@ -41,7 +41,7 @@ here is invented.
 
 - Three Talos Kubernetes clusters: core, dev, prod. Nine cluster nodes total.
 - Three bare-metal HP EliteDesks running prod; Proxmox hypervisors hosting core and dev VMs.
-- GitOps via ArgoCD + GitHub Actions with `update-image-tag.yml` promotion flow.
+- GitOps via ArgoCD + GitHub Actions; image tags are auto-promoted through a dispatch-driven flow.
 - Self-hosted LGTM observability stack (Grafana, Loki, Tempo, Mimir) with Grafana Alloy on every host.
 - CNPG for Postgres, Dragonfly for KV, Envoy Gateway + cert-manager + external-dns at the edge.
 - Source: [github.com/TechGardenCode/kian.sh](https://github.com/TechGardenCode/kian.sh).
