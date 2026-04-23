@@ -10,21 +10,18 @@ const app = express();
 
 /**
  * Allow-list of hostnames the SSR engine will render for. Angular 20+ blocks
- * unknown hosts as SSRF protection — without an allowlist, requests for
- * `localhost` (dev) or the prod hostname fall back to an empty client-rendered
- * shell. Add every externally-reachable hostname here.
+ * unknown hosts as SSRF protection — without an allowlist, requests fall back
+ * to an empty client-rendered shell. Sourced from `NG_ALLOWED_HOSTS` (comma-
+ * separated) so the container image set by the Dockerfile stays the source of
+ * truth in prod; local dev falls back to loopback hosts when the env is unset.
  */
-const allowedHosts: string[] = [
-  'localhost',
-  'localhost:4000',
-  'localhost:4100',
-  '127.0.0.1',
-  '127.0.0.1:4000',
-  'kian.coffee',
-  'www.kian.coffee',
-  'dev.kian.coffee',
-  'kian.sh',
-];
+const allowedHosts: string[] = (
+  process.env['NG_ALLOWED_HOSTS'] ??
+  'localhost,localhost:4000,localhost:4100,127.0.0.1,127.0.0.1:4000'
+)
+  .split(',')
+  .map((h) => h.trim())
+  .filter(Boolean);
 
 const angularApp = new AngularNodeAppEngine({ allowedHosts });
 
@@ -168,9 +165,29 @@ function respondFromCache(res: express.Response, entry: CacheEntry): void {
 
 const port = Number(process.env['PORT'] ?? 4000);
 if (isMainModule(import.meta.url)) {
-  app.listen(port, () => {
+  const server = app.listen(port, () => {
     console.log(`kian.coffee SSR listening on :${port}`);
   });
+
+  // Graceful shutdown: stop accepting new connections, let in-flight renders
+  // finish, exit before k8s terminationGracePeriodSeconds (30s) elapses.
+  const shutdown = (signal: string): void => {
+    console.log(`[${signal}] draining connections`);
+    server.close((err) => {
+      if (err) {
+        console.error('[shutdown] error closing server', err);
+        process.exit(1);
+      }
+      process.exit(0);
+    });
+    setTimeout(() => {
+      console.warn('[shutdown] force exit after 25s');
+      process.exit(1);
+    }, 25_000).unref();
+  };
+
+  process.on('SIGTERM', () => shutdown('SIGTERM'));
+  process.on('SIGINT', () => shutdown('SIGINT'));
 }
 
 export const reqHandler = createNodeRequestHandler(app);
