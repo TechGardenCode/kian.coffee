@@ -17,12 +17,13 @@ import { USES } from '../../content/uses';
         appReveal
         class="mt-6 font-display text-5xl md:text-7xl leading-[1.05] tracking-tight text-ink-900 dark:text-foam"
       >
-        [/USES HEADLINE]<br />
-        <span class="text-accent">[emphasis phrase].</span>
+        The stuff I actually<br />
+        <span class="text-accent">reach for.</span>
       </h1>
       <p appReveal class="mt-8 max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
-        [/USES SUBHEAD — 1–2 sentences. What this page is (your personal gear
-        + tools rundown), how often you update it. Your voice.]
+        Editor, desk, rack, terminal, espresso bar. Nothing aspirational on
+        this page. Just what's in daily rotation. Updated when something
+        changes, which is rarer than you'd think.
       </p>
     </section>
 
@@ -57,8 +58,8 @@ import { USES } from '../../content/uses';
       <div class="mx-auto w-full max-w-6xl px-6 md:px-10 pb-28 md:pb-36">
         <div appReveal class="flex flex-col gap-4 border-t border-crema/70 pt-12 dark:border-roast-700 md:flex-row md:items-end md:justify-between">
           <p class="max-w-xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
-            [/USES → /LAB HANDOFF — 1 sentence bridging the reader to the lab
-            page if they want more homelab detail.]
+            The rack gets its own page. Diagrams, host roster, and the
+            GitOps flow that keeps it running.
           </p>
           <app-link-arrow href="/lab">Go to /lab</app-link-arrow>
         </div>

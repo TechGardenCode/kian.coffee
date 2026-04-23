@@ -22,13 +22,13 @@ import { ElsewhereService, ElsewhereView } from '../../features/elsewhere/elsewh
         appReveal
         class="mt-6 font-display text-5xl md:text-7xl leading-[1.05] tracking-tight text-ink-900 dark:text-foam"
       >
-        [/ELSEWHERE HEADLINE]<br />
-        <span class="text-accent">[emphasis phrase in accent color].</span>
+        Where the writing<br />
+        <span class="text-accent">actually lives.</span>
       </h1>
       <p appReveal class="mt-8 max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
-        [/ELSEWHERE SUBHEAD — 1–2 sentences. What the page is: a link-out feed
-        of where you publish. How it works (SSR + cache refresh without a
-        redeploy) is optional to mention. Your voice.]
+        I don't write a lot. When I do, it usually ends up somewhere else
+        first. A gist, a PR, a conference talk, a long Slack thread. This
+        page collects those link-outs so they don't get buried.
       </p>
     </section>
 
@@ -52,12 +52,12 @@ import { ElsewhereService, ElsewhereView } from '../../features/elsewhere/elsewh
         <div appReveal class="rounded-xl border border-crema/80 bg-cream-100/40 p-10 md:p-14 dark:border-roast-700 dark:bg-roast-900/40">
           <span class="label text-ink-700 dark:text-taupe">Nothing here yet</span>
           <h2 class="mt-4 font-display text-3xl md:text-4xl leading-tight text-ink-900 dark:text-foam">
-            [/ELSEWHERE EMPTY HEADLINE]
+            Nothing's caught up to this feed yet.
           </h2>
           <p class="mt-6 max-w-2xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
-            [/ELSEWHERE EMPTY BLURB — shown when no feeds are configured yet or
-            all feeds failed. Keep it warm and low-pressure. Don't promise
-            specific platforms unless you actually publish there.]
+            Either the feeds haven't been wired up or the last refresh came
+            back empty. For now, most of the interesting stuff lives in
+            commits. GitHub's a decent proxy.
           </p>
           <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
             <app-link-arrow href="https://github.com/TechGardenCode" [external]="true">

@@ -92,9 +92,9 @@ low-latency automation. Keeps inference and data on-prem.`,
       {
         title: 'kian.coffee',
         eyebrow: 'This site',
-        summary: `[KIAN.COFFEE SUMMARY — 1–2 sentences describing this site the way
-you'd describe a project. What it is, why it exists, what makes it worth
-pointing at. Skip hyperbole.]`,
+        summary: `The page you're reading right now. Angular 21 with standalone
+components, Tailwind v4, SSR + ISR cache, served out of the same Talos cluster
+the /lab page describes. If it loaded, the homelab's alive.`,
         stack: ['Angular 21', 'Tailwind v4', 'SSR + ISR cache', 'ArgoCD'],
         links: [
           { label: 'Source', href: 'https://github.com/TechGardenCode/kian-coffee', external: true },
@@ -102,16 +102,19 @@ pointing at. Skip hyperbole.]`,
       },
       {
         title: 'Hausparty',
-        eyebrow: '[domain tag, e.g. Next.js · CNPG]',
-        summary: `[HAUSPARTY SUMMARY — 1–2 sentences. What it is, the interesting
-technical bits, any stack choices worth naming. Your words, not mine.]`,
-        stack: ['[stack 1]', '[stack 2]', '[stack 3]', '[stack 4]'],
+        eyebrow: 'Next.js · CNPG · Dragonfly',
+        summary: `A content-discovery app backed by a staged ingestion pipeline.
+Next.js 16 on the frontend. CloudNativePG for durable state. Dragonfly for
+rate limits and cache. Ships through the same GitOps pipeline as everything
+else in the lab.`,
+        stack: ['Next.js 16', 'CloudNativePG', 'Dragonfly', 'Kubernetes'],
       },
       {
         title: 'Pelican + Wings game servers',
         eyebrow: 'Game infra',
-        summary: `[GAME-SERVER SUMMARY — 1–2 sentences. What it's for, how it's
-wired, who uses it. Keep it human.]`,
+        summary: `Pelican control plane on the core cluster. Wings daemons on a
+dedicated node out on VLAN 80. Friends spin up their own game servers without
+texting me first.`,
         stack: ['Pelican', 'Wings', 'VLAN 80'],
       },
     ],

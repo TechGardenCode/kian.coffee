@@ -58,7 +58,7 @@ const HIDE_FLOOR_Y = 48;
   template: `
     <header
       [attr.data-visible]="effectiveVisible()"
-      class="sticky top-0 z-40 border-b border-crema/70 bg-cream-50/85 backdrop-blur-md transition-transform duration-200 ease-out data-[visible=false]:-translate-y-full motion-reduce:transition-none dark:border-roast-700 dark:bg-roast-950/85"
+      class="sticky top-0 z-40 border-b border-crema/70 bg-cream-50/85 backdrop-blur-md transition-transform duration-500 ease-out data-[visible=false]:-translate-y-full motion-reduce:transition-none dark:border-roast-700 dark:bg-roast-950/85"
     >
       <div class="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-6 md:px-10">
         <a

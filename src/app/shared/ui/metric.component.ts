@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="flex flex-col gap-1.5">
+    <div class="flex flex-col items-center gap-1.5 text-center">
       <span class="font-display text-5xl md:text-6xl leading-none tabular text-ink-900 dark:text-foam">
         {{ value() }}
       </span>

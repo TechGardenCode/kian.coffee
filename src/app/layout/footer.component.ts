@@ -12,9 +12,9 @@ import { RouterLink } from '@angular/router';
         <div class="flex flex-col gap-3 max-w-md">
           <span class="label text-ink-700 dark:text-taupe">kian.coffee</span>
           <p class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
-            [FOOTER BLURB — 1–2 sentences. Say where it lives (Talos cluster on
-            Proxmox at home, deployed by ArgoCD), and something human (served over
-            HTTPS, no surprise trackers, made with intention). Keep the playful tone.]
+            Served from a Talos cluster on Proxmox in my basement, delivered
+            by ArgoCD. HTTPS all the way. No trackers. No popups. Just pages
+            built with intention.
           </p>
         </div>
 
@@ -47,7 +47,7 @@ import { RouterLink } from '@angular/router';
       <div class="border-t border-crema/70 dark:border-roast-700">
         <div class="mx-auto flex w-full max-w-6xl items-center justify-between px-6 md:px-10 py-5 label-sm text-ink-700 dark:text-taupe">
           <span>&copy; {{ year }} Kian Alikhani</span>
-          <span>[FOOTER CREDIT — tagline on the right, e.g. "Built with Angular · Tailwind · intention".]</span>
+          <span>Built with Angular · Tailwind · intention</span>
         </div>
       </div>
     </footer>

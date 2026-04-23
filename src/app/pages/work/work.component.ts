@@ -20,13 +20,13 @@ import { WORK } from '../../content/work';
         appReveal
         class="mt-6 font-display text-5xl md:text-7xl leading-[1.05] tracking-tight text-ink-900 dark:text-foam"
       >
-        [/WORK HEADLINE]<br />
-        <span class="text-accent">[emphasis phrase in accent color].</span>
+        Four chapters, not a<br />
+        <span class="text-accent">bullet list.</span>
       </h1>
       <p appReveal class="mt-8 max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
-        [/WORK SUBHEAD — 1–2 sentences. Frame the page: what the reader is about
-        to read (a career arc, not a bullet list), and why you laid it out this
-        way. Your voice.]
+        I think about my career in eras, not job titles. Each one had a
+        different kind of hard problem at the center of it. The stacks change.
+        The habit of building things that have to hold up doesn't.
       </p>
     </section>
 
@@ -51,13 +51,15 @@ import { WORK } from '../../content/work';
               {{ role.title }}
             </div>
 
-            <!-- Stat slot — fills in with a callout metric once we pick the story's numbers. -->
-            <div class="mt-4 flex flex-col gap-1.5 border-l-2 border-crema/70 pl-4 dark:border-roast-700">
-              <span class="label-sm text-ink-500 dark:text-taupe-dim">[HEADLINE STAT]</span>
-              <span class="font-sans text-[13px] leading-relaxed text-ink-700 dark:text-taupe max-w-[18rem]">
-                [One-line metric that anchors this chapter — fill in during content pass.]
-              </span>
-            </div>
+            <!-- Anchor stat — the number the reader should walk away with. -->
+            @if (role.stat; as stat) {
+              <div class="mt-4 flex flex-col gap-1.5 border-l-2 border-crema/70 pl-4 dark:border-roast-700">
+                <span class="font-display text-3xl text-accent">{{ stat.value }}</span>
+                <span class="font-sans text-[13px] leading-relaxed text-ink-700 dark:text-taupe max-w-[18rem]">
+                  {{ stat.label }}
+                </span>
+              </div>
+            }
           </div>
 
           <!-- Right column — narrative -->
@@ -123,8 +125,8 @@ import { WORK } from '../../content/work';
           class="flex flex-col gap-4 border-t border-crema/70 pt-12 dark:border-roast-700 md:flex-row md:items-end md:justify-between"
         >
           <p class="max-w-xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
-            [/WORK → /PROJECTS HANDOFF — 1 sentence bridging the reader from
-            career work to side projects.]
+            What I build on the clock is only half of it. The side projects
+            are where I get to try things without a review board.
           </p>
           <div class="flex flex-col items-start gap-3 md:items-end">
             <app-link-arrow href="/projects">See projects</app-link-arrow>

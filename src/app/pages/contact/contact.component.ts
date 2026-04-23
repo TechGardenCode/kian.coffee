@@ -20,15 +20,15 @@ import { SeoService } from '../../shared/seo/seo.service';
       <app-eyebrow label="/contact" index="07" />
 
       <h1 class="mt-6 font-display text-5xl md:text-7xl leading-[1.05] tracking-tight text-ink-900 dark:text-foam">
-        [CONTACT HEADLINE]
-        <span class="block text-ink-700 dark:text-taupe">[sub-line that extends it, warmly.]</span>
+        Say hello.
+        <span class="block text-ink-700 dark:text-taupe">The door's genuinely open.</span>
       </h1>
 
       <p class="mt-8 max-w-xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
-        [CONTACT BLURB — 2–3 sentences. Cover: (1) that you read everything, (2)
-        what you genuinely enjoy hearing about (name 2–3 concrete things), (3)
-        how to reach you fastest. Avoid "open to opportunities" framing — say the
-        human version instead.]
+        Every email gets read. Easiest paths in: you're chasing a weird K8s
+        bug, you've got a homelab war story, you want to swap fantasy-series
+        recs, or something on this site reminded you of something. Email's
+        fastest. LinkedIn works too.
       </p>
 
       <div class="mt-14 grid gap-10 md:grid-cols-[auto_1fr] md:gap-14">
@@ -70,10 +70,9 @@ import { SeoService } from '../../shared/seo/seo.service';
 
         <aside class="border-l border-crema/70 pl-8 dark:border-roast-700">
           <p class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
-            [ASIDE BLURB — a short "here's how to get a real reply" note. Optional.
-            Could be a preferred-format hint (e.g. "a one-paragraph intro beats a
-            calendar link"), or a time-to-reply expectation, or just a playful
-            aside. Tone: low-key, never transactional.]
+            A one-paragraph intro beats a calendar link. Replies usually land
+            within a day or two. If not, the lab's probably on fire and
+            you'll get the story along with the response.
           </p>
           <div class="mt-8">
             <app-link-arrow href="/work">See the work first</app-link-arrow>

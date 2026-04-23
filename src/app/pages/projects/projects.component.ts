@@ -20,12 +20,13 @@ import { PROJECT_GROUPS } from '../../content/projects';
         appReveal
         class="mt-6 font-display text-5xl md:text-7xl leading-[1.05] tracking-tight text-ink-900 dark:text-foam"
       >
-        [/PROJECTS HEADLINE]<br />
-        <span class="text-accent">[emphasis phrase in accent color].</span>
+        The workshop behind<br />
+        <span class="text-accent">the résumé.</span>
       </h1>
       <p appReveal class="mt-8 max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
-        [/PROJECTS SUBHEAD — 1–2 sentences. What ties these projects together?
-        Why group them the way they're grouped? Your voice.]
+        Side projects in three groups. The platform underneath everything.
+        The places AI earns a seat at the table. The apps I ship through the
+        same pipeline that serves this page.
       </p>
     </section>
 

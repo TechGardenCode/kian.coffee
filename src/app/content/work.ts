@@ -9,12 +9,18 @@ export interface WorkRole {
   readonly narrative: string;
   /** Domain tags — the shape of the work, sourced from the CV bullets. */
   readonly domains: readonly string[];
+  /** Anchor stat for the chapter — the number a reader should walk away with.
+   *  Optional; early-career roles may not have one worth calling out. */
+  readonly stat?: {
+    readonly value: string;
+    readonly label: string;
+  };
 }
 
 /**
- * Work timeline — newest first. Every line below is paraphrased from
- * /projects/kian-coffee/docs/cv.md. Stat placeholders stay as `[HEADLINE STAT]`
- * markers on the page, filled in during a later content pass.
+ * Work timeline — newest first. Narratives paraphrase
+ * /projects/kian-coffee/docs/cv.md; anchor stats are the numbers the reader
+ * should walk away with for each chapter.
  */
 export const WORK: readonly WorkRole[] = [
   {
@@ -34,6 +40,10 @@ compound AI systems across the org.`,
       'Design System',
       'Org Design',
     ],
+    stat: {
+      value: '85%',
+      label: 'context coverage on the auth rewrite, up from under 20%. No fresh hires needed.',
+    },
   },
   {
     chapter: 'The depth chapter',
@@ -52,6 +62,10 @@ burst traffic from becoming incidents.`,
       'Frontend Architecture',
       'Access Control',
     ],
+    stat: {
+      value: '12M+',
+      label: 'transactions per hour through the pipeline. 1-hour SLA held under burst load.',
+    },
   },
   {
     chapter: 'The full-stack chapter',
@@ -67,15 +81,19 @@ Kubernetes. Owned features across infrastructure, backend, and UI.`,
       'Kubernetes',
       'CI/CD',
     ],
+    stat: {
+      value: '8 → 2',
+      label: 'Eight-person team that shipped like a pair. Owned infra, backend, and UI.',
+    },
   },
   {
     chapter: 'The first chapter',
     company: 'IBM Watson',
     title: 'Software Engineer Intern',
     range: 'Summer 2018',
-    narrative: `[INTERNSHIP NARRATIVE — 1–2 sentences. The CV has no detail here; fill
-in what was memorable: what you built, what you learned, what it was like
-shipping at IBM's scale as an intern.]`,
+    narrative: `Summer internship on the Watson platform. [Kian: one sentence
+here on what you shipped, or what stuck with you about working at IBM scale
+before the rest of the career started.]`,
     domains: ['Backend'],
   },
 ];

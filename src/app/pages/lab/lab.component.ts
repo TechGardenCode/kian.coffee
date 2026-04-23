@@ -35,8 +35,8 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
         appReveal
         class="mt-6 font-display text-5xl md:text-7xl leading-[1.05] tracking-tight text-ink-900 dark:text-foam"
       >
-        [/LAB HEADLINE]<br />
-        <span class="text-accent">[emphasis phrase in accent color].</span>
+        The rack under the desk,<br />
+        <span class="text-accent">run like a cloud provider.</span>
       </h1>
       <p appReveal class="mt-8 max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
         Three Talos Kubernetes clusters — core, dev, and prod — running on Proxmox
@@ -64,8 +64,9 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
       kicker="Infrastructure → workloads"
     >
       <p appReveal class="mb-10 max-w-3xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
-        [DIAGRAM 01 BLURB — 1–2 sentences framing what the stack shows. The
-        diagram itself does most of the work; this is the caption.]
+        Five layers between bare metal and a running pod. Every one of them
+        is boring, which is the point. Adding a new app on top barely touches
+        the stack below.
       </p>
       <div appReveal class="diagram-frame">
         <app-platform-stack-diagram />

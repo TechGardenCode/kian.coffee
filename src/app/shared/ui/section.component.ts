@@ -13,7 +13,7 @@ import { EyebrowComponent } from './eyebrow.component';
       class="relative z-10 mx-auto w-full max-w-6xl px-6 md:px-10 py-24 md:py-32"
     >
       <div class="mb-12 md:mb-16 flex flex-col gap-4 border-b border-crema/70 pb-6 md:flex-row md:items-end md:justify-between md:gap-8 dark:border-roast-700">
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-3 md:min-w-0 md:flex-1">
           <app-eyebrow [label]="eyebrow()" [index]="index()" />
           <h2
             appReveal
@@ -23,7 +23,7 @@ import { EyebrowComponent } from './eyebrow.component';
           </h2>
         </div>
         @if (kicker()) {
-          <span class="label text-ink-700 dark:text-taupe md:max-w-[18rem] md:text-right">
+          <span class="label text-ink-700 dark:text-taupe md:max-w-[18rem] md:shrink-0 md:text-right">
             {{ kicker() }}
           </span>
         }

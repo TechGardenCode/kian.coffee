@@ -20,8 +20,8 @@ import { NOW_FOCUS, NOW_LEADE, NOW_LOCATION, NOW_UPDATED_ISO } from '../../conte
           appReveal
           class="font-display text-5xl md:text-7xl leading-[1.05] tracking-tight text-ink-900 dark:text-foam"
         >
-          [/NOW HEADLINE]<br />
-          <span class="text-accent">[emphasis phrase].</span>
+          A snapshot of<br />
+          <span class="text-accent">right now.</span>
         </h1>
         <span class="label text-ink-700 dark:text-taupe md:text-right">
           updated {{ updated | date: 'longDate' }}

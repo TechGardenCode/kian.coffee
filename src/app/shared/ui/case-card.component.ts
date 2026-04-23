@@ -17,12 +17,12 @@ export interface CaseCardLink {
     <article
       class="group relative flex h-full flex-col gap-5 rounded-xl border border-crema/80 bg-cream-100/60 p-6 md:p-8 transition-colors hover:border-ink-700/40 dark:border-roast-700 dark:bg-roast-900/60 dark:hover:border-taupe/60"
     >
-      <div class="flex items-center gap-3">
+      <div class="flex items-start justify-between gap-3">
         <span class="label-sm text-ink-700 dark:text-taupe">
           {{ eyebrow() }}
         </span>
         @if (number()) {
-          <span class="label-sm tabular text-ink-500 dark:text-taupe-dim">— {{ number() }}</span>
+          <span class="label-sm tabular shrink-0 whitespace-nowrap text-ink-500 dark:text-taupe-dim">— {{ number() }}</span>
         }
       </div>
 
@@ -34,31 +34,35 @@ export interface CaseCardLink {
         {{ summary() }}
       </p>
 
-      @if (metrics()?.length) {
-        <div class="flex flex-wrap gap-x-6 gap-y-2 pt-1">
-          @for (m of metrics(); track m.label) {
-            <div class="flex items-baseline gap-1.5">
-              <span class="font-display text-xl tabular text-ink-900 dark:text-foam">{{ m.value }}</span>
-              <span class="label-sm text-ink-700 dark:text-taupe">{{ m.label }}</span>
+      @if (metrics()?.length || stack()?.length || links()?.length) {
+        <div class="mt-auto flex flex-col gap-5 pt-6">
+          @if (metrics()?.length) {
+            <div class="flex flex-wrap gap-x-6 gap-y-2">
+              @for (m of metrics(); track m.label) {
+                <div class="flex items-baseline gap-1.5">
+                  <span class="font-display text-xl tabular whitespace-nowrap text-ink-900 dark:text-foam">{{ m.value }}</span>
+                  <span class="label-sm text-ink-700 dark:text-taupe">{{ m.label }}</span>
+                </div>
+              }
             </div>
           }
-        </div>
-      }
 
-      @if (stack()?.length) {
-        <div class="flex flex-wrap gap-2 pt-1">
-          @for (chip of stack(); track chip) {
-            <app-chip>{{ chip }}</app-chip>
+          @if (stack()?.length) {
+            <div class="flex flex-wrap gap-2">
+              @for (chip of stack(); track chip) {
+                <app-chip>{{ chip }}</app-chip>
+              }
+            </div>
           }
-        </div>
-      }
 
-      @if (links()?.length) {
-        <div class="flex flex-wrap gap-x-6 gap-y-2 pt-2 mt-auto">
-          @for (link of links(); track link.href) {
-            <app-link-arrow [href]="link.href" [external]="link.external ?? false">
-              {{ link.label }}
-            </app-link-arrow>
+          @if (links()?.length) {
+            <div class="flex flex-wrap gap-x-6 gap-y-2">
+              @for (link of links(); track link.href) {
+                <app-link-arrow [href]="link.href" [external]="link.external ?? false">
+                  {{ link.label }}
+                </app-link-arrow>
+              }
+            </div>
           }
         </div>
       }
