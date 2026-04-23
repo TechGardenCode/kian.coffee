@@ -119,11 +119,8 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
             </p>
             <ul class="flex flex-col gap-1 font-mono text-[12px] text-ink-700 dark:text-taupe">
               @for (host of group.hosts; track host.hostname) {
-                <li class="flex items-center justify-between border-t border-crema/60 pt-1.5 first:border-0 first:pt-0 dark:border-roast-800">
+                <li class="border-t border-crema/60 pt-1.5 first:border-0 first:pt-0 dark:border-roast-800">
                   <span class="text-ink-900 dark:text-foam">{{ host.hostname }}</span>
-                  @if (host.address) {
-                    <span class="tabular text-ink-500 dark:text-taupe-dim">{{ host.address }}</span>
-                  }
                 </li>
               }
             </ul>

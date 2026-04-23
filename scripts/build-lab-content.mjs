@@ -2,8 +2,9 @@
 // Reads the homelab Ansible inventory and emits a typed lab.generated.ts
 // so the /lab page stays accurate as infra evolves. Runs at build time.
 // SAFETY: reads only hosts.yml — never touches vault files or host_vars/*
-// that may contain tokens. The inventory itself is public-safe (IPs on a
-// private VLAN, hostnames already documented in projects/wiki).
+// that may contain tokens. Only public-safe fields (hostname, role) are
+// emitted — IP addresses are deliberately dropped to keep the public lab
+// page free of internal network topology.
 
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
@@ -60,9 +61,8 @@ function collectGroups(inventory) {
   for (const [name, body] of Object.entries(children)) {
     if (!body || typeof body !== 'object') continue;
     if (!body.hosts) continue;
-    const hosts = Object.entries(body.hosts).map(([hostname, vars]) => ({
+    const hosts = Object.entries(body.hosts).map(([hostname]) => ({
       hostname,
-      address: vars?.ansible_host ?? null,
     }));
     if (hosts.length === 0) continue;
     groups.push({
@@ -83,7 +83,6 @@ function render(groups) {
 
 export interface LabHost {
   readonly hostname: string;
-  readonly address: string | null;
 }
 
 export interface LabHostGroup {
