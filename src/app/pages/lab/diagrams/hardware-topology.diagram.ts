@@ -53,7 +53,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <text x="88" y="100" font-family="var(--font-sans)" font-size="16" font-weight="600"
             fill="var(--dg-ink)">Bare-metal prod</text>
       <text x="88" y="120" font-family="var(--font-mono)" font-size="10"
-            fill="var(--dg-muted)" letter-spacing="0.04em">talos-prod · control plane</text>
+            fill="var(--dg-muted)" letter-spacing="0.04em">talos-prod · active-active · 2 AZs</text>
 
       <!-- Host nodes: ed-n1, ed-n2, ed-n3 -->
       <g>
@@ -78,6 +78,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         <text x="830" y="100" font-family="var(--font-mono)" font-size="9"
               fill="var(--dg-soft)" text-anchor="middle">HP EliteDesk</text>
       </g>
+
+      <!-- AZ-B mirror annotation -->
+      <text x="910" y="130" font-family="var(--font-mono)" font-size="9"
+            fill="var(--dg-accent-strong)" letter-spacing="0.08em" text-anchor="end"
+            font-style="normal">
+        + AZ B mirrors: ×3 bare-metal + TrueNAS
+      </text>
 
       <!-- ============ T2 — Hypervisors ============ -->
       <line x1="60" y1="140" x2="940" y2="140" stroke="var(--dg-rule)" stroke-width="1" />
@@ -144,14 +151,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         <text x="722" y="304" font-family="var(--font-sans)" font-size="12" font-weight="600"
               fill="var(--dg-ink)" text-anchor="middle">cm-nas</text>
         <text x="722" y="320" font-family="var(--font-mono)" font-size="9"
-              fill="var(--dg-soft)" text-anchor="middle">TrueNAS</text>
+              fill="var(--dg-soft)" text-anchor="middle">TrueNAS · AZ A</text>
 
         <rect x="800" y="280" width="124" height="52" rx="6" ry="6"
               fill="var(--dg-paper-2)" stroke="var(--dg-muted)" stroke-width="0.8" />
         <text x="862" y="304" font-family="var(--font-sans)" font-size="12" font-weight="600"
               fill="var(--dg-ink)" text-anchor="middle">jb-nas</text>
         <text x="862" y="320" font-family="var(--font-mono)" font-size="9"
-              fill="var(--dg-soft)" text-anchor="middle">TrueNAS</text>
+              fill="var(--dg-soft)" text-anchor="middle">TrueNAS · AZ B</text>
       </g>
 
       <!-- ============ Legend ============ -->

@@ -45,12 +45,12 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
         <span class="text-accent">run like a cloud provider.</span>
       </h1>
       <p appReveal class="mt-8 max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
-        Three Talos Kubernetes clusters — core, dev, and prod — running on Proxmox
-        hypervisors and three bare-metal EliteDesks. Every cluster runs a
-        3-node etcd quorum. Three Technitium DNS instances sit behind a
-        keepalived VIP. The edge is split into internal and public Envoy
-        Gateways. Declarative from the metal up, delivered by GitOps, observed
-        by a self-hosted LGTM stack. This site is served from it.
+        Four Talos Kubernetes clusters — core, dev, and two prod clusters
+        running active-active across two AZs. Every cluster runs a 3-node
+        etcd quorum. Three Technitium DNS instances sit behind a keepalived
+        VIP. The edge is split into internal and public Envoy Gateways.
+        Declarative from the metal up, delivered by GitOps, observed by a
+        self-hosted LGTM stack. This site is served from it.
       </p>
     </section>
 
@@ -130,14 +130,15 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
       eyebrow="Diagram 03"
       title="What runs where, physically."
       index="04"
-      kicker="Three tiers · one production line"
+      kicker="Three tiers · two production AZs"
     >
       <p appReveal class="mb-10 max-w-3xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
-        Three tiers of physical compute. Production runs directly on
-        bare-metal EliteDesks, so there's no hypervisor in the critical
-        path. The Proxmox hosts carry the core and dev clusters as VMs.
-        Edge services (DNS, load balancer) and storage run on Raspberry
-        Pis and TrueNAS boxes.
+        Three tiers of physical compute, with production replicated
+        active-active across two AZs. Each AZ has its own 3-node
+        bare-metal Talos prod cluster and TrueNAS, so there's no
+        hypervisor in the critical path. The Proxmox hosts in the primary
+        AZ carry core and dev as VMs. Edge services (DNS, load balancer)
+        run on Raspberry Pis.
       </p>
       <div appReveal class="diagram-frame">
         <app-hardware-topology-diagram />
@@ -174,8 +175,9 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
     >
       <p appReveal class="mb-10 max-w-3xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
         Reliability work is never done. Left column is what's already
-        redundant; right column is what still runs as a single instance,
-        and the next step queued up for each one.
+        redundant — including multi-AZ prod and cross-AZ NAS replication.
+        Right column is what still runs as a single instance, and the
+        next step queued up for each one.
       </p>
       <div appReveal class="diagram-frame">
         <app-ha-redundancy-diagram />

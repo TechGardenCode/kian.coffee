@@ -65,9 +65,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         <rect x="60" y="176" width="420" height="36" rx="4" ry="4"
               fill="var(--dg-paper)" stroke="var(--dg-rule-solid)" stroke-width="0.8" />
         <text x="80" y="199" font-family="var(--font-sans)" font-size="12" font-weight="600"
-              fill="var(--dg-ink)">talos-core · etcd quorum</text>
-        <text x="300" y="199" font-family="var(--font-mono)" font-size="9"
-              fill="var(--dg-soft)">control plane</text>
+              fill="var(--dg-ink)">Talos etcd · every cluster</text>
+        <text x="296" y="199" font-family="var(--font-mono)" font-size="9"
+              fill="var(--dg-soft)">core · dev · 2× prod</text>
         <rect x="440" y="186" width="28" height="16" rx="3" ry="3" fill="var(--dg-ink)" opacity="0.88" />
         <text x="454" y="198" font-family="var(--font-mono)" font-size="9" font-weight="600"
               fill="var(--dg-paper)" text-anchor="middle">×3</text>
@@ -77,24 +77,24 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         <rect x="60" y="220" width="420" height="36" rx="4" ry="4"
               fill="var(--dg-paper)" stroke="var(--dg-rule-solid)" stroke-width="0.8" />
         <text x="80" y="243" font-family="var(--font-sans)" font-size="12" font-weight="600"
-              fill="var(--dg-ink)">talos-dev · etcd quorum</text>
-        <text x="296" y="243" font-family="var(--font-mono)" font-size="9"
-              fill="var(--dg-soft)">control plane</text>
+              fill="var(--dg-ink)">Multi-AZ prod · active-active</text>
+        <text x="316" y="243" font-family="var(--font-mono)" font-size="9"
+              fill="var(--dg-soft)">site-to-site VPN</text>
         <rect x="440" y="230" width="28" height="16" rx="3" ry="3" fill="var(--dg-ink)" opacity="0.88" />
         <text x="454" y="242" font-family="var(--font-mono)" font-size="9" font-weight="600"
-              fill="var(--dg-paper)" text-anchor="middle">×3</text>
+              fill="var(--dg-paper)" text-anchor="middle">×2</text>
       </g>
 
       <g>
         <rect x="60" y="264" width="420" height="36" rx="4" ry="4"
               fill="var(--dg-paper)" stroke="var(--dg-rule-solid)" stroke-width="0.8" />
         <text x="80" y="287" font-family="var(--font-sans)" font-size="12" font-weight="600"
-              fill="var(--dg-ink)">talos-prod · etcd quorum</text>
-        <text x="304" y="287" font-family="var(--font-mono)" font-size="9"
-              fill="var(--dg-soft)">bare-metal</text>
+              fill="var(--dg-ink)">TrueNAS · cross-AZ replication</text>
+        <text x="320" y="287" font-family="var(--font-mono)" font-size="9"
+              fill="var(--dg-soft)">async ZFS snapshots</text>
         <rect x="440" y="274" width="28" height="16" rx="3" ry="3" fill="var(--dg-ink)" opacity="0.88" />
         <text x="454" y="286" font-family="var(--font-mono)" font-size="9" font-weight="600"
-              fill="var(--dg-paper)" text-anchor="middle">×3</text>
+              fill="var(--dg-paper)" text-anchor="middle">×2</text>
       </g>
 
       <g>
@@ -151,9 +151,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         <rect x="520" y="176" width="420" height="36" rx="4" ry="4"
               fill="var(--dg-paper)" stroke="var(--dg-accent)" stroke-width="0.8" opacity="0.92" />
         <text x="540" y="199" font-family="var(--font-sans)" font-size="12" font-weight="600"
-              fill="var(--dg-ink)">Primary NAS</text>
-        <text x="636" y="199" font-family="var(--font-mono)" font-size="9"
-              fill="var(--dg-accent-strong)">→ async replication to second NAS</text>
+              fill="var(--dg-ink)">step-ca (private PKI)</text>
+        <text x="704" y="199" font-family="var(--font-mono)" font-size="9"
+              fill="var(--dg-accent-strong)">→ HA pair planned</text>
         <rect x="900" y="186" width="28" height="16" rx="3" ry="3"
               fill="transparent" stroke="var(--dg-accent)" stroke-width="0.8" />
         <text x="914" y="198" font-family="var(--font-mono)" font-size="9" font-weight="600"
@@ -164,25 +164,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         <rect x="520" y="220" width="420" height="36" rx="4" ry="4"
               fill="var(--dg-paper)" stroke="var(--dg-accent)" stroke-width="0.8" opacity="0.92" />
         <text x="540" y="243" font-family="var(--font-sans)" font-size="12" font-weight="600"
-              fill="var(--dg-ink)">step-ca (private PKI)</text>
-        <text x="704" y="243" font-family="var(--font-mono)" font-size="9"
-              fill="var(--dg-accent-strong)">→ HA pair planned</text>
+              fill="var(--dg-ink)">ArgoCD control plane</text>
+        <text x="696" y="243" font-family="var(--font-mono)" font-size="9"
+              fill="var(--dg-accent-strong)">→ warm standby on secondary AZ</text>
         <rect x="900" y="230" width="28" height="16" rx="3" ry="3"
               fill="transparent" stroke="var(--dg-accent)" stroke-width="0.8" />
         <text x="914" y="242" font-family="var(--font-mono)" font-size="9" font-weight="600"
-              fill="var(--dg-accent-strong)" text-anchor="middle">×1</text>
-      </g>
-
-      <g>
-        <rect x="520" y="264" width="420" height="36" rx="4" ry="4"
-              fill="var(--dg-paper)" stroke="var(--dg-accent)" stroke-width="0.8" opacity="0.92" />
-        <text x="540" y="287" font-family="var(--font-sans)" font-size="12" font-weight="600"
-              fill="var(--dg-ink)">ArgoCD control plane</text>
-        <text x="688" y="287" font-family="var(--font-mono)" font-size="9"
-              fill="var(--dg-accent-strong)">→ run across multiple clusters</text>
-        <rect x="900" y="274" width="28" height="16" rx="3" ry="3"
-              fill="transparent" stroke="var(--dg-accent)" stroke-width="0.8" />
-        <text x="914" y="286" font-family="var(--font-mono)" font-size="9" font-weight="600"
               fill="var(--dg-accent-strong)" text-anchor="middle">×1</text>
       </g>
 
@@ -193,14 +180,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
             fill="var(--dg-soft)" letter-spacing="0.14em">ROADMAP</text>
       <text x="540" y="372" font-family="var(--font-sans)" font-size="12" font-weight="500"
             fill="var(--dg-ink)">
-        No SPoF without a mitigation queued up.
+        Three single-instance services left,
       </text>
       <text x="540" y="392" font-family="var(--font-sans)" font-size="12" font-weight="500"
             fill="var(--dg-ink)">
-        Multi-AZ replication is the long-term backstop.
+        each with a mitigation in flight.
       </text>
       <text x="540" y="420" font-family="var(--font-mono)" font-size="9"
-            fill="var(--dg-soft)">secondary AZ · site-to-site VPN · cross-AZ DNS</text>
+            fill="var(--dg-soft)">multi-AZ prod + cross-AZ NAS replication are live</text>
 
       <!-- ============ Legend ============ -->
       <line x1="60" y1="456" x2="940" y2="456" stroke="var(--dg-rule)" stroke-width="0.8" />
