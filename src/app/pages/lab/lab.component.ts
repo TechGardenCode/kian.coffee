@@ -46,11 +46,11 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
       </h1>
       <p appReveal class="mt-8 max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
         Three Talos Kubernetes clusters — core, dev, and prod — running on Proxmox
-        hypervisors and bare-metal EliteDesks. Designed for where redundancy
-        matters most: 3-node etcd quorum per cluster, triple-replicated DNS, a
-        split-gateway edge, and an honest map of what is and isn't redundant
-        yet. Declarative from the metal up, delivered by GitOps, observed by a
-        self-hosted LGTM stack. This site is served from it.
+        hypervisors and three bare-metal EliteDesks. Every cluster runs a
+        3-node etcd quorum. Three Technitium DNS instances sit behind a
+        keepalived VIP. The edge is split into internal and public Envoy
+        Gateways. Declarative from the metal up, delivered by GitOps, observed
+        by a self-hosted LGTM stack. This site is served from it.
       </p>
     </section>
 
@@ -69,11 +69,11 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
       eyebrow="How it's designed"
       title="Architecture directions."
       index="01"
-      kicker="The principles the lab optimizes for"
+      kicker="Four things the lab is designed around"
     >
       <p appReveal class="mb-10 max-w-3xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
-        Every piece of the lab is a decision about where reliability comes
-        from. These are the four directions everything else follows.
+        Four design principles run through the lab. The rest of the page
+        shows how each one is wired up.
       </p>
       <div appReveal class="grid gap-6 md:grid-cols-2">
         @for (principle of principles; track principle.title) {
@@ -134,10 +134,10 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
     >
       <p appReveal class="mb-10 max-w-3xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
         Three tiers of physical compute. Production runs directly on
-        bare-metal EliteDesks so there's no hypervisor in the critical
-        path. Hypervisors carry the core + dev clusters as VMs. Edge and
-        storage sit on low-power hardware — the roles that never need a
-        full server to do their job.
+        bare-metal EliteDesks, so there's no hypervisor in the critical
+        path. The Proxmox hosts carry the core and dev clusters as VMs.
+        Edge services (DNS, load balancer) and storage run on Raspberry
+        Pis and TrueNAS boxes.
       </p>
       <div appReveal class="diagram-frame">
         <app-hardware-topology-diagram />
@@ -153,10 +153,11 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
       kicker="Segmentation by trust tier"
     >
       <p appReveal class="mb-10 max-w-3xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
-        Inbound traffic arrives only through an outbound-only Cloudflare
-        Tunnel — there are no port forwards on the edge firewall. Inside,
-        six VLANs segment by trust tier; the firewall denies by default
-        between tiers and only the ones that need each other can talk.
+        Web traffic arrives only through an outbound-only Cloudflare Tunnel;
+        there are no inbound port forwards for any HTTP service. Six VLANs
+        segment by trust tier. The firewall denies between tiers by default,
+        with explicit allows where they're required (Trusted Clients →
+        Servers, plus a few IoT exceptions).
       </p>
       <div appReveal class="diagram-frame">
         <app-network-topology-diagram />
@@ -169,13 +170,12 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
       eyebrow="Diagram 05"
       title="What's replicated, what isn't (yet)."
       index="06"
-      kicker="Honest inventory of single-points-of-failure"
+      kicker="Redundant today vs. single-instance today"
     >
       <p appReveal class="mb-10 max-w-3xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
-        Reliability is a running project, not a finished one. This is the
-        current state: what the lab has already made redundant, and the
-        services that still have a single instance — each with a named
-        next step.
+        Reliability work is never done. Left column is what's already
+        redundant; right column is what still runs as a single instance,
+        and the next step queued up for each one.
       </p>
       <div appReveal class="diagram-frame">
         <app-ha-redundancy-diagram />
@@ -252,16 +252,16 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
           <div class="max-w-xl flex flex-col gap-4">
             <app-eyebrow label="Keep reading" index="09" />
             <h2 class="font-display text-3xl md:text-4xl leading-tight tracking-tight text-ink-900 dark:text-foam">
-              The lab is public on GitHub.
+              The homelab repo is public on GitHub.
             </h2>
             <p class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
-              Runbooks, ADRs, network topology, and the IaC that builds everything
-              all live in the repo.
+              Every K8s manifest, ArgoCD Application, and GitOps workflow that
+              ships a deploy lives there.
             </p>
           </div>
           <div class="flex flex-col items-start gap-3 md:items-end">
-            <app-link-arrow href="https://github.com/TechGardenCode/kian.sh" [external]="true">
-              github.com/TechGardenCode/kian.sh
+            <app-link-arrow href="https://github.com/TechGardenCode/homelab" [external]="true">
+              github.com/TechGardenCode/homelab
             </app-link-arrow>
             <a routerLink="/projects" class="link-flourish label text-ink-700 dark:text-taupe">
               or the side projects →

@@ -193,11 +193,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
             fill="var(--dg-soft)" letter-spacing="0.14em">ROADMAP</text>
       <text x="540" y="372" font-family="var(--font-sans)" font-size="12" font-weight="500"
             fill="var(--dg-ink)">
-        Each SPoF has a named next step,
+        No SPoF without a mitigation queued up.
       </text>
       <text x="540" y="392" font-family="var(--font-sans)" font-size="12" font-weight="500"
             fill="var(--dg-ink)">
-        and multi-AZ replication behind it all.
+        Multi-AZ replication is the long-term backstop.
       </text>
       <text x="540" y="420" font-family="var(--font-mono)" font-size="9"
             fill="var(--dg-soft)">secondary AZ · site-to-site VPN · cross-AZ DNS</text>
