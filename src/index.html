@@ -14,12 +14,41 @@
   <link rel="me" href="https://www.linkedin.com/in/kian-alikhani-20b656100">
   <script src="/runtime-config.js"></script>
   <script>
-    // OpenPanel queue shim (matches the vendor's official snippet). Drained
-    // by op1.js on arrival. Spread builds a real Array so the SDK's drain
-    // loop (`item.shift()`) works.
-    window.op = window.op || function (...args) { (window.op.q = window.op.q || []).push(args); };
+    // OpenPanel bootstrap — copied from the vendor's canonical script-tag
+    // snippet (docs.openpanel.dev/docs/sdks/script). Three invariants:
+    //   1. Shim must be a Proxy so both `op('track', ...)` and `op.track(...)`
+    //      queue correctly. op1.js drains from `window.op.q`.
+    //   2. `op('init', {...})` MUST be called synchronously, inline, before
+    //      op1.js loads. op1.js does `new p(queue.shift()[1])` and crashes
+    //      on an empty queue with "t.shift() is undefined". Angular's
+    //      main.ts can't host the init — async op1.js may win the race.
+    //   3. We gate the script tag on having a client ID so local dev
+    //      without runtime-config.js stays silent instead of tripping (2).
+    (function () {
+      window.op = window.op || function () {
+        var n = [];
+        return new Proxy(function () { arguments.length && n.push([].slice.call(arguments)); }, {
+          get: function (t, r) { return r === 'q' ? n : function () { n.push([r].concat([].slice.call(arguments))); }; },
+          has: function (t, r) { return r === 'q'; }
+        });
+      }();
+      var env = window.__ENV;
+      if (env && env.OPENPANEL_CLIENT_ID) {
+        window.op('init', {
+          clientId: env.OPENPANEL_CLIENT_ID,
+          apiUrl: 'https://openpanel.techgarden.gg/api',
+          trackScreenViews: true,
+          trackOutgoingLinks: true,
+          trackAttributes: true,
+        });
+        var s = document.createElement('script');
+        s.async = true;
+        s.defer = true;
+        s.src = 'https://openpanel.techgarden.gg/op1.js';
+        document.head.appendChild(s);
+      }
+    })();
   </script>
-  <script async src="https://openpanel.techgarden.gg/op1.js"></script>
   <script>
     (function () {
       try {

@@ -6,36 +6,25 @@ interface RuntimeEnv {
   APP_ENV?: string;
 }
 
-type OpenPanelFn = ((...args: unknown[]) => void) & { q?: unknown[][] };
-
 declare global {
   interface Window {
     __ENV?: RuntimeEnv;
-    op?: OpenPanelFn;
   }
 }
 
+// Only Sentry boots here — it hooks into Angular's ErrorHandler and
+// benefits from sitting in appConfig providers. OpenPanel is initialized
+// inline in index.html because op1.js's drain loop hard-assumes the queue
+// has an `init` entry when it runs, which races with Angular bootstrap.
 export function initTelemetry(): void {
   if (typeof window === 'undefined') return;
 
   const env = window.__ENV;
-  if (!env) return;
+  if (!env?.GLITCHTIP_DSN) return;
 
-  if (env.GLITCHTIP_DSN) {
-    Sentry.init({
-      dsn: env.GLITCHTIP_DSN,
-      environment: env.APP_ENV ?? 'unknown',
-      tracesSampleRate: 0.1,
-    });
-  }
-
-  if (env.OPENPANEL_CLIENT_ID && window.op) {
-    window.op('init', {
-      clientId: env.OPENPANEL_CLIENT_ID,
-      apiUrl: 'https://openpanel.techgarden.gg/api',
-      trackScreenViews: true,
-      trackOutgoingLinks: true,
-      trackAttributes: true,
-    });
-  }
+  Sentry.init({
+    dsn: env.GLITCHTIP_DSN,
+    environment: env.APP_ENV ?? 'unknown',
+    tracesSampleRate: 0.1,
+  });
 }
