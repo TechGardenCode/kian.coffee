@@ -32,7 +32,7 @@ export function initTelemetry(): void {
   if (env.OPENPANEL_CLIENT_ID && window.op) {
     window.op('init', {
       clientId: env.OPENPANEL_CLIENT_ID,
-      apiUrl: '/api/op',
+      apiUrl: 'https://openpanel.techgarden.gg/api',
       trackScreenViews: true,
       trackOutgoingLinks: true,
       trackAttributes: true,
