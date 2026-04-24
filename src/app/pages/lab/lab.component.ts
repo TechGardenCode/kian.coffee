@@ -45,13 +45,31 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
         <span class="text-accent">run like a cloud provider.</span>
       </h1>
       <p appReveal class="mt-8 max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
-        Four Talos Kubernetes clusters — core, dev, and two prod clusters
-        running active-active across two AZs. Every cluster runs a 3-node
-        etcd quorum. Three Technitium DNS instances sit behind a keepalived
-        VIP. The edge is split into internal and public Envoy Gateways.
-        Declarative from the metal up, delivered by GitOps, observed by a
-        self-hosted LGTM stack. This site is served from it.
+        Three Talos Kubernetes clusters — core, dev, and prod — with a
+        fourth prod cluster queued for a second AZ. Every cluster runs a
+        3-node etcd quorum. Three Technitium DNS instances sit behind a
+        keepalived VIP. The edge is split into internal and public Envoy
+        Gateways. Declarative from the metal up, delivered by GitOps,
+        observed by a self-hosted LGTM stack. This site is served from it.
       </p>
+    </section>
+
+    <!-- STATUS CALLOUT — secondary AZ offline during site move -->
+    <section class="relative z-10 mx-auto w-full max-w-6xl px-6 md:px-10 pb-4">
+      <div
+        appReveal
+        role="status"
+        class="flex items-start gap-4 rounded-xl border border-accent/50 bg-accent/5 p-5 dark:border-accent/40 dark:bg-accent/10"
+      >
+        <span aria-hidden="true" class="mt-0.5 text-accent">●</span>
+        <div class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+          <strong class="text-ink-900 dark:text-foam">Heads up — the secondary AZ is offline.</strong>
+          Hardware is being relocated between sites, so production is
+          running single-AZ right now. Stats, diagrams, and principles
+          below describe the current single-AZ state plus the multi-AZ
+          plan once the move lands.
+        </div>
+      </div>
     </section>
 
     <!-- METRIC BAND -->
@@ -130,15 +148,15 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
       eyebrow="Diagram 03"
       title="What runs where, physically."
       index="04"
-      kicker="Three tiers · two production AZs"
+      kicker="Three tiers · one production line today"
     >
       <p appReveal class="mb-10 max-w-3xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
-        Three tiers of physical compute, with production replicated
-        active-active across two AZs. Each AZ has its own 3-node
-        bare-metal Talos prod cluster and TrueNAS, so there's no
-        hypervisor in the critical path. The Proxmox hosts in the primary
-        AZ carry core and dev as VMs. Edge services (DNS, load balancer)
-        run on Raspberry Pis.
+        Three tiers of physical compute. Production runs directly on
+        bare-metal EliteDesks, so there's no hypervisor in the critical
+        path. The Proxmox hosts carry the core and dev clusters as VMs.
+        Edge services (DNS, load balancer) and storage run on Raspberry
+        Pis and TrueNAS boxes. A second AZ's bare-metal tier is queued to
+        mirror this once the hardware relocation finishes.
       </p>
       <div appReveal class="diagram-frame">
         <app-hardware-topology-diagram />
@@ -175,9 +193,8 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
     >
       <p appReveal class="mb-10 max-w-3xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
         Reliability work is never done. Left column is what's already
-        redundant — including multi-AZ prod and cross-AZ NAS replication.
-        Right column is what still runs as a single instance, and the
-        next step queued up for each one.
+        redundant; right column is what still runs as a single instance,
+        and the next step queued up for each one.
       </p>
       <div appReveal class="diagram-frame">
         <app-ha-redundancy-diagram />

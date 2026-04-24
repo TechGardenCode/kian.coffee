@@ -17,9 +17,9 @@ export interface LabPrinciple {
 // Counts are derivable from repo state — the lab page doesn't surface
 // operational detail (IPs, CIDRs, AZ codes, repo paths) on purpose.
 export const LAB_STATS: readonly LabStat[] = [
-  { value: '4', label: 'Talos clusters — core · dev · 2× prod (active-active)' },
-  { value: '12', label: 'Kubernetes nodes across two AZs' },
-  { value: '6', label: 'bare-metal EliteDesks running prod across two AZs' },
+  { value: '3', label: 'Talos clusters today — core · dev · prod (4th queued for second AZ)' },
+  { value: '9', label: 'Kubernetes nodes today — grows to 12 when the second AZ lands' },
+  { value: '3', label: 'bare-metal EliteDesks running prod (+3 more queued for the second AZ)' },
   { value: '3', label: 'Technitium DNS instances behind a VIP' },
   { value: '13', label: 'Ansible-managed Linux hosts' },
   { value: '6', label: 'VLANs — mgmt · trusted · DMZ · IoT · guest · clients' },
@@ -28,7 +28,7 @@ export const LAB_STATS: readonly LabStat[] = [
 export const LAB_PRINCIPLES: readonly LabPrinciple[] = [
   {
     title: 'Hardware redundancy',
-    body: 'Every Talos cluster runs a 3-node etcd quorum. Three Technitium DNS instances sit behind a keepalived VIP with AXFR replication. Storage replicates cross-AZ between two TrueNAS boxes. LGTM HA is the last single-instance piece on the roadmap; the HA diagram below shows where it sits.',
+    body: 'Every Talos cluster runs a 3-node etcd quorum. Three Technitium DNS instances sit behind a keepalived VIP with AXFR replication. Storage replication and LGTM HA are still on the roadmap; the HA diagram below shows exactly where each one sits.',
   },
   {
     title: 'High availability',
@@ -39,8 +39,8 @@ export const LAB_PRINCIPLES: readonly LabPrinciple[] = [
     body: 'Every change is a commit. ArgoCD reconciles workloads, Talos holds cluster state, Ansible holds host state. Rollbacks are a git revert and a webhook; production promotions go through an auto-generated PR a human still has to merge.',
   },
   {
-    title: 'Multi-AZ, active-active',
-    body: 'Production runs active-active across two AZs, connected by UniFi site-to-site VPN. Each AZ has its own bare-metal Talos prod cluster and TrueNAS; ArgoCD on the core cluster reconciles both. Cross-AZ DNS and storage replication are already in place.',
+    title: 'Multi-AZ by design',
+    body: 'A second AZ is wired via UniFi site-to-site VPN; the hardware is between locations right now, so production is running single-AZ until the move lands. DNS zones, cluster naming, and storage strategy already assume a second site from day one, so the second cluster will be additive instead of a rewrite.',
   },
 ];
 
