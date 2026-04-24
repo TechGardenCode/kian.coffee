@@ -30,8 +30,22 @@ RUN npm run build
 # plays nicely with readOnlyRootFilesystem + non-root SecurityContext.
 FROM nginxinc/nginx-unprivileged:1.27-alpine AS runtime
 
-# Replace the default server block with our static + cache config.
+# Replace the default server block with our static + cache config. The
+# security-headers snippet is included by each location block (nginx's
+# add_header inheritance rule forces us to include, not inherit).
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY security-headers.conf /etc/nginx/security-headers.conf
+
+# Runtime-env template. `/docker-entrypoint.d/30-runtime-config.sh` runs at
+# container start, envsubsts this file with the telemetry env vars, and
+# writes the result to /tmp/runtime-config.js — which nginx serves at
+# /runtime-config.js. Keeps the image env-agnostic so one tag ships to
+# both dev and prod.
+COPY docker/runtime-config.template.js /etc/nginx/runtime-config.template.js
+COPY docker/30-runtime-config.sh /docker-entrypoint.d/30-runtime-config.sh
+USER root
+RUN chmod +x /docker-entrypoint.d/30-runtime-config.sh
+USER 101
 
 # Prerendered HTML + hashed JS/CSS/fonts/images.
 COPY --from=builder /app/dist/www/browser /usr/share/nginx/html

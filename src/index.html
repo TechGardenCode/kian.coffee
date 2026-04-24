@@ -12,6 +12,16 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico" sizes="any">
   <link rel="me" href="https://github.com/TechGardenCode">
   <link rel="me" href="https://www.linkedin.com/in/kian-alikhani-20b656100">
+  <script src="/runtime-config.js"></script>
+  <script>
+    // OpenPanel queue shim — real SDK loads from /api/op/op1.js (same-origin proxy)
+    // and drains window.op.q on arrival. Kept inline so calls before the SDK
+    // loads are never lost.
+    (function () {
+      window.op = window.op || function () { (window.op.q = window.op.q || []).push(arguments); };
+    })();
+  </script>
+  <script async src="/api/op/op1.js"></script>
   <script>
     (function () {
       try {

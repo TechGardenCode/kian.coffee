@@ -1,7 +1,8 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, ErrorHandler } from '@angular/core';
 import { TitleStrategy, provideRouter, withInMemoryScrolling } from '@angular/router';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { createErrorHandler } from '@sentry/angular';
 
 import { routes } from './app.routes';
 import { KianTitleStrategy } from './shared/seo/title-strategy';
@@ -18,5 +19,6 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideHttpClient(withFetch()),
     { provide: TitleStrategy, useClass: KianTitleStrategy },
+    { provide: ErrorHandler, useValue: createErrorHandler({ showDialog: false }) },
   ],
 };
