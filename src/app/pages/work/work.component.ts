@@ -88,7 +88,7 @@ import { WORK } from '../../content/work';
               Case Western Reserve University
             </div>
             <div class="font-sans text-[14px] text-ink-700 dark:text-taupe">
-              B.S. Computer Science · 2018
+              B.S. Computer Science · Dec 2018
             </div>
           </div>
           <div>
