@@ -1,9 +1,8 @@
 import { RenderMode, ServerRoute } from '@angular/ssr';
 
-/** Server routing policy: every route is runtime-rendered. No build-time
- *  prerender. The Node server + TTL cache in src/server.ts is what makes
- *  this feel like static hosting for most pages while letting /elsewhere
- *  stay fresh without a redeploy. */
+/** Every route is prerendered to static HTML at build time. Content only
+ *  changes on deploy, so there's no runtime rendering — nginx serves the
+ *  dist/ output directly and Cloudflare caches HTML at the edge. */
 export const serverRoutes: ServerRoute[] = [
-  { path: '**', renderMode: RenderMode.Server },
+  { path: '**', renderMode: RenderMode.Prerender },
 ];

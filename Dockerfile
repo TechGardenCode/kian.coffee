@@ -1,14 +1,14 @@
 # syntax=docker/dockerfile:1.7
 #
-# kian.coffee SSR container. Two-stage build:
-#   1. `builder` — Node 22 Alpine + all deps, runs `ng build` (which produces
-#      both browser + server bundles into dist/www).
-#   2. `runtime`  — minimal Node 22 Alpine, production deps only, runs the
-#      Express SSR server on :4000.
+# kian.coffee static container. Two-stage build:
+#   1. `builder` — Node 22 Alpine, runs `ng build` with `outputMode: static`.
+#      Angular prerenders every route to HTML; output lands in
+#      dist/www/browser/.
+#   2. `runtime` — nginx-unprivileged Alpine serving the prerendered HTML +
+#      fingerprinted assets on :4000 with tuned cache headers.
 #
-# The SSR server maintains an in-memory TTL cache so most routes behave like
-# SSG (≈24h TTL, invalidated on deploy) while `/elsewhere` refreshes every
-# 15 minutes without a redeploy — the feed aggregator reads this.
+# Every route is static between deploys, so there is no Node runtime,
+# no SSR cache, and no host-allowlist to manage.
 
 # ─── build ────────────────────────────────────────────────────────────────
 FROM node:22-alpine AS builder
@@ -19,42 +19,26 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --no-audit --no-fund
 
-# Now the rest of the source. Build script runs `build-lab-content.mjs` via
-# the `prebuild` npm hook, so the lab inventory data is regenerated from
-# ansible/inventory at build time — unless ANSIBLE is not mounted in,
-# in which case the previously-committed lab.generated.ts is used.
+# Now the rest of the source. Build script runs `build-lab-content.mjs` and
+# `build-sitemap.mjs` via the `prebuild` npm hook, so lab inventory + sitemap
+# are regenerated at build time.
 COPY . .
 RUN npm run build
 
 # ─── runtime ──────────────────────────────────────────────────────────────
-FROM node:22-alpine AS runtime
-WORKDIR /app
+# nginx-unprivileged: runs as uid 101 by default, listens on high port,
+# plays nicely with readOnlyRootFilesystem + non-root SecurityContext.
+FROM nginxinc/nginx-unprivileged:1.27-alpine AS runtime
 
-# Install production deps as root (npm needs to create /app/node_modules).
-# We drop to the non-root `node` user at the end, right before CMD.
-COPY --from=builder /app/package.json /app/package-lock.json ./
-COPY --from=builder /app/dist ./dist
+# Replace the default server block with our static + cache config.
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Production deps only — no dev tooling, no Angular CLI.
-RUN npm ci --omit=dev --no-audit --no-fund && npm cache clean --force
-
-# Hand the whole /app tree to the unprivileged `node` user (uid 1000, ships
-# pre-created in node:alpine). Doing this after all writes means npm has
-# permission to install, but the running container can't modify its own code.
-RUN chown -R node:node /app
-
-ENV NODE_ENV=production
-ENV PORT=4000
-ENV NG_ALLOWED_HOSTS=kian.coffee,www.kian.coffee,dev.kian.coffee,kian.sh,www.kian.sh
+# Prerendered HTML + hashed JS/CSS/fonts/images.
+COPY --from=builder /app/dist/www/browser /usr/share/nginx/html
 
 EXPOSE 4000
 
-# Liveness + readiness probes should target /health over HTTP. Dockerfile
-# HEALTHCHECK is a nice local-dev belt-and-suspenders — Kubernetes will use
-# its own probe config.
-HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
+# Liveness/readiness — K8s probe uses /health. HEALTHCHECK is belt-and-
+# suspenders for local dev.
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
   CMD wget -q -O /dev/null http://127.0.0.1:4000/health || exit 1
-
-USER node
-
-CMD ["node", "dist/www/server/server.mjs"]
