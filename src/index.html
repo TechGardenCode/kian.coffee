@@ -36,7 +36,10 @@
       if (env && env.OPENPANEL_CLIENT_ID) {
         window.op('init', {
           clientId: env.OPENPANEL_CLIENT_ID,
-          apiUrl: 'https://openpanel.techgarden.gg/api',
+          // Same-origin proxy — see nginx.conf. Dodges CORS preflight
+          // failure against openpanel.techgarden.gg (its OPTIONS response
+          // omits Access-Control-Allow-Origin and the custom SDK headers).
+          apiUrl: '/api/op',
           trackScreenViews: true,
           trackOutgoingLinks: true,
           trackAttributes: true,
@@ -44,7 +47,7 @@
         var s = document.createElement('script');
         s.async = true;
         s.defer = true;
-        s.src = 'https://openpanel.techgarden.gg/op1.js';
+        s.src = '/api/op/op1.js';
         document.head.appendChild(s);
       }
     })();
