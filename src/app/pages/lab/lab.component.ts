@@ -46,11 +46,12 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
       </h1>
       <p appReveal class="mt-8 max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
         Three Talos Kubernetes clusters — core, dev, and prod — with a
-        fourth prod cluster queued for a second AZ. Every cluster runs a
-        3-node etcd quorum. Three Technitium DNS instances sit behind a
-        keepalived VIP. The edge is split into internal and public Envoy
-        Gateways. Declarative from the metal up, delivered by GitOps,
-        observed by a self-hosted LGTM stack. This site is served from it.
+        fourth prod cluster planned for a second AZ. Every cluster runs
+        a 3-node etcd quorum. Three Technitium DNS instances sit behind
+        a keepalived VIP. The edge is split into internal and public
+        Envoy Gateways. Declarative from the metal up, delivered by
+        GitOps, observed by a self-hosted LGTM stack. This site is
+        served from it.
       </p>
     </section>
 
@@ -63,11 +64,10 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
       >
         <span aria-hidden="true" class="mt-0.5 text-accent">●</span>
         <div class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
-          <strong class="text-ink-900 dark:text-foam">Heads up — the secondary AZ is offline.</strong>
-          Hardware is being relocated between sites, so production is
-          running single-AZ right now. Stats, diagrams, and principles
-          below describe the current single-AZ state plus the multi-AZ
-          plan once the move lands.
+          <strong class="text-ink-900 dark:text-foam">The secondary AZ is offline.</strong>
+          Hardware is mid-move between sites, so production is running
+          single-AZ until it's back. Stats, diagrams, and principles
+          below describe the current state alongside the multi-AZ plan.
         </div>
       </div>
     </section>
@@ -155,8 +155,8 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
         bare-metal EliteDesks, so there's no hypervisor in the critical
         path. The Proxmox hosts carry the core and dev clusters as VMs.
         Edge services (DNS, load balancer) and storage run on Raspberry
-        Pis and TrueNAS boxes. A second AZ's bare-metal tier is queued to
-        mirror this once the hardware relocation finishes.
+        Pis and TrueNAS boxes. The second AZ's bare-metal tier will
+        mirror this tier once the hardware move completes.
       </p>
       <div appReveal class="diagram-frame">
         <app-hardware-topology-diagram />

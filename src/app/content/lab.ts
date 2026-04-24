@@ -17,9 +17,9 @@ export interface LabPrinciple {
 // Counts are derivable from repo state — the lab page doesn't surface
 // operational detail (IPs, CIDRs, AZ codes, repo paths) on purpose.
 export const LAB_STATS: readonly LabStat[] = [
-  { value: '3', label: 'Talos clusters today — core · dev · prod (4th queued for second AZ)' },
-  { value: '9', label: 'Kubernetes nodes today — grows to 12 when the second AZ lands' },
-  { value: '3', label: 'bare-metal EliteDesks running prod (+3 more queued for the second AZ)' },
+  { value: '3', label: 'Talos clusters today — core · dev · prod (4th planned for second AZ)' },
+  { value: '9', label: 'Kubernetes nodes today — 12 once the second AZ is up' },
+  { value: '3', label: 'bare-metal EliteDesks running prod (+3 more planned for the second AZ)' },
   { value: '3', label: 'Technitium DNS instances behind a VIP' },
   { value: '13', label: 'Ansible-managed Linux hosts' },
   { value: '6', label: 'VLANs — mgmt · trusted · DMZ · IoT · guest · clients' },
@@ -40,7 +40,7 @@ export const LAB_PRINCIPLES: readonly LabPrinciple[] = [
   },
   {
     title: 'Multi-AZ by design',
-    body: 'A second AZ is wired via UniFi site-to-site VPN; the hardware is between locations right now, so production is running single-AZ until the move lands. DNS zones, cluster naming, and storage strategy already assume a second site from day one, so the second cluster will be additive instead of a rewrite.',
+    body: 'A second AZ is wired via UniFi site-to-site VPN; hardware is mid-move between sites, so production is single-AZ until it comes back. DNS zones, cluster naming, and storage strategy already assume a second site from day one, so the second cluster is additive instead of a rewrite.',
   },
 ];
 
