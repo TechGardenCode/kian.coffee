@@ -17,7 +17,6 @@ here is invented.
 - [Lab](https://kian.coffee/lab): The homelab — three Talos Kubernetes clusters on Proxmox, GitOps via ArgoCD, self-hosted observability, live node inventory. Includes two inline-SVG architecture diagrams.
 - [Uses](https://kian.coffee/uses): Editor, daily-driver hardware, homelab hardware, infra toolbelt, coffee setup.
 - [Now](https://kian.coffee/now): Date-stamped snapshot of current focus.
-- [Elsewhere](https://kian.coffee/elsewhere): Aggregated external writing and links.
 - [Contact](https://kian.coffee/contact): Email, LinkedIn, GitHub.
 
 ## About Kian
@@ -48,5 +47,5 @@ here is invented.
 
 ## Optional
 
-- [Source for this site](https://github.com/TechGardenCode/kian-coffee): Angular 21, SSR with in-memory TTL cache, Tailwind v4, self-hosted fonts, inline-SVG diagrams.
+- [Source for this site](https://github.com/TechGardenCode/kian-coffee): Angular 21 prerendered to static HTML, served by nginx behind Envoy Gateway + Cloudflare. Tailwind v4, self-hosted fonts, inline-SVG diagrams.
 - [llms-full.txt](https://kian.coffee/llms-full.txt): Longer-form version with more context.

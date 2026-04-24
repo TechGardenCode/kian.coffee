@@ -24,7 +24,6 @@ import { RouterLink } from '@angular/router';
             <li><a routerLink="/work" class="link-flourish">Work</a></li>
             <li><a routerLink="/projects" class="link-flourish">Projects</a></li>
             <li><a routerLink="/lab" class="link-flourish">Lab</a></li>
-            <li><a routerLink="/elsewhere" class="link-flourish">Elsewhere</a></li>
           </ul>
         </div>
 

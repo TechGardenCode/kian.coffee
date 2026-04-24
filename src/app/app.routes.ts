@@ -32,19 +32,9 @@ export const routes: Routes = [
     title: 'Now',
   },
   {
-    path: 'elsewhere',
-    loadComponent: () => import('./pages/elsewhere/elsewhere.component').then((m) => m.ElsewhereComponent),
-    title: 'Elsewhere',
-  },
-  {
     path: 'contact',
     loadComponent: () => import('./pages/contact/contact.component').then((m) => m.ContactComponent),
     title: 'Contact',
-  },
-  {
-    path: 'writing',
-    redirectTo: 'elsewhere',
-    pathMatch: 'full',
   },
   {
     path: 'about',

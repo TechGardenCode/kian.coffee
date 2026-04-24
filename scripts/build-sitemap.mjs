@@ -25,7 +25,6 @@ const ROUTES = [
   { path: '/lab', changefreq: 'monthly', priority: 0.8 },
   { path: '/uses', changefreq: 'monthly', priority: 0.6 },
   { path: '/now', changefreq: 'weekly', priority: 0.7 },
-  { path: '/elsewhere', changefreq: 'daily', priority: 0.8 },
   { path: '/contact', changefreq: 'yearly', priority: 0.5 },
 ];
 
