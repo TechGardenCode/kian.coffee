@@ -16,9 +16,10 @@
   <script>
     // OpenPanel queue shim — real SDK loads from /api/op/op1.js (same-origin proxy)
     // and drains window.op.q on arrival. Kept inline so calls before the SDK
-    // loads are never lost.
+    // loads are never lost. `arguments` is array-LIKE, not an Array; slicing
+    // produces a real Array so op1.js's drain loop (`item.shift()`) works.
     (function () {
-      window.op = window.op || function () { (window.op.q = window.op.q || []).push(arguments); };
+      window.op = window.op || function () { (window.op.q = window.op.q || []).push([].slice.call(arguments)); };
     })();
   </script>
   <script async src="/api/op/op1.js"></script>
