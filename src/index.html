@@ -14,16 +14,10 @@
   <link rel="me" href="https://www.linkedin.com/in/kian-alikhani-20b656100">
   <script src="/runtime-config.js"></script>
   <script>
-    // OpenPanel bootstrap — copied from the vendor's canonical script-tag
-    // snippet (docs.openpanel.dev/docs/sdks/script). Three invariants:
-    //   1. Shim must be a Proxy so both `op('track', ...)` and `op.track(...)`
-    //      queue correctly. op1.js drains from `window.op.q`.
-    //   2. `op('init', {...})` MUST be called synchronously, inline, before
-    //      op1.js loads. op1.js does `new p(queue.shift()[1])` and crashes
-    //      on an empty queue with "t.shift() is undefined". Angular's
-    //      main.ts can't host the init — async op1.js may win the race.
-    //   3. We gate the script tag on having a client ID so local dev
-    //      without runtime-config.js stays silent instead of tripping (2).
+    // Vendor-canonical OpenPanel bootstrap: docs.openpanel.dev/docs/sdks/script.
+    // op1.js does `new OpenPanel(queue.shift()[1])` on load — init must be
+    // queued before the script tag is injected, and the script tag is only
+    // injected when a client ID is present.
     (function () {
       window.op = window.op || function () {
         var n = [];
@@ -36,9 +30,6 @@
       if (env && env.OPENPANEL_CLIENT_ID) {
         window.op('init', {
           clientId: env.OPENPANEL_CLIENT_ID,
-          // Same-origin proxy — see nginx.conf. Dodges CORS preflight
-          // failure against openpanel.techgarden.gg (its OPTIONS response
-          // omits Access-Control-Allow-Origin and the custom SDK headers).
           apiUrl: '/api/op',
           trackScreenViews: true,
           trackOutgoingLinks: true,
