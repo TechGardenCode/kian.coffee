@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/cor
 import { RouterLink } from '@angular/router';
 import { RevealDirective } from '../../shared/motion/reveal.directive';
 import { EyebrowComponent } from '../../shared/ui/eyebrow.component';
-import { ChipComponent } from '../../shared/ui/chip.component';
 import { LinkArrowComponent } from '../../shared/ui/link-arrow.component';
 import { SeoService } from '../../shared/seo/seo.service';
 import { WORK } from '../../content/work';
@@ -11,72 +10,59 @@ import { WORK } from '../../content/work';
   selector: 'app-work',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, RevealDirective, EyebrowComponent, ChipComponent, LinkArrowComponent],
+  imports: [RouterLink, RevealDirective, EyebrowComponent, LinkArrowComponent],
   template: `
-    <!-- HERO -->
+    <!--
+      CONTENT STRATEGY — /work
+
+      Job of this page: let a reader scan *where* Kian has been, *for how long*,
+      and *in what role* — then offer a path to deeper proof (projects, writing)
+      if they want it. Not the place for per-role marketing copy; projects and
+      case studies do that work.
+
+      Future structure:
+        1. Hero — TBD. Next pass: either eyebrow + one-line positioning, or no
+           hero at all. Don't make promises the list can't back up.
+        2. Timeline — factual spine. Range · company · role. No decoration
+           until the right decoration is known.
+        3. Throughlines (optional) — one section pulling *across* roles rather
+           than narrating each one. Hold until the angle is clear.
+        4. Education — keep factual.
+        5. Outbound — revise tone when the hero is revised.
+    -->
+
+    <!--
+      HERO — intentionally minimal.
+      Next pass: decide between (a) eyebrow + one-line positioning, or
+      (b) no hero at all. Don't add copy that the list below can't back up.
+    -->
     <section class="relative z-10 mx-auto w-full max-w-6xl px-6 md:px-10 pt-20 md:pt-28 pb-8">
       <app-eyebrow label="/work" index="01" />
-      <h1
-        appReveal
-        class="mt-6 font-display text-5xl md:text-7xl leading-[1.05] tracking-tight text-ink-900 dark:text-foam"
-      >
-        Four chapters, not a<br />
-        <span class="text-accent">bullet list.</span>
-      </h1>
-      <p appReveal class="mt-8 max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
-        I think about my career in eras, not job titles. Each one had a
-        different kind of hard problem at the center of it. The stacks change.
-        The habit of building things that have to hold up doesn't.
-      </p>
     </section>
 
-    <!-- TIMELINE -->
+    <!--
+      TIMELINE — date / company / role only, by design.
+      Per-role narratives, stats, and domain chips were removed because the
+      previous copy wasn't the story we want on the page yet.
+      Future: consider a single "throughlines" section pulling *across* roles
+      rather than narrating each one individually.
+    -->
     <section class="relative z-10 mx-auto w-full max-w-6xl px-6 md:px-10 pb-16">
       @for (role of roles; track role.range; let i = $index) {
         <article
           appReveal
-          class="grid gap-8 border-t border-crema/70 py-16 md:grid-cols-[1fr_2.2fr] md:gap-16 dark:border-roast-700"
+          class="flex flex-col gap-2 border-t border-crema/70 py-10 dark:border-roast-700"
         >
-          <!-- Left column — metadata -->
-          <div class="flex flex-col gap-3">
-            <span class="label text-ink-700 dark:text-taupe">
-              <span class="tabular">{{ pad(i + 1) }}</span>
-              <span class="mx-2 opacity-50">/</span>
-              <span>{{ role.range }}</span>
-            </span>
-            <div class="font-display text-2xl leading-snug text-ink-900 dark:text-foam">
-              {{ role.company }}
-            </div>
-            <div class="label-sm text-ink-500 dark:text-taupe-dim">
-              {{ role.title }}
-            </div>
-
-            <!-- Anchor stat — the number the reader should walk away with. -->
-            @if (role.stat; as stat) {
-              <div class="mt-4 flex flex-col gap-1.5 border-l-2 border-crema/70 pl-4 dark:border-roast-700">
-                <span class="font-display text-3xl text-accent">{{ stat.value }}</span>
-                <span class="font-sans text-[13px] leading-relaxed text-ink-700 dark:text-taupe max-w-[18rem]">
-                  {{ stat.label }}
-                </span>
-              </div>
-            }
+          <span class="label text-ink-700 dark:text-taupe">
+            <span class="tabular">{{ pad(i + 1) }}</span>
+            <span class="mx-2 opacity-50">/</span>
+            <span>{{ role.range }}</span>
+          </span>
+          <div class="font-display text-2xl leading-snug text-ink-900 dark:text-foam">
+            {{ role.company }}
           </div>
-
-          <!-- Right column — narrative -->
-          <div class="flex flex-col gap-6">
-            <h2 class="font-display text-3xl md:text-4xl leading-tight tracking-tight text-ink-900 dark:text-foam">
-              {{ role.chapter }}
-            </h2>
-
-            <p class="font-sans text-[17px] leading-[1.65] text-ink-700 dark:text-taupe max-w-prose">
-              {{ role.narrative }}
-            </p>
-
-            <div class="flex flex-wrap gap-2 pt-2">
-              @for (tag of role.domains; track tag) {
-                <app-chip>{{ tag }}</app-chip>
-              }
-            </div>
+          <div class="label-sm text-ink-500 dark:text-taupe-dim">
+            {{ role.title }}
           </div>
         </article>
       }
@@ -117,7 +103,10 @@ import { WORK } from '../../content/work';
       </div>
     </section>
 
-    <!-- OUTBOUND -->
+    <!--
+      OUTBOUND — links stay live regardless of tone.
+      Revisit this copy when the hero is rewritten so the two match.
+    -->
     <section class="relative z-10">
       <div class="mx-auto w-full max-w-6xl px-6 md:px-10 pb-28 md:pb-36">
         <div
@@ -146,8 +135,7 @@ export class WorkComponent implements OnInit {
   ngOnInit(): void {
     this.seo.apply({
       title: 'Work',
-      description:
-        'Career arc — four roles across Mastercard, Conseqta, and IBM Watson. Data platforms, design systems, AI foundations.',
+      description: 'Roles and dates — Mastercard, Conseqta Technology, IBM Watson.',
       path: '/work',
     });
   }
