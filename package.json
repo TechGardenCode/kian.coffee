@@ -15,7 +15,9 @@
     "test": "ng test",
     "test:ci": "ng test --watch=false --browsers=ChromeHeadlessCustom",
     "build:ci": "ng build -c production --output-hashing=all",
-    "prebuild:ci": "npm run build:content"
+    "prebuild:ci": "npm run build:content",
+    "smoketest:dev": "node scripts/telemetry-smoketest.mjs https://dev.kian.coffee",
+    "smoketest:prod": "node scripts/telemetry-smoketest.mjs https://kian.coffee"
   },
   "private": true,
   "dependencies": {
@@ -51,6 +53,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.2.0",
+    "playwright-core": "^1.48.0",
     "tailwindcss": "^4.2.4",
     "typescript": "~5.9.2"
   }
