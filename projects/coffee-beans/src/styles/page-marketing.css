@@ -1,0 +1,19 @@
+/* =====================================================================
+   kc-page--marketing — marketing/home shape modifier.
+   Applies on top of .kc-page; retunes the template-scoped tokens for a
+   wider column, taller hero, and generous section rhythm. Bare HTML:
+     <div class="kc-page kc-page--marketing"> ... </div>
+   ===================================================================== */
+
+.kc-page--marketing {
+  --kc-page-max-w:            var(--page-max-w-lg);
+  --kc-page-hero-pt:          var(--space-9);
+  --kc-page-hero-pb:          var(--space-7);
+  --kc-page-section-rhythm-y: var(--space-9);
+}
+
+@media (min-width: 768px) {
+  .kc-page--marketing {
+    --kc-page-section-rhythm-y: var(--space-10);
+  }
+}

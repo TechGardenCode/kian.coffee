@@ -117,6 +117,12 @@
   /* Mode-independent. Used by tooltip fade, slider bubble, mode toggle. */
   --motion-fast:   150ms;
   --motion-normal: 250ms;
+
+  /* ---------- PAGE WIDTHS (system-level) ---------- */
+  /* Consumed by the Container primitive and by the kc-page templates. */
+  --page-max-w-sm:  720px;
+  --page-max-w-md:  960px;
+  --page-max-w-lg:  1280px;
 }
 
 .dark {

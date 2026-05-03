@@ -1,0 +1,204 @@
+/* =====================================================================
+   kc-page — page template substrate. Class-API floor; bare HTML works:
+     <div class="kc-page">
+       <header class="kc-page__hero"> ... </header>
+       <section class="kc-page__section"> ... </section>
+       <footer class="kc-page__footer-cta"> ... </footer>
+     </div>
+   Templates (page-marketing, etc.) override the --kc-page-* tokens
+   defined here. Consumers can override the same tokens at any deeper
+   scope to retune a single page region.
+   ===================================================================== */
+
+.kc-page {
+  /* Template-scoped tokens. Defaults match the medium marketing column. */
+  --kc-page-max-w:            var(--page-max-w-md);
+  --kc-page-gutter:           var(--space-6);
+  --kc-page-hero-pt:          var(--space-9);
+  --kc-page-hero-pb:          var(--space-7);
+  --kc-page-section-rhythm-y: var(--space-9);
+  --kc-page-section-divider:  1px solid var(--border-subtle);
+  --kc-page-band-bg:          color-mix(in srgb, var(--bg-base) 60%, transparent);
+  --kc-page-footer-cta-pt:    var(--space-7);
+  --kc-page-footer-cta-pb:    var(--space-9);
+
+  display: block;
+  width: 100%;
+}
+
+.kc-page--max-w-sm { --kc-page-max-w: var(--page-max-w-sm); }
+.kc-page--max-w-md { --kc-page-max-w: var(--page-max-w-md); }
+.kc-page--max-w-lg { --kc-page-max-w: var(--page-max-w-lg); }
+
+/* ---------- HERO ---------- */
+
+.kc-page__hero {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: var(--kc-page-max-w);
+  margin-inline: auto;
+  padding-inline: var(--kc-page-gutter);
+  padding-block: var(--kc-page-hero-pt) var(--kc-page-hero-pb);
+}
+
+.kc-page__hero--narrow { max-width: var(--page-max-w-sm); }
+
+.kc-page__hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 5vw + 1rem, 4.5rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin: 0;
+  max-width: 22ch;
+}
+
+.kc-page__hero-lede {
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 56ch;
+}
+
+/* ---------- BAND ---------- */
+
+.kc-page__band {
+  width: 100%;
+  border-block: var(--kc-page-section-divider);
+  background: var(--kc-page-band-bg);
+}
+
+.kc-page__band-inner {
+  width: 100%;
+  max-width: var(--kc-page-max-w);
+  margin-inline: auto;
+  padding-inline: var(--kc-page-gutter);
+  padding-block: var(--space-7);
+}
+
+.kc-page__band--metric .kc-page__band-inner {
+  display: grid;
+  gap: var(--space-5) var(--space-6);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .kc-page__band--metric .kc-page__band-inner {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .kc-page__band--metric .kc-page__band-inner {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+/* ---------- SECTION ---------- */
+
+.kc-page__section {
+  position: relative;
+  width: 100%;
+  max-width: var(--kc-page-max-w);
+  margin-inline: auto;
+  padding-inline: var(--kc-page-gutter);
+  padding-block: var(--kc-page-section-rhythm-y);
+  border-block-end: var(--kc-page-section-divider);
+}
+
+.kc-page__section:last-of-type { border-block-end: none; }
+
+.kc-page__section-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-block-end: var(--space-5);
+  margin-block-end: var(--space-7);
+  border-block-end: var(--kc-page-section-divider);
+}
+
+@media (min-width: 768px) {
+  .kc-page__section-head {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-7);
+  }
+}
+
+.kc-page__section-head-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+  flex: 1;
+}
+
+.kc-page__section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 2.5vw + 1rem, 3rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  margin: 0;
+  max-width: 36ch;
+}
+
+.kc-page__section-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+@media (min-width: 768px) {
+  .kc-page__section-kicker {
+    max-width: 18rem;
+    flex-shrink: 0;
+    text-align: end;
+  }
+}
+
+.kc-page__section-body { position: relative; }
+
+/* ---------- FOOTER CTA ---------- */
+
+.kc-page__footer-cta {
+  width: 100%;
+  max-width: var(--kc-page-max-w);
+  margin-inline: auto;
+  padding-inline: var(--kc-page-gutter);
+  padding-block: var(--kc-page-footer-cta-pt) var(--kc-page-footer-cta-pb);
+  border-block-start: var(--kc-page-section-divider);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.kc-page__footer-cta-prose { max-width: 36rem; }
+
+.kc-page__footer-cta-arrows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+@media (min-width: 768px) {
+  .kc-page__footer-cta {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .kc-page__footer-cta-arrows {
+    align-items: flex-end;
+  }
+}
