@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { KcPage } from '@kian.coffee/beans';
 import { EyebrowComponent } from '../../shared/ui/eyebrow.component';
 import { LinkArrowComponent } from '../../shared/ui/link-arrow.component';
 import { SeoService } from '../../shared/seo/seo.service';
@@ -7,8 +8,9 @@ import { SeoService } from '../../shared/seo/seo.service';
   selector: 'app-contact',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [EyebrowComponent, LinkArrowComponent],
+  imports: [EyebrowComponent, LinkArrowComponent, KcPage],
   template: `
+    <kc-page>
     <!--
       CONTACT PAGE
       Intent: an open, low-pressure "here's how to reach me" page. Not a pitch.
@@ -80,6 +82,7 @@ import { SeoService } from '../../shared/seo/seo.service';
         </aside>
       </div>
     </section>
+    </kc-page>
   `,
 })
 export class ContactComponent implements OnInit {

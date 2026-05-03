@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { KcPage } from '@kian.coffee/beans';
 import { RevealDirective } from '../../shared/motion/reveal.directive';
 import { EyebrowComponent } from '../../shared/ui/eyebrow.component';
 import { LinkArrowComponent } from '../../shared/ui/link-arrow.component';
@@ -10,8 +11,9 @@ import { WORK } from '../../content/work';
   selector: 'app-work',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, RevealDirective, EyebrowComponent, LinkArrowComponent],
+  imports: [RouterLink, RevealDirective, EyebrowComponent, LinkArrowComponent, KcPage],
   template: `
+    <kc-page maxWidth="lg">
     <!--
       CONTENT STRATEGY — /work
 
@@ -126,6 +128,7 @@ import { WORK } from '../../content/work';
         </div>
       </div>
     </section>
+    </kc-page>
   `,
 })
 export class WorkComponent implements OnInit {

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { KcPage } from '@kian.coffee/beans';
 import { RevealDirective } from '../../shared/motion/reveal.directive';
 import { EyebrowComponent } from '../../shared/ui/eyebrow.component';
 import { LinkArrowComponent } from '../../shared/ui/link-arrow.component';
@@ -10,8 +11,9 @@ import { NOW_FOCUS, NOW_LEADE, NOW_LOCATION, NOW_UPDATED_ISO } from '../../conte
   selector: 'app-now',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RevealDirective, EyebrowComponent, LinkArrowComponent, DatePipe],
+  imports: [RevealDirective, EyebrowComponent, LinkArrowComponent, DatePipe, KcPage],
   template: `
+    <kc-page>
     <section class="relative z-10 mx-auto w-full max-w-4xl px-6 md:px-10 pt-20 md:pt-28 pb-24">
       <app-eyebrow label="/now" index="05" />
 
@@ -56,6 +58,7 @@ import { NOW_FOCUS, NOW_LEADE, NOW_LOCATION, NOW_UPDATED_ISO } from '../../conte
         <app-link-arrow href="/contact">Say hi</app-link-arrow>
       </div>
     </section>
+    </kc-page>
   `,
 })
 export class NowComponent implements OnInit {
