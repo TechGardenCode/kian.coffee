@@ -3,8 +3,33 @@ import { palette, radii, semantic, space, typeScale, type TypeScaleKey } from '@
 
 interface PaletteRow {
   readonly name: string;
-  readonly steps: readonly { step: string; hex: string }[];
+  readonly steps: readonly { step: string; hex: string; bgClass: string }[];
 }
+
+/** Static Tailwind class strings for every palette swatch — Tailwind's
+ *  source-scanner only picks up class names that appear literally in
+ *  source files, so dynamic `bg-${name}-${step}` won't generate a
+ *  utility. This map mirrors the beans palette ramps. */
+const PALETTE_BG_CLASS: Record<string, string> = {
+  'cream-50': 'bg-cream-50',     'cream-100': 'bg-cream-100',
+  'cream-200': 'bg-cream-200',   'cream-300': 'bg-cream-300',
+  'cream-400': 'bg-cream-400',   'cream-500': 'bg-cream-500',
+  'cream-600': 'bg-cream-600',
+  'ink-100': 'bg-ink-100',       'ink-300': 'bg-ink-300',
+  'ink-500': 'bg-ink-500',       'ink-700': 'bg-ink-700',
+  'ink-900': 'bg-ink-900',
+  'roast-700': 'bg-roast-700',   'roast-800': 'bg-roast-800',
+  'roast-850': 'bg-roast-850',   'roast-900': 'bg-roast-900',
+  'roast-950': 'bg-roast-950',
+  'taupe-300': 'bg-taupe-300',   'taupe-400': 'bg-taupe-400',
+  'taupe-500': 'bg-taupe-500',   'taupe-600': 'bg-taupe-600',
+  'accent-50': 'bg-accent-50',   'accent-100': 'bg-accent-100',
+  'accent-200': 'bg-accent-200', 'accent-300': 'bg-accent-300',
+  'accent-400': 'bg-accent-400', 'accent-500': 'bg-accent-500',
+  'accent-600': 'bg-accent-600', 'accent-700': 'bg-accent-700',
+  'accent-800': 'bg-accent-800',
+  'espresso': 'bg-espresso',     'foam': 'bg-foam',
+};
 
 interface SemanticPair {
   readonly name: string;
@@ -31,11 +56,18 @@ const PALETTE_ROWS: readonly PaletteRow[] = (() => {
   const ramps: PaletteRow[] = [];
   for (const [name, family] of Object.entries(palette)) {
     if (typeof family === 'string') {
-      ramps.push({ name, steps: [{ step: '', hex: family }] });
+      ramps.push({
+        name,
+        steps: [{ step: '', hex: family, bgClass: PALETTE_BG_CLASS[name] ?? '' }],
+      });
     } else {
       ramps.push({
         name,
-        steps: Object.entries(family).map(([step, hex]) => ({ step, hex })),
+        steps: Object.entries(family).map(([step, hex]) => ({
+          step,
+          hex,
+          bgClass: PALETTE_BG_CLASS[`${name}-${step}`] ?? '',
+        })),
       });
     }
   }
@@ -148,7 +180,7 @@ const ELEVATION_ROWS = [
             <div class="grid gap-2 grid-cols-[repeat(auto-fit,minmax(5rem,1fr))]">
               @for (step of row.steps; track step.step) {
                 <div class="flex flex-col overflow-hidden rounded-md border border-ink-900/10 bg-cream-50 dark:border-foam/10 dark:bg-roast-850">
-                  <span class="block h-16" [style.background]="step.hex"></span>
+                  <span class="block h-16" [class]="step.bgClass"></span>
                   <span class="flex flex-col gap-0.5 px-3 py-2 font-mono text-caption">
                     <span class="font-medium text-ink-900 dark:text-foam">{{ step.step || '—' }}</span>
                     <span class="text-caption text-ink-500 dark:text-taupe-dim">{{ step.hex }}</span>

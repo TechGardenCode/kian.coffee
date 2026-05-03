@@ -10,25 +10,51 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-cream-50: #f6ecdc;
-  --color-cream-100: #ece0d1;
-  --color-cream-200: #e4d4ba;
-  --color-crema: #d9c4a9;
-  --color-ink-900: #2a1a0c;
-  --color-ink-700: #4a2e17;
-  --color-ink-500: #6b4a2b;
-  --color-espresso: #38220f;
+  /* Color ramps — aliased from beans tokens.css. beans is the single
+     source of truth; @theme just exposes the palette to Tailwind's
+     `bg-*`/`text-*`/`border-*` utility namespace. Add a step here to
+     surface it as a Tailwind class; no separate hex needs maintaining. */
 
-  --color-roast-950: #15100b;
-  --color-roast-900: #1a1a19;
-  --color-roast-850: #1f1c16;
-  --color-roast-800: #2e241a;
-  --color-roast-700: #3d3023;
-  --color-taupe: #a88871;
-  --color-taupe-dim: #7a6250;
-  --color-foam: #dfd1b5;
+  --color-cream-50:  var(--cream-50);
+  --color-cream-100: var(--cream-100);
+  --color-cream-200: var(--cream-200);
+  --color-cream-300: var(--cream-300);
+  --color-cream-400: var(--cream-400);
+  --color-cream-500: var(--cream-500);
+  --color-cream-600: var(--cream-600);
+  --color-crema:     var(--cream-400);   /* legacy alias */
 
-  --color-accent: #a8632b;
+  --color-ink-100: var(--ink-100);
+  --color-ink-300: var(--ink-300);
+  --color-ink-500: var(--ink-500);
+  --color-ink-700: var(--ink-700);
+  --color-ink-900: var(--ink-900);
+  --color-espresso: var(--espresso);
+
+  --color-roast-700: var(--roast-700);
+  --color-roast-800: var(--roast-800);
+  --color-roast-850: var(--roast-850);
+  --color-roast-900: var(--roast-900);
+  --color-roast-950: var(--roast-950);
+
+  --color-taupe-300: var(--taupe-300);
+  --color-taupe-400: var(--taupe-400);
+  --color-taupe-500: var(--taupe-500);
+  --color-taupe-600: var(--taupe-600);
+  --color-taupe:     var(--taupe-400);   /* legacy alias */
+  --color-taupe-dim: var(--taupe-600);   /* legacy alias */
+  --color-foam:      var(--foam);
+
+  --color-accent-50:  var(--accent-50);
+  --color-accent-100: var(--accent-100);
+  --color-accent-200: var(--accent-200);
+  --color-accent-300: var(--accent-300);
+  --color-accent-400: var(--accent-400);
+  --color-accent-500: var(--accent-500);
+  --color-accent-600: var(--accent-600);
+  --color-accent-700: var(--accent-700);
+  --color-accent-800: var(--accent-800);
+  --color-accent:     var(--accent-500); /* legacy alias */
 
   --font-display: "Fraunces Variable", ui-serif, Georgia, serif;
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
@@ -161,33 +187,34 @@ body {
  * Follows the diagram-design skill's role system (paper / ink / muted /
  * soft / rule / accent / link) but themed to kian.coffee. SVG can
  * reference these via fill="var(--dg-paper)" etc., so one diagram
- * recolors for both light + dark. */
+ * recolors for both light + dark. Aliases beans palette vars where the
+ * value is a single ramp step; rgba() and link blue stay literal. */
 :root {
-  --dg-paper: #f6ecdc;
-  --dg-paper-2: #ece0d1;
-  --dg-ink: #2a1a0c;
-  --dg-muted: #4a2e17;
-  --dg-soft: #6b4a2b;
-  --dg-rule: rgba(42, 26, 12, 0.12);
-  --dg-rule-solid: rgba(107, 74, 43, 0.28);
-  --dg-accent: #a8632b;
-  --dg-accent-strong: #8d5020;
-  --dg-accent-tint: rgba(168, 99, 43, 0.10);
-  --dg-link: #3c6a8e;
+  --dg-paper:        var(--cream-100);
+  --dg-paper-2:      var(--cream-200);
+  --dg-ink:          var(--ink-900);
+  --dg-muted:        var(--ink-700);
+  --dg-soft:         var(--ink-500);
+  --dg-rule:         rgba(42, 26, 12, 0.12);
+  --dg-rule-solid:   rgba(107, 74, 43, 0.28);
+  --dg-accent:       var(--accent-500);
+  --dg-accent-strong: var(--accent-600);
+  --dg-accent-tint:  rgba(168, 99, 43, 0.10);
+  --dg-link:         #3c6a8e;
 }
 
 .dark {
-  --dg-paper: #15100b;
-  --dg-paper-2: #1a1a19;
-  --dg-ink: #dfd1b5;
-  --dg-muted: #a88871;
-  --dg-soft: #7a6250;
-  --dg-rule: rgba(223, 209, 181, 0.14);
-  --dg-rule-solid: rgba(168, 136, 113, 0.28);
-  --dg-accent: #c67a3f;
+  --dg-paper:        var(--roast-950);
+  --dg-paper-2:      var(--roast-900);
+  --dg-ink:          var(--foam);
+  --dg-muted:        var(--taupe-400);
+  --dg-soft:         var(--taupe-600);
+  --dg-rule:         rgba(223, 209, 181, 0.14);
+  --dg-rule-solid:   rgba(168, 136, 113, 0.28);
+  --dg-accent:       var(--accent-400);
   --dg-accent-strong: #e09055;
-  --dg-accent-tint: rgba(198, 122, 63, 0.16);
-  --dg-link: #6e9bc0;
+  --dg-accent-tint:  rgba(198, 122, 63, 0.16);
+  --dg-link:         #6e9bc0;
 }
 
 /* Diagram container — warm paper inset, hairline border, scroll-safe. */
