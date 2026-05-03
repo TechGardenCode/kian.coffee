@@ -37,6 +37,8 @@ export function createScrollSpy(opts: ScrollSpyOptions): ScrollSpyHandle {
 
   if (elements.length === 0) return inertHandle();
 
+  const excluded = findParentsOfTracked(elements);
+
   const visible = new Map<string, number>();
   let activeId: string | null = null;
   const listeners = new Set<(id: string | null) => void>();
@@ -51,7 +53,7 @@ export function createScrollSpy(opts: ScrollSpyOptions): ScrollSpyHandle {
           visible.delete(id);
         }
       }
-      const next = pickActive(visible, opts.ids);
+      const next = pickActive(visible, opts.ids, excluded);
       if (next !== activeId) {
         activeId = next;
         for (const cb of listeners) cb(activeId);
@@ -83,29 +85,48 @@ export function createScrollSpy(opts: ScrollSpyOptions): ScrollSpyHandle {
 /**
  * Pick the most-specific intersecting section.
  *
- * When a child section is nested inside a parent section that's also
- * tracked, both will report as intersecting at the same time — the
- * parent's box spans the entire viewport while the child's box sits
- * inside it. The parent's `top` is much more negative (it started
- * scrolling above viewport long before the child did), so picking the
- * smallest top would always favor the parent and the child would
- * never light up.
+ * Tracked parents (ids whose DOM element contains another tracked
+ * element) are excluded — they're treated as grouping labels, not
+ * active candidates. This avoids the "parent blip" where a parent
+ * intersects briefly between sibling children, since in the
+ * remaining-candidates set the parent simply isn't in play.
  *
- * Picking the LARGEST top (least-negative, closest to / most recently
- * crossed the active band from below) selects the inner-most section
- * naturally. For sibling-only layouts this also gives more responsive
- * switching: as you scroll into the next section, its top crosses the
- * band sooner than the previous section's top exits.
+ * Among non-parent candidates, picks the LARGEST top (least-negative,
+ * closest to / most recently crossed the active band from below) to
+ * give responsive sibling-to-sibling switching as you scroll.
  */
-function pickActive(visible: Map<string, number>, order: readonly string[]): string | null {
+function pickActive(
+  visible: Map<string, number>,
+  order: readonly string[],
+  excluded: ReadonlySet<string>,
+): string | null {
   if (visible.size === 0) return null;
   let best: { id: string; top: number } | null = null;
   for (const id of order) {
+    if (excluded.has(id)) continue;
     const top = visible.get(id);
     if (top === undefined) continue;
     if (best === null || top > best.top) best = { id, top };
   }
   return best?.id ?? null;
+}
+
+/** Build the set of tracked ids whose DOM element contains at least
+ *  one OTHER tracked element. These ids are grouping parents and are
+ *  excluded from active-candidate selection. */
+function findParentsOfTracked(elements: readonly HTMLElement[]): ReadonlySet<string> {
+  const parents = new Set<string>();
+  for (let i = 0; i < elements.length; i++) {
+    const a = elements[i];
+    for (let j = 0; j < elements.length; j++) {
+      if (i === j) continue;
+      if (a.contains(elements[j])) {
+        parents.add(a.id);
+        break;
+      }
+    }
+  }
+  return parents;
 }
 
 function inertHandle(): ScrollSpyHandle {
