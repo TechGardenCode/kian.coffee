@@ -71,7 +71,7 @@ import { WORK } from '../../content/work';
               <div class="font-display text-xl text-ink-900 dark:text-foam">
                 Case Western Reserve University
               </div>
-              <div class="font-sans text-[14px] text-ink-700 dark:text-taupe">
+              <div class="font-sans text-body-sm text-ink-700 dark:text-taupe">
                 B.S. Computer Science · Dec 2018
               </div>
             </div>
@@ -79,7 +79,7 @@ import { WORK } from '../../content/work';
               <div class="font-display text-xl text-ink-900 dark:text-foam">
                 Thomas Jefferson High School for Science and Technology
               </div>
-              <div class="font-sans text-[14px] text-ink-700 dark:text-taupe">
+              <div class="font-sans text-body-sm text-ink-700 dark:text-taupe">
                 2015
               </div>
             </div>
@@ -88,7 +88,7 @@ import { WORK } from '../../content/work';
       </kc-page-section>
 
       <kc-page-footer-cta>
-        <p slot="prose" appReveal class="max-w-xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+        <p slot="prose" appReveal class="max-w-xl font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
           What I build on the clock is only half of it. The side projects
           are where I get to try things without a review board.
         </p>

@@ -116,8 +116,14 @@
   --type-body:                          1rem;
   --type-body-leading:                  1.65;
 
+  --type-body-md:                       0.9375rem;
+  --type-body-md-leading:               1.6;
+
   --type-body-sm:                       0.875rem;
   --type-body-sm-leading:               1.55;
+
+  --type-caption:                       0.6875rem;
+  --type-caption-leading:               1.4;
 
   --type-mono:                          0.8125rem;
   --type-mono-leading:                  1.5;

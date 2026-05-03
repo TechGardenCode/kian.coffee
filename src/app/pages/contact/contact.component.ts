@@ -64,7 +64,7 @@ import { SeoService } from '../../shared/seo/seo.service';
           </div>
 
           <aside class="border-l border-crema/70 pl-8 dark:border-roast-700">
-            <p class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+            <p class="font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
               A one-paragraph intro beats a calendar link. Replies usually land
               within a day or two. If not, the lab's probably on fire and
               you'll get the story along with the response.

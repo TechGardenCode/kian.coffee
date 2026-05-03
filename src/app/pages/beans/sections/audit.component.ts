@@ -40,7 +40,7 @@ const ENTRIES: readonly AuditEntry[] = [
             <span class="mt-0.5 block font-sans text-xs text-ink-500 dark:text-taupe-dim">{{ entry.note }}</span>
           </div>
           <span
-            class="inline-flex items-center gap-1 self-start rounded-full border px-2 py-0.5 font-mono text-[0.65rem] uppercase tracking-wider"
+            class="inline-flex items-center gap-1 self-start rounded-full border px-2 py-0.5 font-mono text-caption uppercase tracking-wider"
             [class.border-accent]="entry.status === 'stable'"
             [class.text-accent]="entry.status === 'stable'"
             [class.border-amber-700]="entry.status === 'wip'"

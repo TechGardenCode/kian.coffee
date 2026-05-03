@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
       <div class="kc-container kc-container--md grid gap-10 py-14 md:grid-cols-[2fr_1fr_1fr]">
         <div class="flex flex-col gap-3 max-w-md">
           <span class="label text-ink-700 dark:text-taupe">kian.coffee</span>
-          <p class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+          <p class="font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
             Served from a Talos cluster on Proxmox in my basement, delivered
             by ArgoCD. HTTPS all the way. No trackers. No popups. Just pages
             built with intention.

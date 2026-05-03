@@ -60,7 +60,7 @@ import { USES } from '../../content/uses';
               @for (item of group.items; track item.name) {
                 <li class="flex flex-col gap-1.5 border-b border-crema/50 py-4 first:pt-0 last:border-0 md:flex-row md:items-baseline md:gap-6 dark:border-roast-800">
                   <span class="font-display text-lg text-ink-900 dark:text-foam md:min-w-[14rem]">{{ item.name }}</span>
-                  <span class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">{{ item.detail }}</span>
+                  <span class="font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">{{ item.detail }}</span>
                 </li>
               }
             </ul>
@@ -69,7 +69,7 @@ import { USES } from '../../content/uses';
       }
 
       <kc-page-footer-cta>
-        <p slot="prose" appReveal class="max-w-xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+        <p slot="prose" appReveal class="max-w-xl font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
           The rack gets its own page. Diagrams, host roster, and the
           GitOps flow that keeps it running.
         </p>

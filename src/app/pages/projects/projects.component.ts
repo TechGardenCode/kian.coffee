@@ -60,7 +60,7 @@ import { PROJECT_GROUPS } from '../../content/projects';
           >
             {{ group.heading }}
           </h2>
-          <p slot="kicker" class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe md:text-right md:max-w-sm">
+          <p slot="kicker" class="font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe md:text-right md:max-w-sm">
             {{ group.note }}
           </p>
 
@@ -76,7 +76,7 @@ import { PROJECT_GROUPS } from '../../content/projects';
                   {{ project.title }}
                 </h3>
 
-                <p class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+                <p class="font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
                   {{ project.summary }}
                 </p>
 
@@ -102,7 +102,7 @@ import { PROJECT_GROUPS } from '../../content/projects';
       }
 
       <kc-page-footer-cta>
-        <p slot="prose" appReveal class="max-w-xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+        <p slot="prose" appReveal class="max-w-xl font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
           Public repos live under
           <a href="https://github.com/TechGardenCode" target="_blank" rel="noopener noreferrer" class="link-flourish">github.com/TechGardenCode</a>.
         </p>

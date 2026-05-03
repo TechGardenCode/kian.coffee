@@ -74,7 +74,7 @@ const TEMPLATES: readonly TemplateCard[] = [
             }
           </div>
           <h3 class="m-0 font-mono text-xs text-ink-900 dark:text-foam">&lt;{{ t.selector }}&gt;</h3>
-          <p class="m-0 font-sans text-[0.8rem] leading-relaxed text-ink-500 dark:text-taupe-dim">{{ t.description }}</p>
+          <p class="m-0 font-sans text-body-sm leading-relaxed text-ink-500 dark:text-taupe-dim">{{ t.description }}</p>
         </article>
       }
     </div>

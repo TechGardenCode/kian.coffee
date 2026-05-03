@@ -91,7 +91,9 @@ const TYPE_SAMPLES: Record<TypeScaleKey, { sampleClass: string; sample: string }
   'heading-3':  { sampleClass: 'font-display text-heading-3',   sample: 'Heading 3' },
   'body-lg':    { sampleClass: 'font-sans text-body-lg',        sample: 'Body LG — lede paragraph copy.' },
   'body':       { sampleClass: 'font-sans text-body',           sample: 'Body — long-form prose at the default reading size.' },
-  'body-sm':    { sampleClass: 'font-sans text-body-sm',        sample: 'Body SM — secondary copy and captions.' },
+  'body-md':    { sampleClass: 'font-sans text-body-md',        sample: 'Body MD — the page-level prose default.' },
+  'body-sm':    { sampleClass: 'font-sans text-body-sm',        sample: 'Body SM — secondary copy.' },
+  'caption':    { sampleClass: 'font-sans text-caption',        sample: 'Caption — micro labels and helper text.' },
   'mono':       { sampleClass: 'font-mono text-mono',           sample: '--space-6: 32px' },
   'label':      { sampleClass: 'font-mono text-label uppercase', sample: 'LABEL · ALL CAPS' },
 };
@@ -147,9 +149,9 @@ const ELEVATION_ROWS = [
               @for (step of row.steps; track step.step) {
                 <div class="flex flex-col overflow-hidden rounded-md border border-ink-900/10 bg-cream-50 dark:border-foam/10 dark:bg-roast-850">
                   <span class="block h-16" [style.background]="step.hex"></span>
-                  <span class="flex flex-col gap-0.5 px-3 py-2 font-mono text-[0.7rem]">
+                  <span class="flex flex-col gap-0.5 px-3 py-2 font-mono text-caption">
                     <span class="font-medium text-ink-900 dark:text-foam">{{ step.step || '—' }}</span>
-                    <span class="text-[0.65rem] text-ink-500 dark:text-taupe-dim">{{ step.hex }}</span>
+                    <span class="text-caption text-ink-500 dark:text-taupe-dim">{{ step.hex }}</span>
                   </span>
                 </div>
               }
@@ -175,15 +177,15 @@ const ELEVATION_ROWS = [
             @for (token of group.tokens; track token.name) {
               <div class="flex flex-col overflow-hidden rounded-md border border-ink-900/10 bg-cream-50 dark:border-foam/10 dark:bg-roast-850">
                 <div class="flex flex-col gap-0.5 border-b border-ink-900/10 p-3 dark:border-foam/10">
-                  <span class="font-mono text-[0.8rem] font-medium text-ink-900 dark:text-foam">{{ token.name }}</span>
-                  <span class="font-mono text-[0.7rem] text-ink-500 dark:text-taupe-dim">{{ token.cssVar }}</span>
+                  <span class="font-mono text-body-sm font-medium text-ink-900 dark:text-foam">{{ token.name }}</span>
+                  <span class="font-mono text-caption text-ink-500 dark:text-taupe-dim">{{ token.cssVar }}</span>
                 </div>
-                <div class="grid items-center gap-2 px-3 py-2 font-mono text-[0.7rem] bg-cream-100 text-ink-900 grid-cols-[1.5rem_auto_1fr]">
+                <div class="grid items-center gap-2 px-3 py-2 font-mono text-caption bg-cream-100 text-ink-900 grid-cols-[1.5rem_auto_1fr]">
                   <span class="h-6 w-6 rounded border border-black/15" [style.background]="token.light"></span>
                   <span class="uppercase tracking-wider opacity-60">light</span>
                   <span class="overflow-hidden text-ellipsis whitespace-nowrap text-end">{{ token.light }}</span>
                 </div>
-                <div class="grid items-center gap-2 px-3 py-2 font-mono text-[0.7rem] bg-roast-900 text-cream-100 grid-cols-[1.5rem_auto_1fr]">
+                <div class="grid items-center gap-2 px-3 py-2 font-mono text-caption bg-roast-900 text-cream-100 grid-cols-[1.5rem_auto_1fr]">
                   <span class="h-6 w-6 rounded border border-white/15" [style.background]="token.dark"></span>
                   <span class="uppercase tracking-wider opacity-60">dark</span>
                   <span class="overflow-hidden text-ellipsis whitespace-nowrap text-end">{{ token.dark }}</span>
@@ -242,7 +244,7 @@ const ELEVATION_ROWS = [
         @for (step of typeScale; track step.token) {
           <div class="flex flex-col gap-2 border-b border-ink-900/10 py-4 last:border-b-0 dark:border-foam/10">
             <p class="m-0 text-ink-900 dark:text-foam" [class]="step.sampleClass">{{ step.sample }}</p>
-            <div class="flex gap-3 font-mono text-[0.7rem] text-ink-500 dark:text-taupe-dim">
+            <div class="flex gap-3 font-mono text-caption text-ink-500 dark:text-taupe-dim">
               <span>{{ step.token }}</span>
               <span>{{ step.meta }}</span>
             </div>
@@ -286,7 +288,7 @@ const ELEVATION_ROWS = [
         @for (r of radiiRows; track r.token) {
           <div class="flex flex-col gap-2">
             <div class="h-20 border border-accent bg-accent/10" [style.borderRadius]="r.value"></div>
-            <div class="flex justify-between font-mono text-[0.7rem] text-ink-500 dark:text-taupe-dim">
+            <div class="flex justify-between font-mono text-caption text-ink-500 dark:text-taupe-dim">
               <span>{{ r.token }}</span>
               <span>{{ r.value }}</span>
             </div>
@@ -307,7 +309,7 @@ const ELEVATION_ROWS = [
         @for (e of elevationRows; track e.token) {
           <div class="flex flex-col items-center gap-2">
             <div class="h-20 w-full rounded-md bg-cream-50 dark:bg-roast-850" [class]="e.class"></div>
-            <div class="font-mono text-[0.7rem] text-ink-500 dark:text-taupe-dim">{{ e.token }}</div>
+            <div class="font-mono text-caption text-ink-500 dark:text-taupe-dim">{{ e.token }}</div>
           </div>
         }
       </div>

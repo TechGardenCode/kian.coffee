@@ -66,8 +66,14 @@
   --text-body:                          var(--type-body);
   --text-body--line-height:             var(--type-body-leading);
 
+  --text-body-md:                       var(--type-body-md);
+  --text-body-md--line-height:          var(--type-body-md-leading);
+
   --text-body-sm:                       var(--type-body-sm);
   --text-body-sm--line-height:          var(--type-body-sm-leading);
+
+  --text-caption:                       var(--type-caption);
+  --text-caption--line-height:          var(--type-caption-leading);
 
   --text-mono:                          var(--type-mono);
   --text-mono--line-height:             var(--type-mono-leading);

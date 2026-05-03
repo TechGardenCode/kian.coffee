@@ -30,7 +30,7 @@ export interface CaseCardLink {
         {{ title() }}
       </h3>
 
-      <p class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe max-w-prose">
+      <p class="font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe max-w-prose">
         {{ summary() }}
       </p>
 

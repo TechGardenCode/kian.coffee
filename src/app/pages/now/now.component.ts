@@ -56,10 +56,10 @@ import { NOW_FOCUS, NOW_LEADE, NOW_LOCATION, NOW_UPDATED_ISO } from '../../conte
           @for (item of focus; track item.heading; let i = $index) {
             <article appReveal class="grid gap-4 border-t border-crema/70 pt-8 md:grid-cols-[1fr_3fr] md:gap-12 dark:border-roast-700">
               <div class="flex items-baseline gap-3">
-                <span class="font-mono text-[11px] tabular text-ink-500 dark:text-taupe-dim">{{ pad(i + 1) }}</span>
+                <span class="font-mono text-caption tabular text-ink-500 dark:text-taupe-dim">{{ pad(i + 1) }}</span>
                 <h2 class="font-display text-2xl text-ink-900 dark:text-foam">{{ item.heading }}</h2>
               </div>
-              <p class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+              <p class="font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
                 {{ item.body }}
               </p>
             </article>
@@ -68,7 +68,7 @@ import { NOW_FOCUS, NOW_LEADE, NOW_LOCATION, NOW_UPDATED_ISO } from '../../conte
       </kc-page-section>
 
       <kc-page-footer-cta>
-        <p slot="prose" appReveal class="max-w-xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+        <p slot="prose" appReveal class="max-w-xl font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
           Inspired by <a href="https://nownownow.com/about" target="_blank" rel="noopener noreferrer" class="link-flourish">Derek Sivers' /now movement</a>.
           If you have one too, send it over — I'll read it.
         </p>

@@ -73,7 +73,7 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
           class="flex items-start gap-4 rounded-xl border border-accent/50 bg-accent/5 p-5 dark:border-accent/40 dark:bg-accent/10"
         >
           <span aria-hidden="true" class="mt-0.5 text-accent">●</span>
-          <div class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+          <div class="font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
             <strong class="text-ink-900 dark:text-foam">The secondary AZ is offline.</strong>
             Hardware is mid-move between sites, so production is running
             single-AZ until it's back. Stats, diagrams, and principles
@@ -95,7 +95,7 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
         headRule
       >
         <app-eyebrow slot="eyebrow" label="How it's designed" index="01" />
-        <p appReveal class="mb-10 max-w-3xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+        <p appReveal class="mb-10 max-w-3xl font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
           Four design principles run through the lab. The rest of the page
           shows how each one is wired up.
         </p>
@@ -103,7 +103,7 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
           @for (principle of principles; track principle.title) {
             <article class="rounded-xl border border-crema/80 bg-cream-100/40 p-6 dark:border-roast-700 dark:bg-roast-900/40">
               <h3 class="font-display text-xl text-ink-900 dark:text-foam mb-3">{{ principle.title }}</h3>
-              <p class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+              <p class="font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
                 {{ principle.body }}
               </p>
             </article>
@@ -118,7 +118,7 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
         headRule
       >
         <app-eyebrow slot="eyebrow" label="Diagram 01" index="02" />
-        <p appReveal class="mb-10 max-w-3xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+        <p appReveal class="mb-10 max-w-3xl font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
           Five layers between bare metal and a running pod. Every one of them
           is boring, which is the point. Adding a new app on top barely touches
           the stack below.
@@ -135,7 +135,7 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
         headRule
       >
         <app-eyebrow slot="eyebrow" label="Diagram 02" index="03" />
-        <p appReveal class="mb-10 max-w-3xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+        <p appReveal class="mb-10 max-w-3xl font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
           Every app ships the same way. Push to main; CI builds and publishes
           an image; a dispatch event tells the homelab repo to bump the tag;
           ArgoCD reconciles; Talos rolls. Prod promotions go through an
@@ -153,7 +153,7 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
         headRule
       >
         <app-eyebrow slot="eyebrow" label="Diagram 03" index="04" />
-        <p appReveal class="mb-10 max-w-3xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+        <p appReveal class="mb-10 max-w-3xl font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
           Three tiers of physical compute. Production runs directly on
           bare-metal EliteDesks, so there's no hypervisor in the critical
           path. The Proxmox hosts carry the core and dev clusters as VMs.
@@ -173,7 +173,7 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
         headRule
       >
         <app-eyebrow slot="eyebrow" label="Diagram 04" index="05" />
-        <p appReveal class="mb-10 max-w-3xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+        <p appReveal class="mb-10 max-w-3xl font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
           Web traffic arrives only through an outbound-only Cloudflare Tunnel;
           there are no inbound port forwards for any HTTP service. Six VLANs
           segment by trust tier. The firewall denies between tiers by default,
@@ -192,7 +192,7 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
         headRule
       >
         <app-eyebrow slot="eyebrow" label="Diagram 05" index="06" />
-        <p appReveal class="mb-10 max-w-3xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+        <p appReveal class="mb-10 max-w-3xl font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
           Reliability work is never done. Left column is what's already
           redundant; right column is what still runs as a single instance,
           and the next step queued up for each one.
@@ -209,7 +209,7 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
         headRule
       >
         <app-eyebrow slot="eyebrow" label="The roster" index="07" />
-        <p appReveal class="mb-10 max-w-3xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+        <p appReveal class="mb-10 max-w-3xl font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
           Bare-metal Talos nodes are configured declaratively via
           <span class="font-mono">talosctl</span>, so they appear in the
           cluster topology above but not in this host roster. The roster below
@@ -227,7 +227,7 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
               <p class="font-sans text-sm leading-relaxed text-ink-700 dark:text-taupe mb-4">
                 {{ group.description }}
               </p>
-              <ul class="flex flex-col gap-1 font-mono text-[12px] text-ink-700 dark:text-taupe">
+              <ul class="flex flex-col gap-1 font-mono text-mono text-ink-700 dark:text-taupe">
                 @for (host of group.hosts; track host.hostname) {
                   <li class="border-t border-crema/60 pt-1.5 first:border-0 first:pt-0 dark:border-roast-800">
                     <span class="text-ink-900 dark:text-foam">{{ host.hostname }}</span>
@@ -269,7 +269,7 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
           <h2 class="font-display text-3xl md:text-4xl leading-tight tracking-tight text-ink-900 dark:text-foam">
             The homelab repo is public on GitHub.
           </h2>
-          <p class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+          <p class="font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
             Every K8s manifest, ArgoCD Application, and GitOps workflow that
             ships a deploy lives there.
           </p>
