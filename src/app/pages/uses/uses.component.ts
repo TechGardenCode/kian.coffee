@@ -30,12 +30,12 @@ import { USES } from '../../content/uses';
         <app-eyebrow label="/uses" index="04" />
         <h1
           appReveal
-          class="mt-6 font-display text-5xl md:text-7xl leading-[1.05] tracking-tight text-ink-900 dark:text-foam"
+          class="font-display text-5xl md:text-7xl leading-[1.05] tracking-tight text-ink-900 dark:text-foam"
         >
           The stuff I actually<br />
           <span class="text-accent">reach for.</span>
         </h1>
-        <p appReveal class="mt-8 max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
+        <p appReveal class="max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
           Editor, desk, rack, terminal, espresso bar. Nothing aspirational on
           this page. Just what's in daily rotation. Updated when something
           changes, which is rarer than you'd think.
@@ -43,7 +43,7 @@ import { USES } from '../../content/uses';
       </kc-page-hero>
 
       @for (group of groups; track group.heading; let i = $index) {
-        <kc-page-section [hasHead]="false" rule>
+        <kc-page-section [hasHead]="false">
           <div appReveal class="grid gap-8 md:grid-cols-[1fr_2fr] md:gap-16">
             <div class="flex flex-col gap-2">
               <span class="label text-ink-700 dark:text-taupe">

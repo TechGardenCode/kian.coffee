@@ -7,11 +7,9 @@ import { ChangeDetectionStrategy, Component, booleanAttribute, input } from "@an
   template: `<ng-content />`,
   host: {
     class: "kc-page__hero",
-    "[class.kc-page__hero--narrow]": "narrow()",
     "[class.kc-page__hero--tall]": "tall()",
   },
 })
 export class KcPageHero {
-  readonly narrow = input(false, { transform: booleanAttribute });
   readonly tall = input(false, { transform: booleanAttribute });
 }

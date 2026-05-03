@@ -49,12 +49,12 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
         <app-eyebrow label="/lab" index="03" />
         <h1
           appReveal
-          class="mt-6 font-display text-5xl md:text-7xl leading-[1.05] tracking-tight text-ink-900 dark:text-foam"
+          class="font-display text-5xl md:text-7xl leading-[1.05] tracking-tight text-ink-900 dark:text-foam"
         >
           The rack under the desk,<br />
           <span class="text-accent">run like a cloud provider.</span>
         </h1>
-        <p appReveal class="mt-8 max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
+        <p appReveal class="max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
           Three Talos Kubernetes clusters — core, dev, and prod — with a
           fourth prod cluster planned for a second AZ. Every cluster runs
           a 3-node etcd quorum. Three Technitium DNS instances sit behind

@@ -1,13 +1,11 @@
 /* =====================================================================
-   kc-page--marketing — marketing/home shape modifier.
-   Substrate already defaults to the marketing column width and rhythm,
-   so the modifier is currently a marker class for downstream styling
-   (e.g. dark-mode tweaks, page-level page transitions) and a stable
-   hook for future variants. Bare HTML:
-     <div class="kc-page kc-page--marketing"> ... </div>
-   ===================================================================== */
+   kc-page--marketing — marketing page modifier.
+   The substrate defaults to md width (960). Marketing pages override
+   --kc-page-max-w to lg (1280) per the Container's three-tier system
+   (Components.html § 03 Container).
 
-.kc-page--marketing {
-  /* No token retunes today — substrate defaults already match the
-     marketing chrome. Reserved as a hook. */
-}
+   The class lives in styles/page.css alongside .kc-page since it's a
+   single override; this file is reserved for future marketing-only
+   chrome (e.g. accent color in hero, dark hero variant) without
+   touching the substrate.
+   ===================================================================== */

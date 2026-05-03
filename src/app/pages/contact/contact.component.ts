@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
-import { KcPage, KcPageHero } from '@kian.coffee/beans';
+import { KcPageMarketing, KcPageHero } from '@kian.coffee/beans';
 import { EyebrowComponent } from '../../shared/ui/eyebrow.component';
 import { LinkArrowComponent } from '../../shared/ui/link-arrow.component';
 import { SeoService } from '../../shared/seo/seo.service';
@@ -8,29 +8,25 @@ import { SeoService } from '../../shared/seo/seo.service';
   selector: 'app-contact',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [EyebrowComponent, LinkArrowComponent, KcPage, KcPageHero],
+  imports: [EyebrowComponent, LinkArrowComponent, KcPageMarketing, KcPageHero],
   template: `
-    <kc-page>
-      <kc-page-hero
-        narrow
-        class="md:[--kc-page-hero-pb:10rem]"
-        style="--kc-page-hero-pb: 7rem"
-      >
+    <kc-page-marketing>
+      <kc-page-hero tall>
         <app-eyebrow label="/contact" index="06" />
 
-        <h1 class="mt-6 font-display text-5xl md:text-7xl leading-[1.05] tracking-tight text-ink-900 dark:text-foam">
+        <h1 class="font-display text-5xl md:text-7xl leading-[1.05] tracking-tight text-ink-900 dark:text-foam">
           Say hello.
           <span class="block text-ink-700 dark:text-taupe">The door's genuinely open.</span>
         </h1>
 
-        <p class="mt-8 max-w-xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
+        <p class="max-w-xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
           Every email gets read. Easiest paths in: you're chasing a weird K8s
           bug, you've got a homelab war story, you want to swap fantasy-series
           recs, or something on this site reminded you of something. Email's
           fastest. LinkedIn works too.
         </p>
 
-        <div class="mt-14 grid gap-10 md:grid-cols-[auto_1fr] md:gap-14">
+        <div class="grid gap-10 md:grid-cols-[auto_1fr] md:gap-14 max-w-3xl">
           <div class="flex flex-col gap-6">
             <div class="flex flex-col gap-1.5">
               <span class="label text-ink-700 dark:text-taupe">email</span>
@@ -79,7 +75,7 @@ import { SeoService } from '../../shared/seo/seo.service';
           </aside>
         </div>
       </kc-page-hero>
-    </kc-page>
+    </kc-page-marketing>
   `,
 })
 export class ContactComponent implements OnInit {

@@ -26,7 +26,6 @@ import { ChangeDetectionStrategy, Component, booleanAttribute, computed, input }
   `,
   host: {
     class: "kc-page__section",
-    "[class.kc-page__section--rule]": "rule()",
     "[id]": "anchor() || null",
   },
 })
@@ -36,7 +35,6 @@ export class KcPageSection {
   readonly kicker = input<string | null>(null);
   readonly hasHead = input(true, { transform: booleanAttribute });
   readonly headRule = input(false, { transform: booleanAttribute });
-  readonly rule = input(false, { transform: booleanAttribute });
 
   readonly headClass = computed(() =>
     this.headRule()

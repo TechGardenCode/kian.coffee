@@ -1,28 +1,31 @@
 /* =====================================================================
    kc-page — page template substrate. Class-API floor; bare HTML works:
-     <div class="kc-page">
+     <div class="kc-page kc-page--marketing">
        <header class="kc-page__hero"> ... </header>
        <section class="kc-page__section"> ... </section>
        <footer class="kc-page__footer-cta"> ... </footer>
      </div>
 
-   Token defaults match the existing kian.coffee page chrome verbatim
-   (px-6 md:px-10 gutter, pt-20 md:pt-28 hero, py-24 md:py-32 section,
-   pb-28 md:pb-36 footer-cta) so migrating pages doesn't shift content.
-   Templates (page-marketing, etc.) override --kc-page-* tokens at the
-   .kc-page scope; consumers can re-override at any deeper scope.
+   Every value below comes from the documented spacing scale
+   (Design System.html § 08): "never use a value that isn't on this
+   scale." Page-level rhythm uses --space-9 / --space-10 per the same
+   section: "between top-level sections; only at the page level."
    ===================================================================== */
 
 .kc-page {
-  --kc-page-max-w:            var(--page-max-w-lg);
-  --kc-page-gutter:           1.5rem;   /*  24px · px-6 */
-  --kc-page-hero-pt:          5rem;     /*  80px · pt-20 */
-  --kc-page-hero-pb:          2rem;     /*  32px · pb-8 */
-  --kc-page-section-rhythm-y: 6rem;     /*  96px · py-24 */
+  /* Default = md (960). Marketing pages override to lg (1280) via
+     .kc-page--marketing. This mirrors the doc's three named widths
+     (Components.html § 03 Container: 1280/960/720). */
+  --kc-page-max-w:            var(--page-max-w-md);
+  --kc-page-gutter:           var(--space-6);    /* 32 — single value, per doc */
+  --kc-page-hero-pt:          var(--space-9);    /* 96 mobile */
+  --kc-page-hero-pb:          var(--space-6);    /* 32 default */
+  --kc-page-hero-gap:         var(--space-7);    /* 48 — uniform hero rhythm */
+  --kc-page-section-rhythm-y: var(--space-9);    /* 96 mobile */
   --kc-page-section-divider:  1px solid var(--border-subtle);
   --kc-page-band-bg:          color-mix(in srgb, var(--bg-base) 60%, transparent);
-  --kc-page-footer-cta-pt:    3rem;     /*  48px · pt-12 */
-  --kc-page-footer-cta-pb:    7rem;     /* 112px · pb-28 */
+  --kc-page-footer-cta-pt:    var(--space-7);    /* 48 */
+  --kc-page-footer-cta-pb:    var(--space-10);   /* 128 — single value */
 
   display: block;
   width: 100%;
@@ -30,24 +33,21 @@
 
 @media (min-width: 768px) {
   .kc-page {
-    --kc-page-gutter:           2.5rem; /*  40px · md:px-10 */
-    --kc-page-hero-pt:          7rem;   /* 112px · md:pt-28 */
-    --kc-page-section-rhythm-y: 8rem;   /* 128px · md:py-32 */
-    --kc-page-footer-cta-pb:    9rem;   /* 144px · md:pb-36 */
+    --kc-page-hero-pt:          var(--space-10);  /* 128 md+ */
+    --kc-page-section-rhythm-y: var(--space-10);  /* 128 md+ */
   }
 }
 
-.kc-page--max-w-sm { --kc-page-max-w: var(--page-max-w-sm); }
-.kc-page--max-w-md { --kc-page-max-w: var(--page-max-w-md); }
-.kc-page--max-w-lg { --kc-page-max-w: var(--page-max-w-lg); }
+.kc-page--marketing { --kc-page-max-w: var(--page-max-w-lg); }
 
-/* ---------- HERO ---------- */
-/* Substrate is block flow. Pages use existing mt-* utilities on children
-   to control internal rhythm. Pages that want flex+gap (home) apply
-   `class="flex flex-col gap-X"` on the kc-page-hero element directly. */
+/* ---------- HERO ----------
+   Substrate is flex-column with uniform gap. Hero rhythm is
+   substrate-owned: pages do NOT add mt-* between hero children. */
 
 .kc-page__hero {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: var(--kc-page-hero-gap);
   position: relative;
   z-index: 1;
   width: 100%;
@@ -57,13 +57,13 @@
   padding-block: var(--kc-page-hero-pt) var(--kc-page-hero-pb);
 }
 
-.kc-page__hero--narrow { max-width: var(--page-max-w-sm); }
-
-/* `tall` modifier: bigger bottom padding for heroes that sit just before
-   a band/section that needs visual breathing room (home). */
-.kc-page__hero--tall { --kc-page-hero-pb: 5rem; /* pb-20 = 80 */ }
+.kc-page__hero--tall {
+  --kc-page-hero-pb: var(--space-9);   /* 96 mobile */
+}
 @media (min-width: 768px) {
-  .kc-page__hero--tall { --kc-page-hero-pb: 7rem; /* md:pb-28 = 112 */ }
+  .kc-page__hero--tall {
+    --kc-page-hero-pb: var(--space-10); /* 128 md+ */
+  }
 }
 
 .kc-page__hero-title {
@@ -100,12 +100,12 @@
   max-width: var(--kc-page-max-w);
   margin-inline: auto;
   padding-inline: var(--kc-page-gutter);
-  padding-block: 3.5rem; /* py-14 = 56px */
+  padding-block: var(--space-7);   /* 48 */
 }
 
 .kc-page__band--metric .kc-page__band-inner {
   display: grid;
-  gap: 2.5rem 1.5rem; /* gap-y-10 gap-x-6 */
+  gap: var(--space-6) var(--space-6);   /* 32 / 32 */
   grid-template-columns: repeat(2, minmax(0, 1fr));
   text-align: center;
 }
@@ -122,11 +122,12 @@
   }
 }
 
-/* ---------- SECTION ---------- */
-/* No top border by default — sections are separated by their internal
-   padding-block alone (matches home/lab original). Pages that want a
-   border-t between sections (matches projects/uses original) opt in
-   via the `--rule` modifier. */
+/* ---------- SECTION ----------
+   No inter-section border, ever. Sections separate by their interior
+   padding-block alone — adjacent sections produce a page-level gap of
+   --space-9 (or --space-10 at md+) which honors the doc's
+   "space-8–space-10: between top-level sections; only at the page
+   level" rule. */
 
 .kc-page__section {
   display: block;
@@ -138,13 +139,14 @@
   padding-block: var(--kc-page-section-rhythm-y);
 }
 
-.kc-page__section--rule { border-block-start: var(--kc-page-section-divider); }
-
+/* Section head — formatted to match the doc's own .section-head:
+   gap: --space-3 (12), margin-bottom: --space-6 (32). At md+ the
+   layout flips to a row with --space-7 (48) gap. */
 .kc-page__section-head {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  margin-block-end: var(--space-7);
+  gap: var(--space-3);
+  margin-block-end: var(--space-6);
 }
 
 .kc-page__section-head--rule {
@@ -159,7 +161,6 @@
     justify-content: space-between;
     gap: var(--space-7);
   }
-  .kc-page__section-head--rule { margin-block-end: var(--space-8); }
 }
 
 .kc-page__section-head-main {
@@ -200,18 +201,17 @@
 .kc-page__section-body { position: relative; }
 
 /* ---------- FOOTER CTA ---------- */
-/* Always has a top border — every original outbound CTA opens with one. */
 
 .kc-page__footer-cta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
   width: 100%;
   max-width: var(--kc-page-max-w);
   margin-inline: auto;
   padding-inline: var(--kc-page-gutter);
   padding-block: var(--kc-page-footer-cta-pt) var(--kc-page-footer-cta-pb);
   border-block-start: var(--kc-page-section-divider);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
 }
 
 .kc-page__footer-cta-prose { max-width: 36rem; }
