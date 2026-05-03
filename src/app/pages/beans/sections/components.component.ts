@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   ButtonComponent,
@@ -42,9 +42,7 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
       Each component appears once, in its baseline form, with the
       variants and states it supports rendered alongside. Sizes,
       disabled, invalid, focus, and any per-component specialties
-      (indeterminate, orientation, bubble) are shown together. Toggle
-      audit mode in the toolbar to see every interactive element in
-      its disabled state.
+      (indeterminate, orientation, bubble) are shown together.
     </p>
 
     <div class="flex flex-col gap-6">
@@ -62,17 +60,17 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
           <div class="flex min-w-48 flex-col gap-3">
             <span class="label text-ink-500 dark:text-taupe-dim">Variants</span>
             <div class="flex flex-wrap gap-2">
-              <kc-button variant="primary" [disabled]="audit()">Primary</kc-button>
-              <kc-button variant="secondary" [disabled]="audit()">Secondary</kc-button>
-              <kc-button variant="ghost" [disabled]="audit()">Ghost</kc-button>
+              <kc-button variant="primary">Primary</kc-button>
+              <kc-button variant="secondary">Secondary</kc-button>
+              <kc-button variant="ghost">Ghost</kc-button>
             </div>
           </div>
           <div class="flex min-w-48 flex-col gap-3">
             <span class="label text-ink-500 dark:text-taupe-dim">Sizes</span>
             <div class="flex flex-wrap items-center gap-2">
-              <kc-button size="sm" [disabled]="audit()">Small</kc-button>
-              <kc-button size="md" [disabled]="audit()">Medium</kc-button>
-              <kc-button size="lg" [disabled]="audit()">Large</kc-button>
+              <kc-button size="sm">Small</kc-button>
+              <kc-button size="md">Medium</kc-button>
+              <kc-button size="lg">Large</kc-button>
             </div>
           </div>
         </div>
@@ -92,7 +90,7 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
           <div class="flex min-w-72 flex-1 flex-col gap-3">
             <kc-field>
               <kc-label slot="label">Email address</kc-label>
-              <kc-input placeholder="name@example.com" [disabled]="audit()" />
+              <kc-input placeholder="name@example.com" />
               <span slot="help">We'll never share it.</span>
             </kc-field>
           </div>
@@ -101,8 +99,7 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
               <kc-label slot="label">Email address</kc-label>
               <kc-input
                 [invalid]="true"
-                [disabled]="audit()"
-                [ngModel]="'not-an-email'"
+                               [ngModel]="'not-an-email'"
                 [ngModelOptions]="{ standalone: true }"
               />
               <span slot="error">That doesn't look right.</span>
@@ -123,24 +120,22 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
         <div class="flex flex-wrap items-start gap-6">
           <div class="flex min-w-48 flex-col gap-3">
             <span class="label text-ink-500 dark:text-taupe-dim">Sizes</span>
-            <kc-input size="sm" placeholder="Small" [disabled]="audit()" />
-            <kc-input size="md" placeholder="Medium" [disabled]="audit()" />
-            <kc-input size="lg" placeholder="Large" [disabled]="audit()" />
+            <kc-input size="sm" placeholder="Small" />
+            <kc-input size="md" placeholder="Medium" />
+            <kc-input size="lg" placeholder="Large" />
           </div>
           <div class="flex min-w-48 flex-col gap-3">
             <span class="label text-ink-500 dark:text-taupe-dim">States</span>
-            <kc-input placeholder="Default" [disabled]="audit()" />
+            <kc-input placeholder="Default" />
             <kc-input
               [ngModel]="'Filled value'"
               [ngModelOptions]="{ standalone: true }"
-              [disabled]="audit()"
-            />
+                         />
             <kc-input
               [invalid]="true"
               [ngModel]="'Invalid value'"
               [ngModelOptions]="{ standalone: true }"
-              [disabled]="audit()"
-            />
+                         />
             <kc-input
               [ngModel]="'Disabled'"
               [ngModelOptions]="{ standalone: true }"
@@ -161,7 +156,7 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
         </header>
         <div class="flex flex-wrap items-start gap-6">
           <div class="flex min-w-64 flex-1 flex-col gap-3">
-            <kc-textarea [rows]="3" placeholder="Default state" [disabled]="audit()" />
+            <kc-textarea [rows]="3" placeholder="Default state" />
           </div>
           <div class="flex min-w-64 flex-1 flex-col gap-3">
             <kc-textarea
@@ -169,8 +164,7 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
               [invalid]="true"
               [ngModel]="'Invalid state'"
               [ngModelOptions]="{ standalone: true }"
-              [disabled]="audit()"
-            />
+                         />
           </div>
         </div>
       </article>
@@ -187,22 +181,22 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
         <div class="flex flex-wrap items-start gap-6">
           <div class="flex min-w-48 flex-col gap-3">
             <span class="label text-ink-500 dark:text-taupe-dim">Sizes</span>
-            <kc-select size="sm" [disabled]="audit()">
+            <kc-select size="sm">
               <option>Small</option>
               <option>Choice two</option>
             </kc-select>
-            <kc-select size="md" [disabled]="audit()">
+            <kc-select size="md">
               <option>Medium</option>
               <option>Choice two</option>
             </kc-select>
-            <kc-select size="lg" [disabled]="audit()">
+            <kc-select size="lg">
               <option>Large</option>
               <option>Choice two</option>
             </kc-select>
           </div>
           <div class="flex min-w-48 flex-col gap-3">
             <span class="label text-ink-500 dark:text-taupe-dim">States</span>
-            <kc-select [invalid]="true" [disabled]="audit()">
+            <kc-select [invalid]="true">
               <option>Invalid</option>
             </kc-select>
             <kc-select [disabled]="true">
@@ -225,15 +219,14 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
         <div class="flex flex-wrap items-start gap-6">
           <div class="flex min-w-48 flex-col gap-3">
             <span class="label text-ink-500 dark:text-taupe-dim">States</span>
-            <kc-checkbox label="Unchecked" [disabled]="audit()" />
+            <kc-checkbox label="Unchecked" />
             <kc-checkbox
               label="Checked"
               [ngModel]="true"
               [ngModelOptions]="{ standalone: true }"
-              [disabled]="audit()"
-            />
-            <kc-checkbox label="Indeterminate" [indeterminate]="true" [disabled]="audit()" />
-            <kc-checkbox label="Invalid" [invalid]="true" [disabled]="audit()" />
+                         />
+            <kc-checkbox label="Indeterminate" [indeterminate]="true" />
+            <kc-checkbox label="Invalid" [invalid]="true" />
             <kc-checkbox label="Disabled" [disabled]="true" />
           </div>
         </div>
@@ -256,8 +249,7 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
               [options]="roastOptions"
               [ngModel]="'medium'"
               [ngModelOptions]="{ standalone: true }"
-              [disabled]="audit()"
-            />
+                         />
           </div>
           <div class="flex min-w-48 flex-col gap-3">
             <span class="label text-ink-500 dark:text-taupe-dim">Horizontal</span>
@@ -266,8 +258,7 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
               [options]="roastOptions"
               [ngModel]="'medium'"
               [ngModelOptions]="{ standalone: true }"
-              [disabled]="audit()"
-            />
+                         />
           </div>
         </div>
       </article>
@@ -286,12 +277,11 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
           <div class="flex min-w-48 flex-col gap-3">
             <span class="label text-ink-500 dark:text-taupe-dim">States</span>
             <div class="flex flex-wrap items-center gap-3">
-              <kc-switch [disabled]="audit()" />
+              <kc-switch />
               <kc-switch
                 [ngModel]="true"
                 [ngModelOptions]="{ standalone: true }"
-                [disabled]="audit()"
-              />
+                             />
               <kc-switch [disabled]="true" />
             </div>
           </div>
@@ -313,8 +303,7 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
             <kc-slider
               [ngModel]="40"
               [ngModelOptions]="{ standalone: true }"
-              [disabled]="audit()"
-            />
+                         />
           </div>
           <div class="flex min-w-64 flex-1 flex-col gap-3">
             <span class="label text-ink-500 dark:text-taupe-dim">With bubble</span>
@@ -322,8 +311,7 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
               [showBubble]="true"
               [ngModel]="65"
               [ngModelOptions]="{ standalone: true }"
-              [disabled]="audit()"
-            />
+                         />
           </div>
         </div>
       </article>
@@ -332,6 +320,5 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
   `,
 })
 export class BeansComponentsComponent {
-  readonly audit = input(false);
   readonly roastOptions = ROAST_OPTIONS;
 }

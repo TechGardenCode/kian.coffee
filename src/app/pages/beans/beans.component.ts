@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
   KcPageDoc,
@@ -50,21 +50,6 @@ const SECTIONS: readonly KcPageDocSection[] = [
         <div class="flex flex-col gap-4 lg:sticky lg:top-12 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto py-12">
           <p class="label text-ink-500 dark:text-taupe-dim">Design system</p>
 
-          <div class="flex flex-col gap-2 rounded-md border border-ink-900/10 bg-cream-50 p-3 dark:border-foam/10 dark:bg-roast-850">
-            <button
-              type="button"
-              (click)="toggleAudit()"
-              [attr.aria-pressed]="audit()"
-              class="self-start cursor-pointer rounded border border-ink-900/20 bg-cream-100 px-3 py-2 label text-ink-900 transition-colors hover:border-ink-900/40 aria-pressed:border-accent aria-pressed:bg-accent/10 aria-pressed:text-accent dark:border-foam/20 dark:bg-roast-900 dark:text-foam dark:hover:border-foam/40"
-            >
-              {{ audit() ? 'Exit audit mode' : 'Enter audit mode' }}
-            </button>
-            <p class="font-sans text-xs leading-relaxed text-ink-500 dark:text-taupe-dim">
-              Disables every interactive specimen so you can review
-              disabled-state visuals at a glance.
-            </p>
-          </div>
-
           <ol class="m-0 flex list-none flex-col gap-1 border-l border-ink-900/10 p-0 dark:border-foam/10">
             @for (s of sections; track s.id) {
               <li class="block" [class.pl-3]="s.depth === 2">
@@ -91,11 +76,11 @@ const SECTIONS: readonly KcPageDocSection[] = [
       </kc-page-section>
 
       <kc-page-section anchor="components" title="Components" kicker="Forms tier">
-        <app-beans-components [audit]="audit()" />
+        <app-beans-components />
       </kc-page-section>
 
       <kc-page-section anchor="behaviors" title="Behaviors" kicker="Interaction primitives">
-        <app-beans-behaviors [audit]="audit()" />
+        <app-beans-behaviors />
       </kc-page-section>
 
       <kc-page-section anchor="templates" title="Templates" kicker="Page substrates">
@@ -112,11 +97,6 @@ export class BeansComponent implements OnInit {
   private readonly seo = inject(SeoService);
 
   readonly sections = SECTIONS;
-  readonly audit = signal(false);
-
-  toggleAudit(): void {
-    this.audit.update((v) => !v);
-  }
 
   ngOnInit(): void {
     this.seo.apply({

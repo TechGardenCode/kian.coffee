@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import {
   CopyButtonComponent,
   TabRovingDirective,
@@ -109,7 +109,6 @@ import {
   `,
 })
 export class BeansBehaviorsComponent {
-  readonly audit = input(false);
   readonly lastCopy = signal<CopyResult | null>(null);
 
   onCopy(result: CopyResult): void {
