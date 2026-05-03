@@ -76,6 +76,26 @@ export const fonts = {
   mono: '"JetBrains Mono", ui-monospace, "SFMono-Regular", monospace',
 } as const;
 
+/** Type scale. Each step has `--text-<name>` (size) plus optional
+ *  `--text-<name>--line-height`, `--text-<name>--font-weight`,
+ *  `--text-<name>--letter-spacing` modifier vars in `tokens.css`. The
+ *  double-dash convention is what Tailwind v4 reads to attach the
+ *  modifiers to the generated `text-<name>` utility. */
+export const typeScale = {
+  'display-xl': { size: '4.5rem',   weight: 500, leading: 1.05, tracking: '-0.02em',  family: 'display' },
+  'display-lg': { size: '3rem',     weight: 500, leading: 1.1,  tracking: '-0.015em', family: 'display' },
+  'heading-1':  { size: '2.25rem',  weight: 500, leading: 1.15, tracking: '0',        family: 'display' },
+  'heading-2':  { size: '1.75rem',  weight: 500, leading: 1.2,  tracking: '0',        family: 'display' },
+  'heading-3':  { size: '1.375rem', weight: 500, leading: 1.3,  tracking: '0',        family: 'display' },
+  'body-lg':    { size: '1.125rem', weight: 400, leading: 1.6,  tracking: '0',        family: 'sans' },
+  'body':       { size: '1rem',     weight: 400, leading: 1.65, tracking: '0',        family: 'sans' },
+  'body-sm':    { size: '0.875rem', weight: 400, leading: 1.55, tracking: '0',        family: 'sans' },
+  'mono':       { size: '0.8125rem',weight: 400, leading: 1.5,  tracking: '0',        family: 'mono' },
+  'label':      { size: '0.75rem',  weight: 500, leading: 1.4,  tracking: '0.08em',   family: 'mono' },
+} as const;
+
+export type TypeScaleKey = keyof typeof typeScale;
+
 export const motion = {
   fast: '150ms',
   normal: '250ms',

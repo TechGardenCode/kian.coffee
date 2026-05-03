@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { palette, radii, semantic, space } from '@kian.coffee/beans';
+import { palette, radii, semantic, space, typeScale, type TypeScaleKey } from '@kian.coffee/beans';
 
 interface PaletteRow {
   readonly name: string;
@@ -14,8 +14,8 @@ interface SemanticPair {
 }
 
 interface TypeStep {
-  readonly token: string;
-  /** Tailwind classes that fully describe the step (font + size + weight + leading + tracking). */
+  readonly token: TypeScaleKey;
+  /** Tailwind utility resolved against the typeScale tokens. */
   readonly sampleClass: string;
   /** Human-readable spec line shown next to the sample. */
   readonly meta: string;
@@ -79,18 +79,32 @@ const SEMANTIC_GROUPS: readonly { heading: string; tokens: readonly SemanticPair
   },
 ];
 
-const TYPE_SCALE: readonly TypeStep[] = [
-  { token: 'Display XL', sampleClass: 'font-display font-medium text-[4.5rem] leading-[1.05] tracking-[-0.02em]',  meta: '4.5rem · 500 · lh 1.05',  sample: 'Display XL' },
-  { token: 'Display LG', sampleClass: 'font-display font-medium text-[3rem] leading-[1.1] tracking-[-0.015em]',    meta: '3rem · 500 · lh 1.1',    sample: 'Display LG' },
-  { token: 'Heading 1',  sampleClass: 'font-display font-medium text-[2.25rem] leading-[1.15]',                    meta: '2.25rem · 500 · lh 1.15', sample: 'Heading 1' },
-  { token: 'Heading 2',  sampleClass: 'font-display font-medium text-[1.75rem] leading-[1.2]',                     meta: '1.75rem · 500 · lh 1.2',  sample: 'Heading 2' },
-  { token: 'Heading 3',  sampleClass: 'font-display font-medium text-[1.375rem] leading-[1.3]',                    meta: '1.375rem · 500 · lh 1.3', sample: 'Heading 3' },
-  { token: 'Body LG',    sampleClass: 'font-sans text-[1.125rem] leading-[1.6]',                                   meta: '1.125rem · 400 · lh 1.6', sample: 'Body LG — lede paragraph copy.' },
-  { token: 'Body',       sampleClass: 'font-sans text-base leading-[1.65]',                                        meta: '1rem · 400 · lh 1.65',    sample: 'Body — long-form prose at the default reading size.' },
-  { token: 'Body SM',    sampleClass: 'font-sans text-sm leading-[1.55]',                                          meta: '0.875rem · 400 · lh 1.55', sample: 'Body SM — secondary copy and captions.' },
-  { token: 'Mono',       sampleClass: 'font-mono text-[0.8125rem] leading-[1.5]',                                  meta: '0.8125rem · 400 · lh 1.5', sample: '--space-6: 32px' },
-  { token: 'Label',      sampleClass: 'font-mono font-medium text-xs leading-[1.4] tracking-[0.08em]',             meta: '0.75rem · 500 · lh 1.4',  sample: 'LABEL · ALL CAPS' },
-];
+/** Each entry pairs the typeScale token with a static Tailwind utility
+ *  string so the class names appear literally in source for Tailwind's
+ *  source-scanner to pick up. Sample text + meta line read from the
+ *  data export. */
+const TYPE_SAMPLES: Record<TypeScaleKey, { sampleClass: string; sample: string }> = {
+  'display-xl': { sampleClass: 'font-display text-display-xl',  sample: 'Display XL' },
+  'display-lg': { sampleClass: 'font-display text-display-lg',  sample: 'Display LG' },
+  'heading-1':  { sampleClass: 'font-display text-heading-1',   sample: 'Heading 1' },
+  'heading-2':  { sampleClass: 'font-display text-heading-2',   sample: 'Heading 2' },
+  'heading-3':  { sampleClass: 'font-display text-heading-3',   sample: 'Heading 3' },
+  'body-lg':    { sampleClass: 'font-sans text-body-lg',        sample: 'Body LG — lede paragraph copy.' },
+  'body':       { sampleClass: 'font-sans text-body',           sample: 'Body — long-form prose at the default reading size.' },
+  'body-sm':    { sampleClass: 'font-sans text-body-sm',        sample: 'Body SM — secondary copy and captions.' },
+  'mono':       { sampleClass: 'font-mono text-mono',           sample: '--space-6: 32px' },
+  'label':      { sampleClass: 'font-mono text-label uppercase', sample: 'LABEL · ALL CAPS' },
+};
+
+const TYPE_SCALE: readonly TypeStep[] = (Object.keys(typeScale) as TypeScaleKey[]).map((token) => {
+  const step = typeScale[token];
+  return {
+    token,
+    sampleClass: TYPE_SAMPLES[token].sampleClass,
+    meta: `${step.size} · ${step.weight} · lh ${step.leading}`,
+    sample: TYPE_SAMPLES[token].sample,
+  };
+});
 
 const SPACE_ROWS: readonly SpaceRow[] = Object.entries(space).map(([token, value]) => ({
   token: `space-${token}`,

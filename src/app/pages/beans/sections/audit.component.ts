@@ -16,7 +16,7 @@ const ENTRIES: readonly AuditEntry[] = [
   { label: 'Behaviors — mode toggle, scroll spy, tab roving, tooltip, copy', status: 'stable', note: 'Framework-agnostic at the core; Angular adapters in the components/ tier.' },
   { label: 'Page templates — Page, Hero, Section, Band, Footer CTA, Marketing, Doc', status: 'stable', note: 'Doc landed alongside this page. Article template is still a seam.' },
   { label: 'Page templates — Article', status: 'wip', note: 'Constrained prose column with table-of-contents. Lands when the first article route exists.' },
-  { label: 'Type-scale tokens', status: 'planned', note: 'Type sizes are hardcoded today. A real scale-token export would let pages reference --text-display-xl etc.' },
+  { label: 'Type-scale tokens', status: 'stable', note: '10 named steps from display-xl to label, exported by beans and aliased into Tailwind via @theme so pages use text-display-xl etc.' },
   { label: 'Iconography', status: 'planned', note: 'No first-party icon set yet. Pages currently borrow glyphs ad-hoc; a curated set is on the roadmap.' },
   { label: 'Section markers', status: 'planned', note: 'The dividers and band-end glyphs the doc references are not yet a published primitive.' },
 ];

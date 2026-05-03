@@ -34,6 +34,49 @@
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
 
+  /* Type scale — aliased from beans `--type-*` vars. Tailwind v4 reads
+     `--text-<name>` plus `--text-<name>--<modifier>` to generate the
+     `text-<name>` utility with line-height / font-weight / tracking
+     baked in as defaults. */
+  --text-display-xl:                    var(--type-display-xl);
+  --text-display-xl--line-height:       var(--type-display-xl-leading);
+  --text-display-xl--font-weight:       var(--type-display-xl-weight);
+  --text-display-xl--letter-spacing:    var(--type-display-xl-tracking);
+
+  --text-display-lg:                    var(--type-display-lg);
+  --text-display-lg--line-height:       var(--type-display-lg-leading);
+  --text-display-lg--font-weight:       var(--type-display-lg-weight);
+  --text-display-lg--letter-spacing:    var(--type-display-lg-tracking);
+
+  --text-heading-1:                     var(--type-heading-1);
+  --text-heading-1--line-height:        var(--type-heading-1-leading);
+  --text-heading-1--font-weight:        var(--type-heading-1-weight);
+
+  --text-heading-2:                     var(--type-heading-2);
+  --text-heading-2--line-height:        var(--type-heading-2-leading);
+  --text-heading-2--font-weight:        var(--type-heading-2-weight);
+
+  --text-heading-3:                     var(--type-heading-3);
+  --text-heading-3--line-height:        var(--type-heading-3-leading);
+  --text-heading-3--font-weight:        var(--type-heading-3-weight);
+
+  --text-body-lg:                       var(--type-body-lg);
+  --text-body-lg--line-height:          var(--type-body-lg-leading);
+
+  --text-body:                          var(--type-body);
+  --text-body--line-height:             var(--type-body-leading);
+
+  --text-body-sm:                       var(--type-body-sm);
+  --text-body-sm--line-height:          var(--type-body-sm-leading);
+
+  --text-mono:                          var(--type-mono);
+  --text-mono--line-height:             var(--type-mono-leading);
+
+  --text-label:                         var(--type-label);
+  --text-label--line-height:            var(--type-label-leading);
+  --text-label--font-weight:            var(--type-label-weight);
+  --text-label--letter-spacing:         var(--type-label-tracking);
+
   --radius-card: 0.75rem;
   --radius-pill: 9999px;
 
