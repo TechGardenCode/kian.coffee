@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, booleanAttribute, computed, input } from "@angular/core";
 
 @Component({
   selector: "kc-page-section",
@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, input } from "@angular/core";
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (hasHead()) {
-      <div class="kc-page__section-head">
+      <div [class]="headClass()">
         <div class="kc-page__section-head-main">
           <ng-content select="[slot=eyebrow]" />
           @if (title(); as t) {
@@ -33,5 +33,12 @@ export class KcPageSection {
   readonly anchor = input<string | null>(null);
   readonly title = input<string | null>(null);
   readonly kicker = input<string | null>(null);
-  readonly hasHead = input(true);
+  readonly hasHead = input(true, { transform: booleanAttribute });
+  readonly headRule = input(false, { transform: booleanAttribute });
+
+  readonly headClass = computed(() =>
+    this.headRule()
+      ? "kc-page__section-head kc-page__section-head--rule"
+      : "kc-page__section-head",
+  );
 }

@@ -9,11 +9,11 @@
   --kc-page-max-w:            var(--page-max-w-lg);
   --kc-page-hero-pt:          var(--space-9);
   --kc-page-hero-pb:          var(--space-7);
-  --kc-page-section-rhythm-y: var(--space-9);
+  --kc-page-section-rhythm-y: var(--space-8);
 }
 
 @media (min-width: 768px) {
   .kc-page--marketing {
-    --kc-page-section-rhythm-y: var(--space-10);
+    --kc-page-section-rhythm-y: var(--space-9);
   }
 }
