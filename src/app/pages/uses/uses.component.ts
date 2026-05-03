@@ -1,4 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import {
+  KcPageMarketing,
+  KcPageHero,
+  KcPageSection,
+  KcPageFooterCta,
+} from '@kian.coffee/beans';
 import { RevealDirective } from '../../shared/motion/reveal.directive';
 import { EyebrowComponent } from '../../shared/ui/eyebrow.component';
 import { LinkArrowComponent } from '../../shared/ui/link-arrow.component';
@@ -9,62 +15,67 @@ import { USES } from '../../content/uses';
   selector: 'app-uses',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RevealDirective, EyebrowComponent, LinkArrowComponent],
+  imports: [
+    RevealDirective,
+    EyebrowComponent,
+    LinkArrowComponent,
+    KcPageMarketing,
+    KcPageHero,
+    KcPageSection,
+    KcPageFooterCta,
+  ],
   template: `
-    <section class="relative z-10 mx-auto w-full max-w-6xl px-6 md:px-10 pt-20 md:pt-28 pb-12">
-      <app-eyebrow label="/uses" index="04" />
-      <h1
-        appReveal
-        class="mt-6 font-display text-5xl md:text-7xl leading-[1.05] tracking-tight text-ink-900 dark:text-foam"
-      >
-        The stuff I actually<br />
-        <span class="text-accent">reach for.</span>
-      </h1>
-      <p appReveal class="mt-8 max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
-        Editor, desk, rack, terminal, espresso bar. Nothing aspirational on
-        this page. Just what's in daily rotation. Updated when something
-        changes, which is rarer than you'd think.
-      </p>
-    </section>
+    <kc-page-marketing>
+      <kc-page-hero>
+        <app-eyebrow label="/uses" index="04" />
+        <h1
+          appReveal
+          class="mt-6 font-display text-5xl md:text-7xl leading-[1.05] tracking-tight text-ink-900 dark:text-foam"
+        >
+          The stuff I actually<br />
+          <span class="text-accent">reach for.</span>
+        </h1>
+        <p appReveal class="mt-8 max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
+          Editor, desk, rack, terminal, espresso bar. Nothing aspirational on
+          this page. Just what's in daily rotation. Updated when something
+          changes, which is rarer than you'd think.
+        </p>
+      </kc-page-hero>
 
-    <!-- GROUPS -->
-    <section class="relative z-10 mx-auto w-full max-w-6xl px-6 md:px-10 pb-24">
       @for (group of groups; track group.heading; let i = $index) {
-        <div appReveal class="grid gap-8 border-t border-crema/70 py-12 md:grid-cols-[1fr_2fr] md:gap-16 dark:border-roast-700">
-          <div class="flex flex-col gap-2">
-            <span class="label text-ink-700 dark:text-taupe">
-              <span class="tabular">{{ pad(i + 1) }}</span>
-              <span class="mx-2 opacity-50">/</span>
-              <span>{{ group.heading }}</span>
-            </span>
-            <p class="font-sans text-sm leading-relaxed text-ink-700 dark:text-taupe max-w-sm">
-              {{ group.note }}
-            </p>
+        <kc-page-section [hasHead]="false">
+          <div appReveal class="grid gap-8 md:grid-cols-[1fr_2fr] md:gap-16">
+            <div class="flex flex-col gap-2">
+              <span class="label text-ink-700 dark:text-taupe">
+                <span class="tabular">{{ pad(i + 1) }}</span>
+                <span class="mx-2 opacity-50">/</span>
+                <span>{{ group.heading }}</span>
+              </span>
+              <p class="font-sans text-sm leading-relaxed text-ink-700 dark:text-taupe max-w-sm">
+                {{ group.note }}
+              </p>
+            </div>
+
+            <ul class="flex flex-col">
+              @for (item of group.items; track item.name) {
+                <li class="flex flex-col gap-1.5 border-b border-crema/50 py-4 first:pt-0 last:border-0 md:flex-row md:items-baseline md:gap-6 dark:border-roast-800">
+                  <span class="font-display text-lg text-ink-900 dark:text-foam md:min-w-[14rem]">{{ item.name }}</span>
+                  <span class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">{{ item.detail }}</span>
+                </li>
+              }
+            </ul>
           </div>
-
-          <ul class="flex flex-col">
-            @for (item of group.items; track item.name) {
-              <li class="flex flex-col gap-1.5 border-b border-crema/50 py-4 first:pt-0 last:border-0 md:flex-row md:items-baseline md:gap-6 dark:border-roast-800">
-                <span class="font-display text-lg text-ink-900 dark:text-foam md:min-w-[14rem]">{{ item.name }}</span>
-                <span class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">{{ item.detail }}</span>
-              </li>
-            }
-          </ul>
-        </div>
+        </kc-page-section>
       }
-    </section>
 
-    <section class="relative z-10">
-      <div class="mx-auto w-full max-w-6xl px-6 md:px-10 pb-28 md:pb-36">
-        <div appReveal class="flex flex-col gap-4 border-t border-crema/70 pt-12 dark:border-roast-700 md:flex-row md:items-end md:justify-between">
-          <p class="max-w-xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
-            The rack gets its own page. Diagrams, host roster, and the
-            GitOps flow that keeps it running.
-          </p>
-          <app-link-arrow href="/lab">Go to /lab</app-link-arrow>
-        </div>
-      </div>
-    </section>
+      <kc-page-footer-cta>
+        <p slot="prose" appReveal class="max-w-xl font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+          The rack gets its own page. Diagrams, host roster, and the
+          GitOps flow that keeps it running.
+        </p>
+        <app-link-arrow slot="arrows" href="/lab">Go to /lab</app-link-arrow>
+      </kc-page-footer-cta>
+    </kc-page-marketing>
   `,
 })
 export class UsesComponent implements OnInit {
