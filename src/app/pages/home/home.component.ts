@@ -10,11 +10,17 @@ import {
   inject,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import {
+  KcPageMarketing,
+  KcPageHero,
+  KcPageSection,
+  KcPageBand,
+  KcPageFooterCta,
+} from '@kian.coffee/beans';
 import { RevealDirective } from '../../shared/motion/reveal.directive';
 import { MotionService } from '../../shared/motion/motion.service';
 import { SeoService } from '../../shared/seo/seo.service';
 import { personJsonLd } from '../../shared/seo/json-ld';
-import { SectionComponent } from '../../shared/ui/section.component';
 import { MetricComponent } from '../../shared/ui/metric.component';
 import { CaseCardComponent } from '../../shared/ui/case-card.component';
 import { ChipComponent } from '../../shared/ui/chip.component';
@@ -27,12 +33,16 @@ import { EyebrowComponent } from '../../shared/ui/eyebrow.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     RevealDirective,
-    SectionComponent,
     MetricComponent,
     CaseCardComponent,
     ChipComponent,
     LinkArrowComponent,
     EyebrowComponent,
+    KcPageMarketing,
+    KcPageHero,
+    KcPageSection,
+    KcPageBand,
+    KcPageFooterCta,
   ],
   templateUrl: './home.component.html',
 })

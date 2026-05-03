@@ -1,252 +1,224 @@
-<!-- HERO -->
-<section #hero class="hero relative overflow-hidden">
-  <div class="hero-glow" aria-hidden="true"></div>
+<kc-page-marketing>
+  <!-- HERO -->
+  <section
+    #hero
+    class="hero relative overflow-hidden"
+    style="--kc-page-hero-gap: 48px; --kc-page-hero-pt: 80px; --kc-page-hero-pb: 80px;"
+  >
+    <div class="hero-glow" aria-hidden="true"></div>
 
-  <div class="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 md:px-10 pt-20 md:pt-32 pb-20 md:pb-28">
-    <app-eyebrow label="Washington, DC · building the cloud at home" index="00" />
-
-    <h1
-      appReveal
-      class="font-display text-5xl leading-[1.05] tracking-tight text-ink-900 md:text-[88px] dark:text-foam"
+    <kc-page-hero
+      class="md:[--kc-page-hero-pt:128px] md:[--kc-page-hero-pb:112px]"
     >
-      Hi, I'm Kian.<br />
-      <span class="text-ink-700 dark:text-taupe">A systems architect, building the cloud at home -</span><br />
-      <span class="text-accent">slightly caffeinated.</span>
-    </h1>
+      <app-eyebrow label="Washington, DC · building the cloud at home" index="00" />
 
-    <p appReveal class="max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
-      When I'm not pushing buttons, I'm trying to not set off my smoke alarm,
-      burying my nose in a fantasy novel, and performing my duties as a cat dad.
-      What's left of my time goes toward endlessly tinkering with my homelab
-      when I get that "is Plex down?" text message.
-    </p>
-
-    <div appReveal class="flex flex-wrap items-center gap-x-6 gap-y-3">
-      <app-link-arrow href="/work">See the work</app-link-arrow>
-      <app-link-arrow href="/projects">Browse projects</app-link-arrow>
-      <app-link-arrow href="/lab">Peek at the lab</app-link-arrow>
-    </div>
-
-    <!-- Currently working on - 2×2 grid on md+, single column on mobile. -->
-    <div
-      appReveal
-      class="mt-4 flex flex-col gap-3 border-l-2 border-crema/80 pl-5 dark:border-roast-700"
-    >
-      <span class="label text-ink-700 dark:text-taupe">Currently working on</span>
-      <ul
-        class="grid grid-cols-1 gap-x-8 gap-y-2 font-sans text-[15px] text-ink-700 dark:text-taupe md:grid-cols-2"
+      <h1
+        appReveal
+        class="font-display text-5xl leading-[1.05] tracking-tight text-ink-900 md:text-[88px] dark:text-foam"
       >
-        <li>Establishing enterprise-grade AI-first foundations</li>
-        <li>Scaling a design system across legacy + modern stacks</li>
-        <li>Running a multi-AZ homelab on bare-metal Talos</li>
-        <li>Building agentic ops on a self-hosted stack</li>
-      </ul>
-    </div>
-  </div>
-</section>
+        Hi, I'm Kian.<br />
+        <span class="text-ink-700 dark:text-taupe">A systems architect, building the cloud at home -</span><br />
+        <span class="text-accent">slightly caffeinated.</span>
+      </h1>
 
-<!-- METRIC / FACTS BAND -
-     The layout is keep-as-is (6-up grid of "big number + small label"), but the
-     CONTENT should change from career metrics to something that reads as a
-     personality snapshot a visitor can scan in 5 seconds. Candidates:
-       · Years shipping software        ·  Open-source repos
-       · Languages you're fluent in     ·  Cities lived in
-       · Homelab nodes / cores / TiB    ·  Current caffeine intake (mg/day)
-       · GitHub commits this year       ·  Favorite coffee brew method
-       · Talks / posts / podcasts       ·  Books read this year
-     Pick 6 that collectively tell a story (craft + breadth + personality).
--->
-<section class="relative z-10 border-y border-crema/70 bg-cream-100/40 dark:border-roast-700 dark:bg-roast-900/40">
-  <div class="mx-auto grid w-full max-w-6xl grid-cols-2 gap-x-6 gap-y-10 px-6 md:px-10 py-16 text-center md:grid-cols-6">
+      <p appReveal class="max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
+        When I'm not pushing buttons, I'm trying to not set off my smoke alarm,
+        burying my nose in a fantasy novel, and performing my duties as a cat dad.
+        What's left of my time goes toward endlessly tinkering with my homelab
+        when I get that "is Plex down?" text message.
+      </p>
+
+      <div appReveal class="flex flex-wrap items-center gap-x-6 gap-y-3">
+        <app-link-arrow href="/work">See the work</app-link-arrow>
+        <app-link-arrow href="/projects">Browse projects</app-link-arrow>
+        <app-link-arrow href="/lab">Peek at the lab</app-link-arrow>
+      </div>
+
+      <!-- Currently working on - 2×2 grid on md+, single column on mobile. -->
+      <div
+        appReveal
+        class="mt-4 flex flex-col gap-3 border-l-2 border-crema/80 pl-5 dark:border-roast-700"
+      >
+        <span class="label text-ink-700 dark:text-taupe">Currently working on</span>
+        <ul
+          class="grid grid-cols-1 gap-x-8 gap-y-2 font-sans text-[15px] text-ink-700 dark:text-taupe md:grid-cols-2"
+        >
+          <li>Establishing enterprise-grade AI-first foundations</li>
+          <li>Scaling a design system across legacy + modern stacks</li>
+          <li>Running a multi-AZ homelab on bare-metal Talos</li>
+          <li>Building agentic ops on a self-hosted stack</li>
+        </ul>
+      </div>
+    </kc-page-hero>
+  </section>
+
+  <!-- METRIC / FACTS BAND -->
+  <kc-page-band variant="metric" class="text-center">
     <app-metric value="8+" label="years shipping production-grade software" />
     <app-metric value="7" label="years in fintech" />
     <app-metric value="$12M" label="revenue running through systems I've shipped" />
     <app-metric value="16" label="books read in 2025" />
     <app-metric value="1" label="cat" />
     <app-metric value="0" label="days since the last 'is Plex down?' text" />
-  </div>
-</section>
+  </kc-page-band>
 
-<!-- FEATURED WORK / CASE STUDIES
-     Three cards. Intent: show RANGE by picking three domains that aren't all the
-     same flavor. Suggested slots (in this order, to keep AI from leading):
-       01 - Data / distributed systems piece with a dollar or throughput figure
-       02 - Frontend / platform / DX piece with an adoption or velocity figure
-       03 - AI / org-design piece with a reach or coverage figure
-     Each card carries: eyebrow (domain tag), title (what was built), summary
-     (1–2 sentences of outcome, not features), metrics (2 max), stack (3–5 chips),
-     a link to the long-form case study on /work.
--->
-<app-section
-  anchor="featured"
-  eyebrow="Selected work"
-  title="Three systems that had to hold."
-  index="01"
-  kicker="Seven years at Mastercard"
->
-  <div class="grid gap-6 md:grid-cols-3">
-    <div appReveal>
-      <app-case-card
-        eyebrow="Data · Streaming"
-        number="01"
-        title="A pipeline that doesn't flinch under burst load."
-        summary="An event-driven pipeline that handles 20M+ transactions an hour on finite hardware. Autoscaling kicks in before the bursts land. Pre-warmed caches keep aggregations inside the 1-hour SLA."
-        [metrics]="[{value: '20M+', label: 'transactions per hour'}, {value: '1 hr', label: 'hard SLA under burst load'}]"
-        [stack]="['Kafka', 'Spark', 'Hadoop', 'Spring Boot', 'PostgreSQL']"
-      />
-    </div>
-    <div appReveal>
-      <app-case-card
-        eyebrow="Design System · Platform"
-        number="02"
-        title="Breaking silos 20 years in the making."
-        summary="Rolled out a shared design system to 50+ apps across 30+ teams, on a legacy financial platform that's been around longer than most of us. 7 apps migrated in 6 months, 28 more in flight. Developer velocity up 25%, DX satisfaction up 50%."
-        [metrics]="[{value: '900+', label: 'engineers on one system'}, {value: '+50%', label: 'DX satisfaction lift'}]"
-        [stack]="['Angular', 'TypeScript', 'Storybook', 'Figma', 'GitOps']"
-      />
-    </div>
-    <div appReveal>
-      <app-case-card
-        eyebrow="Architecture · Rewrite"
-        number="03"
-        title="Rewrote the auth nobody understood."
-        summary="A SAML-heavy auth backbone no one on the team fully understood. We rebuilt it piece by piece, without downtime. RAG surfaced what the old code actually did, and agent skills wrote the docs as we went. Context coverage went from under 20% to 85%. Onboarding dropped from 4 weeks to 1."
-        [metrics]="[{value: '85%', label: 'context coverage'}, {value: '1 week', label: 'new-hire onboarding'}]"
-        [stack]="['RAG', 'Agent skills', 'Java 17', 'Spring Boot 6', 'GitHub wiki']"
-      />
-    </div>
-  </div>
-
-  <div class="mt-10 flex justify-end">
-    <app-link-arrow href="/work">See all work</app-link-arrow>
-  </div>
-</app-section>
-
-<!-- PROJECTS TEASER
-     2x2 grid of side projects. Intent: show what the generalist does on their own
-     time, ordered to lead with systems/infra breadth (not AI). Each card:
-       eyebrow (one-word domain), title, 1–2 sentence summary, stack chips (3–5),
-       optional "source" link out to the repo.
-     Cards below are slots - fill with projects from cv.md or newer work.
--->
-<app-section
-  anchor="projects"
-  eyebrow="The workshop"
-  title="What enterprise instincts look like after hours."
-  index="02"
-  kicker="Self-hosted, self-financed"
->
-  <div class="grid gap-6 md:grid-cols-2">
-    <div appReveal>
-      <app-case-card
-        eyebrow="Infrastructure · Kubernetes"
-        title="Running a production-grade cloud in the basement."
-        summary="Multi-AZ Talos Kubernetes on Proxmox, declaratively managed with Ansible + ArgoCD. Same GitOps I use at work. The difference: when the power goes out, I'm the one with the flashlight."
-        [stack]="['Talos', 'Kubernetes', 'Proxmox', 'ArgoCD', 'Ansible']"
-      />
-    </div>
-    <div appReveal>
-      <app-case-card
-        eyebrow="Security · Networking"
-        title="A home network that trusts nothing by default."
-        summary="Deny-by-default, allowlist-first. Six VLANs, VPN-only remote access, DMZ for anything that touches the public internet."
-        [stack]="['VLANs', 'VPN', 'DMZ']"
-      />
-    </div>
-    <div appReveal>
-      <app-case-card
-        eyebrow="Storage · Durability"
-        title="Multi-AZ NAS that follows the 3-2-1 rule."
-        summary="Two TrueNAS nodes running ZFS, with Cloud Sync + RSync replicating across availability zones. The cat videos are not allowed to disappear."
-        [stack]="['TrueNAS', 'ZFS', 'Cloud Sync', 'RSync']"
-      />
-    </div>
-    <div appReveal>
-      <app-case-card
-        eyebrow="Agentic Ops"
-        title="Teaching a local LLM to run the ops rotation."
-        summary="A local LLM watches my monitoring stack. It triages new alerts and tunes thresholds when the signal drifts. Ansible still runs Prometheus and Grafana. The LLM gets the 3 AM pages now."
-        [stack]="['Local LLM', 'Ansible', 'Prometheus', 'Grafana']"
-      />
-    </div>
-  </div>
-
-  <div class="mt-10 flex justify-end">
-    <app-link-arrow href="/projects">See all projects</app-link-arrow>
-  </div>
-</app-section>
-
-<!-- LAB TEASER
-     Two-column: short paragraph on the left, stack chips on the right.
-     Paragraph content to cover (2–3 sentences):
-       · What the lab is and how it's built (one or two infra terms).
-       · How it's managed (GitOps / declarative / CI / whatever is true).
-       · The "proof" line - e.g. "this site is served from it."
-     Chips: the major named tools in the stack. Aim for 8–12 chips so the visual
-     density sells the "serious" part without overwhelming.
--->
-<app-section
-  anchor="lab"
-  eyebrow="The lab"
-  title="The lab everything else on this page actually runs on."
-  index="03"
-  kicker="Declarative from the metal up"
->
-  <div class="grid gap-10 md:grid-cols-[1.2fr_1fr] items-start">
-    <p appReveal class="font-sans text-base leading-relaxed text-ink-700 dark:text-taupe max-w-prose">
-      Three Talos clusters, all managed from Git. ArgoCD does the syncing, LGTM
-      does the watching. This site runs on it, so if the page loaded, the lab's alive.
-    </p>
-    <div appReveal class="flex flex-wrap gap-2">
-      <app-chip>Talos</app-chip>
-      <app-chip>Proxmox</app-chip>
-      <app-chip>Kubernetes</app-chip>
-      <app-chip>ArgoCD</app-chip>
-      <app-chip>Ansible</app-chip>
-      <app-chip>Envoy Gateway</app-chip>
-      <app-chip>CloudNativePG</app-chip>
-      <app-chip>MetalLB</app-chip>
-      <app-chip>Grafana</app-chip>
-      <app-chip>GitHub Actions</app-chip>
-    </div>
-  </div>
-
-  <div class="mt-10 flex justify-end">
-    <app-link-arrow href="/lab">Tour the lab</app-link-arrow>
-  </div>
-</app-section>
-
-<!-- OPEN-DOOR / GET-IN-TOUCH
-     Intent: NOT a "hire me" pitch. Frame as an open invitation to anyone who
-     finds something here interesting - fellow engineers, students, homelab
-     tinkerers, recruiters, people with weird questions. Warm, low-pressure.
-     Copy to cover (loose - the below are placeholders, edit for voice):
-       · Headline: an invitation, not a demand.
-       · Subcopy: what you're open to - good conversations, shared interests,
-         interesting problems. Not a "send me offers" line.
-       · CTAs: a primary /contact link and optionally a nudge toward the
-         slowest-possible channel (email) as the preferred one.
--->
-<section class="relative z-10">
-  <div class="mx-auto w-full max-w-6xl px-6 md:px-10 py-28 md:py-36">
-    <div
+  <!-- FEATURED WORK / CASE STUDIES -->
+  <kc-page-section anchor="featured" headRule>
+    <app-eyebrow slot="eyebrow" label="Selected work" index="01" />
+    <h2
+      slot="title"
       appReveal
-      class="flex flex-col gap-8 border-t border-crema/70 pt-16 md:flex-row md:items-end md:justify-between dark:border-roast-700"
+      class="font-display text-3xl md:text-5xl leading-tight tracking-tight text-ink-900 dark:text-foam max-w-3xl"
     >
-      <div class="max-w-xl flex flex-col gap-4">
-        <app-eyebrow label="Open door" index="04" />
-        <h2 class="font-display text-4xl md:text-5xl leading-tight tracking-tight text-ink-900 dark:text-foam">
-          If anything here caught your eye, the door's open.
-        </h2>
-        <p class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
-          Reach out and share the weird K8s bug you're chasing, your biggest
-          homelab lesson, or the fantasy series I should pick up next. Every
-          email gets read.
-        </p>
+      Three systems that had to hold.
+    </h2>
+    <span slot="kicker" class="label text-ink-700 dark:text-taupe md:max-w-[18rem] md:shrink-0 md:text-right">
+      Seven years at Mastercard
+    </span>
+
+    <div class="grid gap-6 md:grid-cols-3">
+      <div appReveal>
+        <app-case-card
+          eyebrow="Data · Streaming"
+          number="01"
+          title="A pipeline that doesn't flinch under burst load."
+          summary="An event-driven pipeline that handles 20M+ transactions an hour on finite hardware. Autoscaling kicks in before the bursts land. Pre-warmed caches keep aggregations inside the 1-hour SLA."
+          [metrics]="[{value: '20M+', label: 'transactions per hour'}, {value: '1 hr', label: 'hard SLA under burst load'}]"
+          [stack]="['Kafka', 'Spark', 'Hadoop', 'Spring Boot', 'PostgreSQL']"
+        />
       </div>
-      <div class="flex flex-col items-start gap-3 md:items-end">
-        <app-link-arrow href="/contact">Say hello</app-link-arrow>
+      <div appReveal>
+        <app-case-card
+          eyebrow="Design System · Platform"
+          number="02"
+          title="Breaking silos 20 years in the making."
+          summary="Rolled out a shared design system to 50+ apps across 30+ teams, on a legacy financial platform that's been around longer than most of us. 7 apps migrated in 6 months, 28 more in flight. Developer velocity up 25%, DX satisfaction up 50%."
+          [metrics]="[{value: '900+', label: 'engineers on one system'}, {value: '+50%', label: 'DX satisfaction lift'}]"
+          [stack]="['Angular', 'TypeScript', 'Storybook', 'Figma', 'GitOps']"
+        />
+      </div>
+      <div appReveal>
+        <app-case-card
+          eyebrow="Architecture · Rewrite"
+          number="03"
+          title="Rewrote the auth nobody understood."
+          summary="A SAML-heavy auth backbone no one on the team fully understood. We rebuilt it piece by piece, without downtime. RAG surfaced what the old code actually did, and agent skills wrote the docs as we went. Context coverage went from under 20% to 85%. Onboarding dropped from 4 weeks to 1."
+          [metrics]="[{value: '85%', label: 'context coverage'}, {value: '1 week', label: 'new-hire onboarding'}]"
+          [stack]="['RAG', 'Agent skills', 'Java 17', 'Spring Boot 6', 'GitHub wiki']"
+        />
       </div>
     </div>
-  </div>
-</section>
+
+    <div class="mt-10 flex justify-end">
+      <app-link-arrow href="/work">See all work</app-link-arrow>
+    </div>
+  </kc-page-section>
+
+  <!-- PROJECTS TEASER -->
+  <kc-page-section anchor="projects" headRule>
+    <app-eyebrow slot="eyebrow" label="The workshop" index="02" />
+    <h2
+      slot="title"
+      appReveal
+      class="font-display text-3xl md:text-5xl leading-tight tracking-tight text-ink-900 dark:text-foam max-w-3xl"
+    >
+      What enterprise instincts look like after hours.
+    </h2>
+    <span slot="kicker" class="label text-ink-700 dark:text-taupe md:max-w-[18rem] md:shrink-0 md:text-right">
+      Self-hosted, self-financed
+    </span>
+
+    <div class="grid gap-6 md:grid-cols-2">
+      <div appReveal>
+        <app-case-card
+          eyebrow="Infrastructure · Kubernetes"
+          title="Running a production-grade cloud in the basement."
+          summary="Multi-AZ Talos Kubernetes on Proxmox, declaratively managed with Ansible + ArgoCD. Same GitOps I use at work. The difference: when the power goes out, I'm the one with the flashlight."
+          [stack]="['Talos', 'Kubernetes', 'Proxmox', 'ArgoCD', 'Ansible']"
+        />
+      </div>
+      <div appReveal>
+        <app-case-card
+          eyebrow="Security · Networking"
+          title="A home network that trusts nothing by default."
+          summary="Deny-by-default, allowlist-first. Six VLANs, VPN-only remote access, DMZ for anything that touches the public internet."
+          [stack]="['VLANs', 'VPN', 'DMZ']"
+        />
+      </div>
+      <div appReveal>
+        <app-case-card
+          eyebrow="Storage · Durability"
+          title="Multi-AZ NAS that follows the 3-2-1 rule."
+          summary="Two TrueNAS nodes running ZFS, with Cloud Sync + RSync replicating across availability zones. The cat videos are not allowed to disappear."
+          [stack]="['TrueNAS', 'ZFS', 'Cloud Sync', 'RSync']"
+        />
+      </div>
+      <div appReveal>
+        <app-case-card
+          eyebrow="Agentic Ops"
+          title="Teaching a local LLM to run the ops rotation."
+          summary="A local LLM watches my monitoring stack. It triages new alerts and tunes thresholds when the signal drifts. Ansible still runs Prometheus and Grafana. The LLM gets the 3 AM pages now."
+          [stack]="['Local LLM', 'Ansible', 'Prometheus', 'Grafana']"
+        />
+      </div>
+    </div>
+
+    <div class="mt-10 flex justify-end">
+      <app-link-arrow href="/projects">See all projects</app-link-arrow>
+    </div>
+  </kc-page-section>
+
+  <!-- LAB TEASER -->
+  <kc-page-section anchor="lab" headRule>
+    <app-eyebrow slot="eyebrow" label="The lab" index="03" />
+    <h2
+      slot="title"
+      appReveal
+      class="font-display text-3xl md:text-5xl leading-tight tracking-tight text-ink-900 dark:text-foam max-w-3xl"
+    >
+      The lab everything else on this page actually runs on.
+    </h2>
+    <span slot="kicker" class="label text-ink-700 dark:text-taupe md:max-w-[18rem] md:shrink-0 md:text-right">
+      Declarative from the metal up
+    </span>
+
+    <div class="grid gap-10 md:grid-cols-[1.2fr_1fr] items-start">
+      <p appReveal class="font-sans text-base leading-relaxed text-ink-700 dark:text-taupe max-w-prose">
+        Three Talos clusters, all managed from Git. ArgoCD does the syncing, LGTM
+        does the watching. This site runs on it, so if the page loaded, the lab's alive.
+      </p>
+      <div appReveal class="flex flex-wrap gap-2">
+        <app-chip>Talos</app-chip>
+        <app-chip>Proxmox</app-chip>
+        <app-chip>Kubernetes</app-chip>
+        <app-chip>ArgoCD</app-chip>
+        <app-chip>Ansible</app-chip>
+        <app-chip>Envoy Gateway</app-chip>
+        <app-chip>CloudNativePG</app-chip>
+        <app-chip>MetalLB</app-chip>
+        <app-chip>Grafana</app-chip>
+        <app-chip>GitHub Actions</app-chip>
+      </div>
+    </div>
+
+    <div class="mt-10 flex justify-end">
+      <app-link-arrow href="/lab">Tour the lab</app-link-arrow>
+    </div>
+  </kc-page-section>
+
+  <!-- OPEN-DOOR / GET-IN-TOUCH -->
+  <kc-page-footer-cta>
+    <div slot="prose" appReveal class="max-w-xl flex flex-col gap-4">
+      <app-eyebrow label="Open door" index="04" />
+      <h2 class="font-display text-4xl md:text-5xl leading-tight tracking-tight text-ink-900 dark:text-foam">
+        If anything here caught your eye, the door's open.
+      </h2>
+      <p class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
+        Reach out and share the weird K8s bug you're chasing, your biggest
+        homelab lesson, or the fantasy series I should pick up next. Every
+        email gets read.
+      </p>
+    </div>
+    <app-link-arrow slot="arrows" href="/contact">Say hello</app-link-arrow>
+  </kc-page-footer-cta>
+</kc-page-marketing>

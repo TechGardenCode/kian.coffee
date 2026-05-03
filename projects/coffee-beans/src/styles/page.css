@@ -16,6 +16,7 @@
   --kc-page-gutter:           var(--space-6);
   --kc-page-hero-pt:          var(--space-9);
   --kc-page-hero-pb:          var(--space-7);
+  --kc-page-hero-gap:         var(--space-4);
   --kc-page-section-rhythm-y: var(--space-9);
   --kc-page-section-divider:  1px solid var(--border-subtle);
   --kc-page-band-bg:          color-mix(in srgb, var(--bg-base) 60%, transparent);
@@ -37,7 +38,7 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--kc-page-hero-gap);
   width: 100%;
   max-width: var(--kc-page-max-w);
   margin-inline: auto;
