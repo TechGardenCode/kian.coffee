@@ -142,6 +142,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { label: 'Projects', route: '/projects' },
     { label: 'Lab', route: '/lab' },
     { label: 'Uses', route: '/uses' },
+    { label: 'Design', route: '/beans' },
     { label: 'Contact', route: '/contact' },
   ];
 

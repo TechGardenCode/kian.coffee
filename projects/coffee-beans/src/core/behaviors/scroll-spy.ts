@@ -80,13 +80,30 @@ export function createScrollSpy(opts: ScrollSpyOptions): ScrollSpyHandle {
   };
 }
 
+/**
+ * Pick the most-specific intersecting section.
+ *
+ * When a child section is nested inside a parent section that's also
+ * tracked, both will report as intersecting at the same time — the
+ * parent's box spans the entire viewport while the child's box sits
+ * inside it. The parent's `top` is much more negative (it started
+ * scrolling above viewport long before the child did), so picking the
+ * smallest top would always favor the parent and the child would
+ * never light up.
+ *
+ * Picking the LARGEST top (least-negative, closest to / most recently
+ * crossed the active band from below) selects the inner-most section
+ * naturally. For sibling-only layouts this also gives more responsive
+ * switching: as you scroll into the next section, its top crosses the
+ * band sooner than the previous section's top exits.
+ */
 function pickActive(visible: Map<string, number>, order: readonly string[]): string | null {
   if (visible.size === 0) return null;
   let best: { id: string; top: number } | null = null;
   for (const id of order) {
     const top = visible.get(id);
     if (top === undefined) continue;
-    if (best === null || top < best.top) best = { id, top };
+    if (best === null || top > best.top) best = { id, top };
   }
   return best?.id ?? null;
 }

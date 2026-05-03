@@ -37,6 +37,11 @@ export const routes: Routes = [
     title: 'Contact',
   },
   {
+    path: 'beans',
+    loadComponent: () => import('./pages/beans/beans.component').then((m) => m.BeansComponent),
+    title: 'Beans',
+  },
+  {
     path: 'about',
     redirectTo: 'work',
     pathMatch: 'full',

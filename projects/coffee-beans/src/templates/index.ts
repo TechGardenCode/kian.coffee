@@ -3,3 +3,4 @@
 // bare HTML, plus optional Angular sugar exported here.
 export * from "./page";
 export * from "./page-marketing";
+export * from "./page-doc";
