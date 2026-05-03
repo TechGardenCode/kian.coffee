@@ -1,0 +1,21 @@
+/* =====================================================================
+   kc-container — primitive content well.
+
+   Per Components.html § 03:
+     "Max-width content well at 1280/960/720 with side gutters from
+      --space-6."
+
+   Default = lg (1280). Modifiers narrow the column. Both the kc-page
+   substrate and out-of-page chrome (header, footer) share this
+   primitive so a route's content edge aligns with the nav edge.
+   ===================================================================== */
+
+.kc-container {
+  width: 100%;
+  max-width: var(--page-max-w-lg);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+.kc-container--md { max-width: var(--page-max-w-md); }
+.kc-container--sm { max-width: var(--page-max-w-sm); }

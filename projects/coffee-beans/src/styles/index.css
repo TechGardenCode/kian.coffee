@@ -22,6 +22,9 @@
 /* Group B — behaviors */
 @import "./tooltip.css";
 
-/* Group C — page templates */
+/* Group C — layout primitives */
+@import "./container.css";
+
+/* Group D — page templates */
 @import "./page.css";
 @import "./page-marketing.css";

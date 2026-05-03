@@ -60,7 +60,7 @@ const HIDE_FLOOR_Y = 48;
       [attr.data-visible]="effectiveVisible()"
       class="sticky top-0 z-40 border-b border-crema/70 bg-cream-50/85 backdrop-blur-md transition-transform duration-500 ease-out data-[visible=false]:-translate-y-full motion-reduce:transition-none dark:border-roast-700 dark:bg-roast-950/85"
     >
-      <div class="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-6 md:px-10">
+      <div class="kc-container flex h-14 items-center justify-between">
         <a
           routerLink="/"
           class="font-display text-base tracking-tight text-ink-900 dark:text-foam"
@@ -117,7 +117,7 @@ const HIDE_FLOOR_Y = 48;
                   routerLinkActive="!text-ink-900 dark:!text-foam"
                   [routerLinkActiveOptions]="{ exact: item.route === '/' }"
                   (click)="closeMobile()"
-                  class="block border-b border-crema/60 px-6 py-4 label text-ink-700 last:border-0 dark:border-roast-700 dark:text-taupe"
+                  class="block border-b border-crema/60 px-8 py-4 label text-ink-700 last:border-0 dark:border-roast-700 dark:text-taupe"
                 >
                   {{ item.label }}
                 </a>

@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
   template: `
     <footer class="relative z-10 border-t border-crema/70 bg-cream-50/60 dark:border-roast-700 dark:bg-roast-950/60">
-      <div class="mx-auto grid w-full max-w-6xl gap-10 px-6 md:px-10 py-14 md:grid-cols-[2fr_1fr_1fr]">
+      <div class="kc-container grid gap-10 py-14 md:grid-cols-[2fr_1fr_1fr]">
         <div class="flex flex-col gap-3 max-w-md">
           <span class="label text-ink-700 dark:text-taupe">kian.coffee</span>
           <p class="font-sans text-[15px] leading-relaxed text-ink-700 dark:text-taupe">
@@ -44,7 +44,7 @@ import { RouterLink } from '@angular/router';
       </div>
 
       <div class="border-t border-crema/70 dark:border-roast-700">
-        <div class="mx-auto flex w-full max-w-6xl items-center justify-between px-6 md:px-10 py-5 label-sm text-ink-700 dark:text-taupe">
+        <div class="kc-container flex items-center justify-between py-5 label-sm text-ink-700 dark:text-taupe">
           <span>&copy; {{ year }} Kian Alikhani</span>
           <span>Built with Angular · Tailwind · intention</span>
         </div>
