@@ -1,0 +1,60 @@
+/* =====================================================================
+   kc-input — class-API floor. Bare HTML works without Angular:
+     <input class="kc-input" type="email" placeholder="hello@kian.coffee" />
+   Modifiers stack: kc-input kc-input--<size> kc-input--invalid.
+   md is the implicit default; only --sm and --lg are exposed.
+   Invalid state can be applied via class or via [aria-invalid="true"].
+   ===================================================================== */
+
+.kc-input {
+  appearance: none;
+  background: var(--bg-base);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-primary);
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.kc-input::placeholder {
+  color: var(--text-subtle);
+}
+
+.kc-input:focus,
+.kc-input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-ring);
+}
+
+.kc-input:disabled,
+.kc-input[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--bg-sunken);
+}
+
+.kc-input--invalid,
+.kc-input[aria-invalid="true"],
+.kc-input:invalid:not(:placeholder-shown):not(:focus) {
+  border-color: var(--danger);
+}
+
+.kc-input--invalid:focus,
+.kc-input[aria-invalid="true"]:focus,
+.kc-input:invalid:not(:placeholder-shown):focus {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px var(--danger-ring);
+}
+
+.kc-input--sm {
+  font-size: 12.5px;
+  padding: 6px 10px;
+}
+
+.kc-input--lg {
+  font-size: 15.5px;
+  padding: 12px 14px;
+}

@@ -1,0 +1,107 @@
+/* =====================================================================
+   kc-slider — class-API floor. Bare HTML works without Angular:
+     <input class="kc-slider" type="range" min="0" max="100" value="40" />
+   Styles native input[type=range] track + thumb across WebKit/Firefox.
+   Bubble UI is deferred to core/behaviors/slider-bubble (Group B);
+   the static class-API floor here is purely visual.
+   ===================================================================== */
+
+.kc-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  background: transparent;
+  cursor: pointer;
+  padding: var(--space-2) 0;
+}
+
+.kc-slider:focus,
+.kc-slider:focus-visible {
+  outline: none;
+}
+
+/* Track — WebKit */
+.kc-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-sunken);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Track — Firefox */
+.kc-slider::-moz-range-track {
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-sunken);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Thumb — WebKit */
+.kc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  border: 2px solid var(--bg-base);
+  box-shadow: var(--shadow-sm);
+  margin-top: -8px;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+/* Thumb — Firefox */
+.kc-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  border: 2px solid var(--bg-base);
+  box-shadow: var(--shadow-sm);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.kc-slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px var(--accent-ring);
+}
+.kc-slider:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 4px var(--accent-ring);
+}
+
+.kc-slider:disabled,
+.kc-slider[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =====================================================================
+   Slider value bubble (Group B — opt-in via [showBubble]="true").
+   Positioned by core/behaviors/slider-bubble.ts (sets `left: <pct>%`).
+   ===================================================================== */
+.kc-slider-wrap {
+  position: relative;
+}
+
+.kc-slider-wrap--bubble {
+  padding-top: var(--space-5);
+}
+
+.kc-slider__bubble {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  padding: 2px var(--space-2);
+  font: 500 12px var(--font-sans);
+  color: var(--text-inverse);
+  background: var(--bg-inverse);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion-fast) ease;
+}
+
+.kc-slider-wrap--bubble:hover .kc-slider__bubble,
+.kc-slider-wrap--bubble:focus-within .kc-slider__bubble {
+  opacity: 1;
+}

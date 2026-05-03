@@ -1,0 +1,15 @@
+/* =====================================================================
+   kc-label — class-API floor. Bare HTML works without Angular:
+     <label class="kc-label" for="email">Email</label>
+   The eyebrow treatment matches the Components.html spec for inline
+   labels in a kc-field, but exposed as a standalone class so it can be
+   used outside the field wrapper.
+   ===================================================================== */
+
+.kc-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}

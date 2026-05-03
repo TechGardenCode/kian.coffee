@@ -1,0 +1,71 @@
+/* =====================================================================
+   kc-switch — class-API floor. Bare HTML works without Angular:
+     <label class="kc-switch">
+       <input type="checkbox" />
+       <span class="track"></span>
+       <span>Subscribe to dispatches</span>
+     </label>
+   Verbatim from Components.html. Visually distinct from kc-checkbox;
+   same underlying input.
+   ===================================================================== */
+
+.kc-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.kc-switch input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.kc-switch .track {
+  width: 36px;
+  height: 20px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-sunken);
+  border: 1px solid var(--border-default);
+  position: relative;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+
+.kc-switch .track::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--text-primary);
+  transition: transform 140ms ease;
+}
+
+.kc-switch input:checked + .track {
+  background: var(--accent);
+  border-color: transparent;
+}
+.kc-switch input:checked + .track::after {
+  transform: translateX(16px);
+  background: var(--text-on-accent);
+}
+
+.kc-switch input:focus-visible + .track {
+  box-shadow: 0 0 0 3px var(--accent-ring);
+}
+
+.kc-switch input:disabled ~ .track,
+.kc-switch input[aria-disabled="true"] ~ .track {
+  opacity: 0.5;
+}
+.kc-switch input:disabled ~ *,
+.kc-switch input[aria-disabled="true"] ~ * {
+  cursor: not-allowed;
+}

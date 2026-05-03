@@ -1,0 +1,98 @@
+/* =====================================================================
+   kc-radio — class-API floor. Bare HTML works without Angular:
+     <label class="kc-radio">
+       <input type="radio" name="brew" value="pour" />
+       <span class="dot"></span>
+       <span>Pour-over</span>
+     </label>
+   Same pattern as kc-checkbox, circular, dot via ::after on :checked.
+   ===================================================================== */
+
+.kc-radio {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-primary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.kc-radio input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+
+.kc-radio .dot {
+  flex: 0 0 auto;
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-base);
+  border: 1px solid var(--border-default);
+  transition: background 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.kc-radio .dot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--text-on-accent);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 120ms ease;
+}
+
+.kc-radio input:checked + .dot {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.kc-radio input:checked + .dot::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.kc-radio input:focus-visible + .dot {
+  box-shadow: 0 0 0 3px var(--accent-ring);
+  border-color: var(--accent);
+}
+
+.kc-radio input:disabled ~ .dot,
+.kc-radio input[aria-disabled="true"] ~ .dot {
+  opacity: 0.5;
+}
+.kc-radio input:disabled ~ *,
+.kc-radio input[aria-disabled="true"] ~ * {
+  cursor: not-allowed;
+}
+
+.kc-radio--invalid .dot,
+.kc-radio input[aria-invalid="true"] + .dot {
+  border-color: var(--danger);
+}
+.kc-radio--invalid input:focus-visible + .dot,
+.kc-radio input[aria-invalid="true"]:focus-visible + .dot {
+  box-shadow: 0 0 0 3px var(--danger-ring);
+}
+
+/* Group layout — vertical stack with consistent spacing. */
+.kc-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.kc-radio-group--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}

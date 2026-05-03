@@ -1,0 +1,64 @@
+/* =====================================================================
+   kc-select — class-API floor. Bare HTML works without Angular:
+     <select class="kc-select">
+       <option>…</option>
+     </select>
+   Native <select> styled to match kc-input; native chevron suppressed
+   via appearance:none and a token-colored inline-SVG background.
+   The chevron uses currentColor by virtue of stroke="%23B48A64" being
+   replaced inline; we keep one chevron asset and lean on text color
+   for visual coherence rather than templating the SVG fill per mode.
+   ===================================================================== */
+
+.kc-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: var(--bg-base);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%237a6250' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='1.5,1.5 6,6.5 10.5,1.5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px 8px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 9px 36px 9px 12px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.kc-select:focus,
+.kc-select:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-ring);
+}
+
+.kc-select:disabled,
+.kc-select[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--bg-sunken);
+}
+
+.kc-select--invalid,
+.kc-select[aria-invalid="true"] {
+  border-color: var(--danger);
+}
+
+.kc-select--invalid:focus,
+.kc-select[aria-invalid="true"]:focus {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px var(--danger-ring);
+}
+
+.kc-select--sm {
+  font-size: 12.5px;
+  padding: 6px 32px 6px 10px;
+}
+
+.kc-select--lg {
+  font-size: 15.5px;
+  padding: 12px 40px 12px 14px;
+}

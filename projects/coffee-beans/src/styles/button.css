@@ -1,0 +1,71 @@
+/* =====================================================================
+   kc-btn — class-API floor. Bare HTML works without Angular:
+     <button class="kc-btn kc-btn--primary">Save</button>
+   Modifiers stack: kc-btn kc-btn--<variant> kc-btn--<size>.
+   md is the implicit default; only --sm and --lg are exposed.
+   ===================================================================== */
+
+.kc-btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+.kc-btn:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.kc-btn:disabled,
+.kc-btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.kc-btn--primary {
+  background: var(--accent);
+  color: var(--text-on-accent);
+  border-color: var(--accent);
+}
+.kc-btn--primary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.kc-btn--secondary {
+  background: var(--bg-raised);
+  color: var(--text-primary);
+  border-color: var(--border-default);
+}
+.kc-btn--secondary:hover:not(:disabled):not([aria-disabled="true"]) {
+  border-color: var(--border-strong);
+}
+
+.kc-btn--ghost {
+  background: transparent;
+  color: var(--text-primary);
+}
+.kc-btn--ghost:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--accent-tint);
+  color: var(--accent);
+}
+
+.kc-btn--sm {
+  font-size: 12.5px;
+  padding: 7px 12px;
+}
+
+.kc-btn--lg {
+  font-size: 15.5px;
+  padding: 13px 22px;
+}

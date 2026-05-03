@@ -1,0 +1,63 @@
+/* =====================================================================
+   kc-textarea — class-API floor. Bare HTML works without Angular:
+     <textarea class="kc-textarea" rows="4" placeholder="..."></textarea>
+   Same ruleset as kc-input, with vertical resize and a min-height
+   so the empty state has presence.
+   ===================================================================== */
+
+.kc-textarea {
+  appearance: none;
+  background: var(--bg-base);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+  min-height: var(--space-7);
+  resize: vertical;
+}
+
+.kc-textarea::placeholder {
+  color: var(--text-subtle);
+}
+
+.kc-textarea:focus,
+.kc-textarea:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-ring);
+}
+
+.kc-textarea:disabled,
+.kc-textarea[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--bg-sunken);
+  resize: none;
+}
+
+.kc-textarea--invalid,
+.kc-textarea[aria-invalid="true"],
+.kc-textarea:invalid:not(:placeholder-shown):not(:focus) {
+  border-color: var(--danger);
+}
+
+.kc-textarea--invalid:focus,
+.kc-textarea[aria-invalid="true"]:focus,
+.kc-textarea:invalid:not(:placeholder-shown):focus {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px var(--danger-ring);
+}
+
+.kc-textarea--sm {
+  font-size: 12.5px;
+  padding: 6px 10px;
+}
+
+.kc-textarea--lg {
+  font-size: 15.5px;
+  padding: 12px 14px;
+}

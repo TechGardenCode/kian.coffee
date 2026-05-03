@@ -1,0 +1,12 @@
+{
+  "name": "@kian.coffee/beans",
+  "version": "0.0.0",
+  "description": "kian.coffee design system — tokens, styles, and Angular components.",
+  "peerDependencies": {
+    "@angular/common": "^21.0.0",
+    "@angular/core": "^21.0.0"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ]
+}

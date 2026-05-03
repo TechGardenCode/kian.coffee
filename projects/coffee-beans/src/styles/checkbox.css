@@ -1,0 +1,95 @@
+/* =====================================================================
+   kc-checkbox — class-API floor. Bare HTML works without Angular:
+     <label class="kc-checkbox">
+       <input type="checkbox" />
+       <span class="box"></span>
+       <span>Subscribe to dispatches</span>
+     </label>
+   The native input is hidden but kept for keyboard / form semantics;
+   the .box is the drawn target. Checkmark via ::after on :checked,
+   indeterminate via a horizontal bar.
+   ===================================================================== */
+
+.kc-checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-primary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.kc-checkbox input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+
+.kc-checkbox .box {
+  flex: 0 0 auto;
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-xs);
+  background: var(--bg-base);
+  border: 1px solid var(--border-default);
+  transition: background 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.kc-checkbox .box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%23faf3e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='2,6 5,9 10,3'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px 12px;
+  opacity: 0;
+  transition: opacity 100ms ease;
+}
+
+.kc-checkbox input:checked + .box {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.kc-checkbox input:checked + .box::after {
+  opacity: 1;
+}
+
+.kc-checkbox input:indeterminate + .box {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.kc-checkbox input:indeterminate + .box::after {
+  opacity: 1;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%23faf3e7' stroke-width='2' stroke-linecap='round'><line x1='3' y1='6' x2='9' y2='6'/></svg>");
+}
+
+.kc-checkbox input:focus-visible + .box {
+  box-shadow: 0 0 0 3px var(--accent-ring);
+  border-color: var(--accent);
+}
+
+.kc-checkbox input:disabled ~ .box,
+.kc-checkbox input[aria-disabled="true"] ~ .box {
+  opacity: 0.5;
+}
+.kc-checkbox input:disabled ~ *,
+.kc-checkbox input[aria-disabled="true"] ~ * {
+  cursor: not-allowed;
+}
+
+.kc-checkbox--invalid .box,
+.kc-checkbox input[aria-invalid="true"] + .box {
+  border-color: var(--danger);
+}
+.kc-checkbox--invalid input:focus-visible + .box,
+.kc-checkbox input[aria-invalid="true"]:focus-visible + .box {
+  box-shadow: 0 0 0 3px var(--danger-ring);
+}

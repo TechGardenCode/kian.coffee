@@ -1,3 +1,5 @@
+@import "../projects/coffee-beans/src/styles/index.css";
+
 @import "tailwindcss";
 
 @import "@fontsource-variable/fraunces/opsz.css";

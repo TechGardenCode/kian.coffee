@@ -1,0 +1,44 @@
+/* =====================================================================
+   kc-field — class-API floor. Bare HTML works without Angular:
+     <div class="kc-field">
+       <label class="kc-field__label" for="email">Email</label>
+       <input id="email" class="kc-input" type="email" />
+       <p class="kc-field__help">We never share this.</p>
+     </div>
+   On invalid:
+       <p class="kc-field__error">A valid email is required.</p>
+   Layout: vertical stack, mono uppercase eyebrow label,
+   help/error in body type with --danger for the error path.
+   ===================================================================== */
+
+.kc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 220px;
+}
+
+.kc-field__label,
+.kc-field > label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.kc-field__help {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.kc-field__error {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--danger);
+}

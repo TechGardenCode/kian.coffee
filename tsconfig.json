@@ -18,12 +18,21 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "paths": {
+      "@kian.coffee/beans": ["./projects/coffee-beans/src/public-api.ts"],
+      "@kian.coffee/beans/*": ["./projects/coffee-beans/src/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "references": [
+    {
+      "path": "./projects/sandbox/tsconfig.app.json"
+    }
+  ]
 }

@@ -7,6 +7,8 @@
     "start": "ng serve",
     "prebuild": "npm run build:content",
     "build": "ng build",
+    "build:lib": "ng build coffee-beans",
+    "watch:lib": "ng build coffee-beans --watch --configuration development",
     "build:content": "node scripts/build-lab-content.mjs && node scripts/build-sitemap.mjs",
     "build:lab": "node scripts/build-lab-content.mjs",
     "build:sitemap": "node scripts/build-sitemap.mjs",
@@ -53,6 +55,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.2.0",
+    "ng-packagr": "^21.2.0",
     "playwright-core": "^1.48.0",
     "tailwindcss": "^4.2.4",
     "typescript": "~5.9.2"

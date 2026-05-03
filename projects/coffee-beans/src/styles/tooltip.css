@@ -1,0 +1,91 @@
+/* =====================================================================
+   Tooltip — two flavors share the same visual treatment:
+     1. .kc-tip — CSS-only ::after pattern from Components.html § tooltip.
+        Anchor with `data-tip="..."`. Top-side only. No JS required.
+     2. .kc-tooltip — body-attached, JS-positioned variant used by the
+        [kcTooltip] directive. Side modifier picks arrow direction.
+   ===================================================================== */
+
+/* ---------- 1. CSS-only inline tooltip ---------- */
+.kc-tip {
+  position: relative;
+  border-bottom: 1px dashed var(--border-default);
+  cursor: help;
+}
+
+.kc-tip::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translate(-50%, 2px);
+  white-space: nowrap;
+  padding: var(--space-2) var(--space-3);
+  font: 500 12px var(--font-sans);
+  color: var(--text-inverse);
+  background: var(--bg-inverse);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion-fast) ease, transform var(--motion-fast) ease;
+}
+
+.kc-tip:hover::after,
+.kc-tip:focus::after,
+.kc-tip:focus-visible::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ---------- 2. Body-attached, JS-positioned tooltip ---------- */
+.kc-tooltip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  max-width: 240px;
+  padding: var(--space-2) var(--space-3);
+  font: 500 12px var(--font-sans);
+  color: var(--text-inverse);
+  background: var(--bg-inverse);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion-fast) ease;
+}
+
+.kc-tooltip--open {
+  opacity: 1;
+}
+
+.kc-tooltip::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--bg-inverse);
+  transform: rotate(45deg);
+}
+
+.kc-tooltip--top::after {
+  left: 50%;
+  bottom: -4px;
+  margin-left: -4px;
+}
+.kc-tooltip--bottom::after {
+  left: 50%;
+  top: -4px;
+  margin-left: -4px;
+}
+.kc-tooltip--left::after {
+  top: 50%;
+  right: -4px;
+  margin-top: -4px;
+}
+.kc-tooltip--right::after {
+  top: 50%;
+  left: -4px;
+  margin-top: -4px;
+}

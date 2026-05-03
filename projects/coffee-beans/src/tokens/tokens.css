@@ -1,0 +1,157 @@
+/* =====================================================================
+   kian.coffee — formalized token layer
+   Two layers: (1) raw palette, (2) semantic tokens that swap per mode.
+   The semantic tokens are the only thing components should reference.
+   ===================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+:root {
+  /* ---------- RAW PALETTE (Tier 1) ---------- */
+  /* Cream — light surfaces, warm paper */
+  --cream-50:  #faf3e7;
+  --cream-100: #f6ecdc;
+  --cream-200: #ece0d1;
+  --cream-300: #e4d4ba;
+  --cream-400: #d9c4a9;   /* was: crema */
+  --cream-500: #c9b193;
+  --cream-600: #b89a78;
+
+  /* Ink — warm browns, used for text on light surfaces */
+  --ink-100: #e8d8c2;
+  --ink-300: #b48a64;
+  --ink-500: #6b4a2b;
+  --ink-700: #4a2e17;
+  --ink-900: #2a1a0c;
+
+  /* Roast — dark surfaces, deepest browns */
+  --roast-700: #3d3023;
+  --roast-800: #2e241a;
+  --roast-850: #241d15;   /* tightened from #1f1c16 to stay warm */
+  --roast-900: #1c1612;   /* re-warmed from #1a1a19 (was desaturated) */
+  --roast-950: #15100b;
+  --espresso:  #38220f;   /* a single named accent, kept */
+
+  /* Taupe — neutrals that bridge cream and roast */
+  --taupe-300: #c0a892;
+  --taupe-400: #a88871;
+  --taupe-500: #8a6e58;
+  --taupe-600: #7a6250;   /* was: taupe-dim */
+  --foam:      #dfd1b5;   /* a single named accent, kept */
+
+  /* Accent — warm copper, the only saturated hue in the system */
+  --accent-50:  #f7e8d8;
+  --accent-100: #efd0b1;
+  --accent-200: #e0a978;
+  --accent-300: #d28b4f;
+  --accent-400: #c67a3f;
+  --accent-500: #a8632b;   /* light-mode default */
+  --accent-600: #8d5020;
+  --accent-700: #6e3d18;
+  --accent-800: #4f2c11;
+
+  /* ---------- SEMANTIC TOKENS (Tier 2) — light mode ---------- */
+  --bg-base:       var(--cream-100);   /* page */
+  --bg-raised:     var(--cream-50);    /* cards, raised panels */
+  --bg-sunken:     var(--cream-200);   /* code blocks, wells */
+  --bg-inverse:    var(--roast-900);
+
+  --text-primary:  var(--ink-900);
+  --text-secondary:var(--ink-700);
+  --text-muted:    var(--ink-500);
+  --text-subtle:   var(--taupe-600);
+  --text-on-accent:var(--cream-50);
+  --text-inverse:  var(--cream-100);
+
+  --border-subtle: rgba(42, 26, 12, 0.10);
+  --border-default:rgba(42, 26, 12, 0.18);
+  --border-strong: rgba(42, 26, 12, 0.32);
+
+  --accent:        var(--accent-500);
+  --accent-hover:  var(--accent-600);
+  --accent-tint:   rgba(168, 99, 43, 0.10);
+  --accent-ring:   rgba(168, 99, 43, 0.45);
+
+  /* Status — danger (invalid form state, destructive actions) */
+  --danger:        #cf4b3a;
+  --danger-ring:   rgba(207, 75, 58, 0.45);
+
+  /* Focus + selection */
+  --focus-ring:    var(--accent-ring);
+  --selection-bg:  rgba(168, 99, 43, 0.25);
+
+  /* ---------- TYPE ---------- */
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans:    "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* ---------- RADII ---------- */
+  --radius-xs:   4px;
+  --radius-sm:   6px;    /* inputs, chips */
+  --radius-md:   8px;    /* small cards, code blocks */
+  --radius-lg:   12px;   /* cards (was --radius-card) */
+  --radius-xl:   20px;
+  --radius-pill: 9999px;
+
+  /* ---------- SPACING (named, not just numbered) ---------- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10: 128px;
+
+  /* ---------- ELEVATION ---------- */
+  /* Warm-tinted shadows that match the brown palette, not pure black. */
+  --shadow-xs: 0 1px 2px rgba(42, 26, 12, 0.06);
+  --shadow-sm: 0 2px 6px rgba(42, 26, 12, 0.08);
+  --shadow-md: 0 8px 20px -8px rgba(42, 26, 12, 0.18);
+  --shadow-lg: 0 24px 48px -16px rgba(42, 26, 12, 0.28);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+
+  /* ---------- MOTION ---------- */
+  /* Mode-independent. Used by tooltip fade, slider bubble, mode toggle. */
+  --motion-fast:   150ms;
+  --motion-normal: 250ms;
+}
+
+.dark {
+  --bg-base:       var(--roast-900);
+  --bg-raised:     var(--roast-850);
+  --bg-sunken:     var(--roast-950);
+  --bg-inverse:    var(--cream-100);
+
+  --text-primary:  var(--cream-100);
+  --text-secondary:var(--cream-200);
+  --text-muted:    var(--taupe-400);
+  --text-subtle:   var(--taupe-600);
+  --text-on-accent:var(--ink-900);
+  --text-inverse:  var(--ink-900);
+
+  --border-subtle: rgba(223, 209, 181, 0.08);
+  --border-default:rgba(223, 209, 181, 0.16);
+  --border-strong: rgba(223, 209, 181, 0.32);
+
+  --accent:        var(--accent-400);   /* lifted for contrast on dark */
+  --accent-hover:  var(--accent-300);
+  --accent-tint:   rgba(198, 122, 63, 0.16);
+  --accent-ring:   rgba(198, 122, 63, 0.55);
+
+  --danger:        #e8745f;              /* lifted for contrast on dark */
+  --danger-ring:   rgba(232, 116, 95, 0.55);
+
+  --focus-ring:    var(--accent-ring);
+  --selection-bg:  rgba(198, 122, 63, 0.30);
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.40);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 8px 20px -8px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 24px 48px -16px rgba(0, 0, 0, 0.65);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+::selection { background: var(--selection-bg); }
