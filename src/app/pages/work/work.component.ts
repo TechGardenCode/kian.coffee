@@ -28,11 +28,11 @@ import { WORK } from '../../content/work';
   ],
   template: `
     <kc-page-marketing>
-      <kc-page-hero>
+      <kc-page-hero style="--kc-page-hero-pb: 0">
         <app-eyebrow label="/work" index="01" />
       </kc-page-hero>
 
-      <kc-page-section [hasHead]="false">
+      <kc-page-section [hasHead]="false" style="padding-block: 0 var(--space-8)">
         @for (role of roles; track role.range; let i = $index) {
           <article
             appReveal
@@ -53,7 +53,7 @@ import { WORK } from '../../content/work';
         }
       </kc-page-section>
 
-      <kc-page-section [hasHead]="false">
+      <kc-page-section [hasHead]="false" style="padding-block: 0 var(--space-8)">
         <div
           appReveal
           class="grid gap-8 border-t border-crema/70 pt-12 md:grid-cols-[1fr_2.2fr] md:gap-16 dark:border-roast-700"

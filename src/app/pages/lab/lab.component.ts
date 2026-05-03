@@ -66,7 +66,7 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
       </kc-page-hero>
 
       <!-- STATUS CALLOUT — secondary AZ offline during site move -->
-      <section class="relative z-10 mx-auto w-full max-w-6xl px-6 md:px-10 pb-4">
+      <section class="kc-container kc-container--md pb-4 relative z-10">
         <div
           appReveal
           role="status"
