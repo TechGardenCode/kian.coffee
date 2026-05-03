@@ -38,7 +38,10 @@
   }
 }
 
-.kc-page--marketing { --kc-page-max-w: var(--page-max-w-lg); }
+/* Marketing pages target the md tier (960) — kian.coffee's chosen
+   marketing width. Doc's three-tier system stays available; this is
+   the application's selection from it. */
+.kc-page--marketing { --kc-page-max-w: var(--page-max-w-md); }
 
 /* ---------- HERO ----------
    Substrate is flex-column with uniform gap. Hero rhythm is

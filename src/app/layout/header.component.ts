@@ -60,7 +60,7 @@ const HIDE_FLOOR_Y = 48;
       [attr.data-visible]="effectiveVisible()"
       class="sticky top-0 z-40 border-b border-crema/70 bg-cream-50/85 backdrop-blur-md transition-transform duration-500 ease-out data-[visible=false]:-translate-y-full motion-reduce:transition-none dark:border-roast-700 dark:bg-roast-950/85"
     >
-      <div class="kc-container flex h-14 items-center justify-between">
+      <div class="kc-container kc-container--md flex h-14 items-center justify-between">
         <a
           routerLink="/"
           class="font-display text-base tracking-tight text-ink-900 dark:text-foam"
