@@ -1,19 +1,13 @@
 /* =====================================================================
    kc-page--marketing — marketing/home shape modifier.
-   Applies on top of .kc-page; retunes the template-scoped tokens for a
-   wider column, taller hero, and generous section rhythm. Bare HTML:
+   Substrate already defaults to the marketing column width and rhythm,
+   so the modifier is currently a marker class for downstream styling
+   (e.g. dark-mode tweaks, page-level page transitions) and a stable
+   hook for future variants. Bare HTML:
      <div class="kc-page kc-page--marketing"> ... </div>
    ===================================================================== */
 
 .kc-page--marketing {
-  --kc-page-max-w:            var(--page-max-w-lg);
-  --kc-page-hero-pt:          var(--space-9);
-  --kc-page-hero-pb:          var(--space-7);
-  --kc-page-section-rhythm-y: var(--space-8);
-}
-
-@media (min-width: 768px) {
-  .kc-page--marketing {
-    --kc-page-section-rhythm-y: var(--space-9);
-  }
+  /* No token retunes today — substrate defaults already match the
+     marketing chrome. Reserved as a hook. */
 }

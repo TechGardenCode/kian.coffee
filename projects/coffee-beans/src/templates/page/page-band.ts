@@ -12,14 +12,12 @@ export type KcPageBandVariant = "plain" | "metric";
     </div>
   `,
   host: {
-    "[class]": "hostClass()",
+    class: "kc-page__band",
+    "[class.kc-page__band--metric]": "isMetric()",
   },
 })
 export class KcPageBand {
   readonly variant = input<KcPageBandVariant>("plain");
 
-  readonly hostClass = computed(() => {
-    const v = this.variant();
-    return v === "plain" ? "kc-page__band" : `kc-page__band kc-page__band--${v}`;
-  });
+  readonly isMetric = computed(() => this.variant() === "metric");
 }

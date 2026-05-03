@@ -47,7 +47,7 @@ import { PROJECT_GROUPS } from '../../content/projects';
       </kc-page-hero>
 
       @for (group of groups; track group.heading; let gi = $index) {
-        <kc-page-section>
+        <kc-page-section rule>
           <span slot="eyebrow" appReveal class="label text-ink-700 dark:text-taupe">
             <span class="tabular">{{ pad(gi + 1) }}</span>
             <span class="mx-2 opacity-50">/</span>

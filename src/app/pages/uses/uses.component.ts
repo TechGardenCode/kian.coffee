@@ -43,7 +43,7 @@ import { USES } from '../../content/uses';
       </kc-page-hero>
 
       @for (group of groups; track group.heading; let i = $index) {
-        <kc-page-section [hasHead]="false">
+        <kc-page-section [hasHead]="false" rule>
           <div appReveal class="grid gap-8 md:grid-cols-[1fr_2fr] md:gap-16">
             <div class="flex flex-col gap-2">
               <span class="label text-ink-700 dark:text-taupe">

@@ -8,14 +8,16 @@ export type KcPageMaxWidth = "sm" | "md" | "lg";
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `<ng-content />`,
   host: {
-    "[class]": "hostClass()",
+    class: "kc-page",
+    "[class.kc-page--max-w-sm]": "isSm()",
+    "[class.kc-page--max-w-md]": "isMd()",
+    "[class.kc-page--max-w-lg]": "isLg()",
   },
 })
 export class KcPage {
   readonly maxWidth = input<KcPageMaxWidth | null>(null);
 
-  readonly hostClass = computed(() => {
-    const mw = this.maxWidth();
-    return mw ? `kc-page kc-page--max-w-${mw}` : "kc-page";
-  });
+  readonly isSm = computed(() => this.maxWidth() === "sm");
+  readonly isMd = computed(() => this.maxWidth() === "md");
+  readonly isLg = computed(() => this.maxWidth() === "lg");
 }
