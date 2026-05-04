@@ -2,9 +2,12 @@
    kian.coffee — formalized token layer
    Two layers: (1) raw palette, (2) semantic tokens that swap per mode.
    The semantic tokens are the only thing components should reference.
-   ===================================================================== */
 
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+   Fonts: loaded via @fontsource-variable/* in src/styles.css (self-hosted,
+   served from /). Don't import from fonts.googleapis.com here — the CSP
+   blocks fonts.gstatic.com, and self-hosted via fontsource is the source
+   of truth.
+   ===================================================================== */
 
 :root {
   /* ---------- RAW PALETTE (Tier 1) ---------- */
