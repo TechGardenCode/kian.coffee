@@ -21,7 +21,7 @@
   --kc-page-hero-pt:          var(--space-9);    /* 96 mobile */
   --kc-page-hero-pb:          var(--space-6);    /* 32 default */
   --kc-page-hero-gap:         var(--space-7);    /* 48 — uniform hero rhythm */
-  --kc-page-section-rhythm-y: var(--space-9);    /* 96 mobile */
+  --kc-page-section-rhythm-y: var(--space-7);    /* 48 mobile — halved so adjacent sections sum to the design's space-9 page-level gap */
   --kc-page-section-divider:  1px solid var(--border-subtle);
   --kc-page-band-bg:          color-mix(in srgb, var(--bg-base) 60%, transparent);
   --kc-page-footer-cta-pt:    var(--space-7);    /* 48 */
@@ -34,7 +34,7 @@
 @media (min-width: 768px) {
   .kc-page {
     --kc-page-hero-pt:          var(--space-10);  /* 128 md+ */
-    --kc-page-section-rhythm-y: var(--space-10);  /* 128 md+ */
+    --kc-page-section-rhythm-y: var(--space-8);   /* 64 md+ — halved, see :root */
   }
 }
 
