@@ -1,11 +1,53 @@
 /* =====================================================================
    kc-page--marketing — marketing page modifier.
-   The substrate defaults to md width (960). Marketing pages override
-   --kc-page-max-w to lg (1280) per the Container's three-tier system
-   (Components.html § 03 Container).
+   The substrate defaults to md width (960). Marketing pages share the
+   same column rhythm whether or not they opt into the right-rail anchor
+   nav (KcPageAnchorNav) — the rail is a positional overlay in the right
+   gutter, not a layout column. This keeps hero, section, and footer
+   typography identical between anchor and no-anchor pages.
 
-   The class lives in styles/page.css alongside .kc-page since it's a
-   single override; this file is reserved for future marketing-only
-   chrome (e.g. accent color in hero, dark hero variant) without
-   touching the substrate.
+   The base substrate (max-width, hero/section/band rhythm) lives in
+   page.css. The .kc-page--has-anchor-nav variant below positions the
+   rail and tunes its visibility tiers.
    ===================================================================== */
+
+/* ---------- has-anchor-nav variant ----------
+   When KcPageMarketing detects a projected <kc-page-anchor-nav>, it
+   adds .kc-page--has-anchor-nav. Content layout stays identical to
+   no-anchor pages; only the rail renders, positioned `fixed` to the
+   viewport so it can't push content around.
+
+   The rail only renders when the right gutter is wide enough to hold
+   it without overlapping the centered 60rem content well:
+     - rail (10rem) + gap (3rem) + edge gutter (2rem) = 15rem
+     - right gutter = (V - 60rem) / 2  ≥  15rem  →  V  ≥  90rem (1440px)
+     - rail (16rem) + gap + edge gutter = 21rem  →  V  ≥  102rem (1632px)
+   Below 1440px the rail is hidden and the page reads single-column,
+   matching no-anchor pages tile-for-tile. */
+
+@media (min-width: 1440px) {
+  .kc-page--marketing.kc-page--has-anchor-nav .kc-page__anchor-nav {
+    display: block;
+    position: fixed;
+    /* `--kc-header-offset` is published by HeaderComponent as it pins
+       and unpins on scroll: 5rem when the header is visible (clears
+       the 56px sticky bar with breathing room), 2rem when it has slid
+       away. Default of 5rem covers SSR (worst case: header visible). */
+    top: var(--kc-header-offset, 5rem);
+    transition: top var(--motion-normal) ease;
+    width: 10rem;
+    /* Anchor the rail's left edge to where the content well's right
+       edge ends + a gap. `50vw` is viewport center; +30rem reaches the
+       right edge of a centered 60rem content well; +space-7 (3rem) is
+       the breathing gap. */
+    left: calc(50vw + var(--page-max-w-md) / 2 + var(--space-7));
+    max-height: calc(100vh - var(--kc-header-offset, 5rem) - var(--space-6));
+    overflow-y: auto;
+  }
+}
+
+@media (min-width: 1632px) {
+  .kc-page--marketing.kc-page--has-anchor-nav .kc-page__anchor-nav {
+    width: 16rem;
+  }
+}

@@ -170,7 +170,9 @@
   /* Three named widths from Components.html § 03 Container:
      "Max-width content well at 1280/960/720 with side gutters from
      --space-6." Consumed by the Container primitive and the kc-page
-     templates. */
+     templates. The 1280 boundary is also the breakpoint at which
+     KcPageAnchorNav expands from its narrow tier (10rem) to its full
+     tier (16rem) — see styles/page-marketing.css. */
   --page-max-w-sm:  45rem;   /*  720px */
   --page-max-w-md:  60rem;   /*  960px */
   --page-max-w-lg:  80rem;   /* 1280px */

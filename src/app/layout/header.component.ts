@@ -9,6 +9,7 @@ import {
   PLATFORM_ID,
   ViewEncapsulation,
   computed,
+  effect,
   inject,
   signal,
 } from '@angular/core';
@@ -158,6 +159,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   /** Effective visibility shown to the template. Forces visible while the
    *  mobile menu is open so the hide transform can't race the menu. */
   readonly effectiveVisible = computed(() => this._visible() || this._mobileOpen());
+
+  /** Publish header occupancy to a document-root CSS variable so other
+   *  fixed-positioned chrome (KcPageAnchorNav rail) can park below the
+   *  header when it's visible and reclaim the space when it slides away. */
+  private readonly _publishHeaderOffset = effect(() => {
+    if (!this.isBrowser) return;
+    const visible = this.effectiveVisible();
+    document.documentElement.style.setProperty(
+      '--kc-header-offset',
+      visible ? '5rem' : '2rem',
+    );
+  });
 
   /** Anchors for the commit-point algorithm. Updated every time we flip
    *  state — "y the last time we committed to visible" / "…to hidden". */

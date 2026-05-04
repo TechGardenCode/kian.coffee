@@ -4,3 +4,4 @@
 export * from "./page";
 export * from "./page-marketing";
 export * from "./page-doc";
+export * from "./page-anchor-nav";
