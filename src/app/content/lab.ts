@@ -28,19 +28,19 @@ export const LAB_STATS: readonly LabStat[] = [
 export const LAB_PRINCIPLES: readonly LabPrinciple[] = [
   {
     title: 'Hardware redundancy',
-    body: 'Every Talos cluster runs a 3-node etcd quorum. Three Technitium DNS instances sit behind a keepalived VIP with AXFR replication. Storage replication and LGTM HA are still on the roadmap; the HA diagram below shows exactly where each one sits.',
+    body: 'Every Talos cluster runs a three-node etcd quorum. Three Technitium DNS instances sit behind a keepalived VIP with AXFR replication. Storage replication and LGTM HA aren’t there yet — the HA diagram below shows where each one stands.',
   },
   {
     title: 'High availability',
-    body: 'Services self-heal via Kubernetes. The edge is split — internal and public traffic terminate on separate Envoy Gateways with their own IPs and policies. Per-cluster Cloudflare tunnels run two replicas. Private PKI and observability still run as a single instance; both are on the HA roadmap below.',
+    body: 'Services self-heal through Kubernetes. The edge is split: internal and public traffic land on separate Envoy Gateways, each with its own IPs and policies. Per-cluster Cloudflare tunnels run two replicas. Private PKI and observability are still single-instance, and both are queued for HA work.',
   },
   {
     title: 'GitOps all the way down',
-    body: 'Every change is a commit. ArgoCD reconciles workloads, Talos holds cluster state, Ansible holds host state. Rollbacks are a git revert and a webhook; production promotions go through an auto-generated PR a human still has to merge.',
+    body: 'Every change is a commit. ArgoCD reconciles workloads, Talos holds cluster state, Ansible holds host state. Rollbacks are a git revert and a webhook. Production promotions go through an auto-generated PR that a human still has to merge.',
   },
   {
     title: 'Multi-AZ by design',
-    body: 'A second AZ is wired via UniFi site-to-site VPN; hardware is mid-move between sites, so production is single-AZ until it comes back. DNS zones, cluster naming, and storage strategy already assume a second site from day one, so the second cluster is additive instead of a rewrite.',
+    body: 'A second AZ is wired up over a UniFi site-to-site VPN. The hardware is mid-move between sites right now, so production is on one AZ until it lands. DNS zones, cluster naming, and storage all already assume a second site, so adding it back is an addition rather than a rewrite.',
   },
 ];
 

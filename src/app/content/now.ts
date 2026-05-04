@@ -17,9 +17,10 @@ faster than anything else on the site, so check the date at the top.`;
 export const NOW_FOCUS: readonly NowFocus[] = [
   {
     heading: 'At Mastercard',
-    body: `Rolling out AI-first foundations across the org. Reusable skills,
-MCP servers, agent patterns. In parallel, moving the design system's next
-cohort through migration. 7 apps done, 28 in flight, more after that.`,
+    body: `Rolling out AI tooling foundations across a 900-engineer org.
+Reusable skills, MCP servers, agent patterns. In parallel, moving the
+design system's next cohort through migration. 7 apps done, 28 in flight,
+more after that.`,
   },
   {
     heading: 'Self-hosted',

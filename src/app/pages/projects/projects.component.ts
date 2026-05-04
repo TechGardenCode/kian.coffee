@@ -5,6 +5,8 @@ import {
   KcPageHero,
   KcPageSection,
   KcPageFooterCta,
+  KcPageAnchorNav,
+  type KcPageAnchorNavSection,
 } from '@kian.coffee/beans';
 import { RevealDirective } from '../../shared/motion/reveal.directive';
 import { EyebrowComponent } from '../../shared/ui/eyebrow.component';
@@ -27,9 +29,12 @@ import { PROJECT_GROUPS } from '../../content/projects';
     KcPageHero,
     KcPageSection,
     KcPageFooterCta,
+    KcPageAnchorNav,
   ],
   template: `
     <kc-page-marketing>
+      <kc-page-anchor-nav slot="anchor-nav" [sections]="sections" heading="On this page" />
+
       <kc-page-hero>
         <app-eyebrow label="/projects" index="02" />
         <h1
@@ -40,14 +45,15 @@ import { PROJECT_GROUPS } from '../../content/projects';
           <span class="text-accent">the résumé.</span>
         </h1>
         <p appReveal class="max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
-          Side projects in three groups. The platform underneath everything.
-          The places AI earns a seat at the table. The apps I ship through the
-          same pipeline that serves this page.
+          Side projects in three groups. The platform under everything.
+          The spots where AI is doing real work, not driving the brand.
+          The apps I ship through the same pipeline that serves this
+          page.
         </p>
       </kc-page-hero>
 
       @for (group of groups; track group.heading; let gi = $index) {
-        <kc-page-section headRule>
+        <kc-page-section headRule [anchor]="anchorFor(gi)">
           <span slot="eyebrow" appReveal class="label text-ink-700 dark:text-taupe">
             <span class="tabular">{{ pad(gi + 1) }}</span>
             <span class="mx-2 opacity-50">/</span>
@@ -120,16 +126,24 @@ export class ProjectsComponent implements OnInit {
   private readonly seo = inject(SeoService);
   readonly groups = PROJECT_GROUPS;
 
+  readonly sections: readonly KcPageAnchorNavSection[] = PROJECT_GROUPS.map(
+    (group, i) => ({ id: `group-${i + 1}`, label: group.heading }),
+  );
+
   ngOnInit(): void {
     this.seo.apply({
       title: 'Projects',
       description:
-        'Side projects — self-hosted hybrid cloud, zero-trust home network, AI-first ops, apps shipped from the same lab.',
+        'Side projects: self-hosted hybrid cloud, zero-trust home network, local-LLM ops, and apps shipped through the same lab.',
       path: '/projects',
     });
   }
 
   pad(n: number): string {
     return n.toString().padStart(2, '0');
+  }
+
+  anchorFor(i: number): string {
+    return `group-${i + 1}`;
   }
 }

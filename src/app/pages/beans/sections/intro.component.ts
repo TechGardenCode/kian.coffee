@@ -7,18 +7,19 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   template: `
     <div class="flex flex-col gap-4">
       <p class="max-w-prose font-sans text-base leading-relaxed text-ink-700 dark:text-taupe">
-        <strong class="text-ink-900 dark:text-foam">Beans</strong> is the design system that every page on this
-        site is built from. It's a two-tier token model — a raw palette of warm
-        neutrals and restrained accents underneath, semantic surface tokens on
-        top — paired with a small set of components, behaviors, and page
-        substrates. The system favors generosity: long line-length, deliberate
-        whitespace, and a doc-shape rhythm borrowed from print.
+        <strong class="text-ink-900 dark:text-foam">Beans</strong> is the design system this site runs on. Two
+        layers: a raw palette of warm neutrals and a single accent underneath,
+        semantic tokens on top. Plus a small set of components, behaviors, and
+        page shells.
       </p>
       <p class="max-w-prose font-sans text-base leading-relaxed text-ink-700 dark:text-taupe">
-        This page is the canonical reference. Everything below is rendered with
-        the live tokens, so the swatches you see are the same colors the rest
-        of the site is using right now. Switch the page mode (header, top
-        right) to see the dark substrate.
+        Leans toward print. Long lines, lots of whitespace, headings that
+        breathe.
+      </p>
+      <p class="max-w-prose font-sans text-base leading-relaxed text-ink-700 dark:text-taupe">
+        This page is the reference. Every swatch and sample below is the live
+        token, so what you see is what the site is using right now. Mode
+        toggle's in the header for the dark version.
       </p>
     </div>
   `,

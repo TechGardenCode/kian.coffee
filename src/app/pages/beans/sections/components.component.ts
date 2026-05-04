@@ -39,10 +39,10 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
   ],
   template: `
     <p class="mb-6 max-w-prose font-sans text-base leading-relaxed text-ink-700 dark:text-taupe">
-      Each component appears once, in its baseline form, with the
-      variants and states it supports rendered alongside. Sizes,
-      disabled, invalid, focus, and any per-component specialties
-      (indeterminate, orientation, bubble) are shown together.
+      Each component shown once in its baseline form, with the variants
+      and states it supports next to it. Sizes, disabled, invalid,
+      focus, and the per-component oddities (indeterminate checkboxes,
+      slider bubbles) all in one place.
     </p>
 
     <div class="flex flex-col gap-6">
@@ -53,7 +53,8 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
           <h3 class="m-0 font-display text-xl font-medium text-ink-900 dark:text-foam">Button</h3>
           <p class="m-0 font-sans text-sm leading-relaxed text-ink-700 dark:text-taupe">
             The primary action. Three variants, three sizes. Ghost is
-            the quietest; primary is reserved for the page's main act.
+            the quietest. Primary is for the one thing the page actually
+            wants you to do.
           </p>
         </header>
         <div class="flex flex-wrap items-start gap-6">
@@ -81,9 +82,9 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
         <header class="flex flex-col gap-1">
           <h3 class="m-0 font-display text-xl font-medium text-ink-900 dark:text-foam">Label &amp; Field</h3>
           <p class="m-0 font-sans text-sm leading-relaxed text-ink-700 dark:text-taupe">
-            Wrappers — a semantic label and a field that pairs label,
-            control, and help/error text. Used by every form input
-            below.
+            Two wrappers. Label is the semantic one. Field pairs label,
+            control, and help or error text together. Every form input
+            below uses them.
           </p>
         </header>
         <div class="flex flex-wrap items-start gap-6">
@@ -113,8 +114,8 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
         <header class="flex flex-col gap-1">
           <h3 class="m-0 font-display text-xl font-medium text-ink-900 dark:text-foam">Input</h3>
           <p class="m-0 font-sans text-sm leading-relaxed text-ink-700 dark:text-taupe">
-            Single-line text input. Three sizes; invalid + disabled
-            states are visually distinct from default focus.
+            Single-line text input. Three sizes. Invalid and disabled
+            look different from default focus on purpose.
           </p>
         </header>
         <div class="flex flex-wrap items-start gap-6">
@@ -150,8 +151,8 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
         <header class="flex flex-col gap-1">
           <h3 class="m-0 font-display text-xl font-medium text-ink-900 dark:text-foam">Textarea</h3>
           <p class="m-0 font-sans text-sm leading-relaxed text-ink-700 dark:text-taupe">
-            Multi-line text input. Same size and state model as Input;
-            row count is set by the <code class="font-mono text-xs">rows</code> attribute.
+            Multi-line input. Same sizes and states as Input. Row count
+            via the <code class="font-mono text-xs">rows</code> attribute.
           </p>
         </header>
         <div class="flex flex-wrap items-start gap-6">
@@ -174,8 +175,9 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
         <header class="flex flex-col gap-1">
           <h3 class="m-0 font-display text-xl font-medium text-ink-900 dark:text-foam">Select</h3>
           <p class="m-0 font-sans text-sm leading-relaxed text-ink-700 dark:text-taupe">
-            Native select, restyled. Three sizes; option list is the
-            browser's native picker for accessibility on mobile.
+            A native select, restyled. Three sizes. The option list is
+            whatever picker the browser hands you, which keeps mobile
+            accessible by default.
           </p>
         </header>
         <div class="flex flex-wrap items-start gap-6">
@@ -211,9 +213,9 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
         <header class="flex flex-col gap-1">
           <h3 class="m-0 font-display text-xl font-medium text-ink-900 dark:text-foam">Checkbox</h3>
           <p class="m-0 font-sans text-sm leading-relaxed text-ink-700 dark:text-taupe">
-            Binary control. Indeterminate is for mixed-children parent
-            checkboxes — a third visual state that resolves to either
-            true or false on click.
+            Two states, plus indeterminate. Use indeterminate when a
+            parent represents a mix of checked and unchecked children.
+            Clicking it resolves to true or false.
           </p>
         </header>
         <div class="flex flex-wrap items-start gap-6">
@@ -237,9 +239,8 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
         <header class="flex flex-col gap-1">
           <h3 class="m-0 font-display text-xl font-medium text-ink-900 dark:text-foam">Radio group</h3>
           <p class="m-0 font-sans text-sm leading-relaxed text-ink-700 dark:text-taupe">
-            Mutually-exclusive choice. Vertical by default; horizontal
-            when the labels are short and the choices read better as a
-            row.
+            Pick one. Vertical by default. Switch to horizontal when the
+            labels are short enough to read as a row.
           </p>
         </header>
         <div class="flex flex-wrap items-start gap-6">
@@ -268,9 +269,8 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
         <header class="flex flex-col gap-1">
           <h3 class="m-0 font-display text-xl font-medium text-ink-900 dark:text-foam">Switch</h3>
           <p class="m-0 font-sans text-sm leading-relaxed text-ink-700 dark:text-taupe">
-            On/off toggle for instant settings — flips a boolean state
-            without a confirmation step. Use it for "this is on now"
-            choices, not destructive ones.
+            On/off, no confirmation. Good for settings that take effect
+            immediately. Don't use it for anything destructive.
           </p>
         </header>
         <div class="flex flex-wrap items-start gap-6">
@@ -293,8 +293,8 @@ const ROAST_OPTIONS: readonly RadioOption[] = [
         <header class="flex flex-col gap-1">
           <h3 class="m-0 font-display text-xl font-medium text-ink-900 dark:text-foam">Slider</h3>
           <p class="m-0 font-sans text-sm leading-relaxed text-ink-700 dark:text-taupe">
-            Range input. Optional bubble shows the live value above
-            the thumb on interaction.
+            Range input. Turn on the bubble and it shows the current
+            value above the thumb while you drag.
           </p>
         </header>
         <div class="flex flex-wrap items-start gap-6">

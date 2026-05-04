@@ -109,7 +109,7 @@ export class WorkComponent implements OnInit {
   ngOnInit(): void {
     this.seo.apply({
       title: 'Work',
-      description: 'Roles and dates — Mastercard, Conseqta Technology, IBM Watson.',
+      description: 'Roles and dates: Mastercard, Conseqta Technology, IBM Watson.',
       path: '/work',
     });
   }

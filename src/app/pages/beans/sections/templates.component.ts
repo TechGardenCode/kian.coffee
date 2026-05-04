@@ -11,43 +11,43 @@ const TEMPLATES: readonly TemplateCard[] = [
   {
     name: 'Page',
     selector: 'kc-page',
-    description: 'Bare substrate. The width-and-rhythm container that every other template extends.',
+    description: 'The bare shell. Sets the width and rhythm that everything else extends.',
     bands: [{ height: '0.5rem' }, { height: '2.5rem' }, { height: '0.5rem' }],
   },
   {
     name: 'Page hero',
     selector: 'kc-page-hero',
-    description: 'Top of a page. Tall, single-purpose; lede + headline + first action live here.',
+    description: 'The top of a page. Tall and single-purpose. Lede, headline, and first action go here.',
     bands: [{ height: '3rem' }, { height: '0.5rem' }],
   },
   {
     name: 'Page section',
     selector: 'kc-page-section',
-    description: 'Repeating content block. Optional title + kicker head; rule-line modifier for editorial pages.',
+    description: 'Repeating content block. Optional title and kicker. There is a rule-line variant for the editorial pages.',
     bands: [{ height: '0.5rem' }, { height: '1.5rem' }, { height: '1.5rem' }],
   },
   {
     name: 'Page band',
     selector: 'kc-page-band',
-    description: 'Tinted strip across the page. Plain or metric (3-up grid) variants.',
+    description: 'A tinted strip across the page. Plain, or a 3-up grid for metrics.',
     bands: [{ height: '1.25rem' }],
   },
   {
     name: 'Page footer CTA',
     selector: 'kc-page-footer-cta',
-    description: 'Closing call-to-action. Prose left + arrow links right; bordered top divides from content above.',
+    description: 'The closing call-to-action. Prose on the left, arrow links on the right, with a top border to separate it from whatever is above.',
     bands: [{ height: '0.5rem' }, { height: '1.5rem' }],
   },
   {
     name: 'Page (marketing)',
     selector: 'kc-page-marketing',
-    description: 'Marketing-page modifier. Same primitives, retuned column width and section rhythm.',
+    description: 'Marketing variant of Page. Same building blocks, but the column width and section rhythm are tuned for it.',
     bands: [{ height: '3rem' }, { height: '0.5rem' }, { height: '1.25rem' }, { height: '1rem' }],
   },
   {
     name: 'Page (doc)',
     selector: 'kc-page-doc',
-    description: 'Documentation shape. Sticky nav rail + scrolling main, scroll-spy active. This page uses it.',
+    description: 'Documentation shape. Sticky nav on the left, scrolling main on the right, scroll-spy on. This page is using it right now.',
     bands: [{ height: '2.5rem' }, { height: '0.5rem' }, { height: '1rem' }],
   },
 ];
@@ -58,11 +58,10 @@ const TEMPLATES: readonly TemplateCard[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <p class="mb-6 max-w-prose font-sans text-base leading-relaxed text-ink-700 dark:text-taupe">
-      Page templates are the substrates the rest of the site composes
-      against. Each template owns width, gutter, and section rhythm so
-      individual pages don't reinvent layout. Sketches are abstract
-      shapes — read them as the visual rhythm, not the literal
-      content.
+      Page templates are the shells everything else lives inside. Each
+      one owns its own width, gutters, and section rhythm so pages
+      don't have to reinvent layout. The sketches below are abstract,
+      so read them as rhythm, not content.
     </p>
 
     <div class="grid gap-4 grid-cols-[repeat(auto-fill,minmax(14rem,1fr))]">

@@ -27,16 +27,16 @@ export interface ProjectGroup {
 export const PROJECT_GROUPS: readonly ProjectGroup[] = [
   {
     heading: 'Built on bare metal',
-    note: 'Infrastructure + platform work — a self-hosted hybrid cloud.',
+    note: 'Infrastructure and platform work. A self-hosted hybrid cloud.',
     projects: [
       {
         title: 'Self-hosted hybrid cloud',
         eyebrow: 'Platform · Kubernetes',
         // Paraphrased from CV. CV says "K3s + Proxmox"; current homelab runs
         // Talos — verify which wording to ship with.
-        summary: `Highly available multi-AZ Kubernetes cluster on Proxmox, with
-declarative rollouts via Ansible, ArgoCD, and GitHub Actions. Cloud-scale
-resilience patterns applied on bare metal.`,
+        summary: `Multi-AZ Kubernetes on Proxmox, declared in git and rolled out
+by Ansible, ArgoCD, and GitHub Actions. The same patterns I use at work,
+sized for a basement.`,
         stack: ['Kubernetes', 'Proxmox', 'ArgoCD', 'Ansible', 'GitHub Actions'],
         links: [
           { label: 'See it on /lab', href: '/lab' },
@@ -55,32 +55,31 @@ segmentation, and DMZ firewalls.`,
         title: 'Multi-AZ NAS with 3-2-1 backups',
         eyebrow: 'Storage · Durability',
         // CV wording.
-        summary: `TrueNAS + ZFS with Cloud Sync and RSync for data durability and
-archival across availability zones.`,
+        summary: `TrueNAS and ZFS, with Cloud Sync and RSync handling durability
+and archival across availability zones.`,
         stack: ['TrueNAS', 'ZFS', 'Cloud Sync', 'RSync'],
       },
     ],
   },
   {
     heading: 'AI as a tool, not a product',
-    note: 'Where AI earns a seat — ops, automation, observability — not the headline, the force multiplier.',
+    note: 'Where AI does the actual work: ops, automation, observability. Quietly, in the background.',
     projects: [
       {
-        title: 'AI-first monitoring + IaC',
+        title: 'A local LLM watching the monitoring stack',
         eyebrow: 'Agentic Ops',
-        // CV wording.
-        summary: `Local LLM drives Ansible-based setup of Prometheus + Grafana
-stacks, evaluates and reinforces monitoring coverage, triages incoming
-alerts, and auto-tunes thresholds and alert/scrape parameters based on
-observed signal. Agentic ops on a self-hosted stack.`,
+        summary: `A local LLM stands up Prometheus and Grafana with Ansible,
+watches what's actually firing, and tunes thresholds and scrape intervals
+based on what it sees. Same loop a human SRE runs, just cheaper to run
+overnight.`,
         stack: ['Local LLM', 'Ansible', 'Prometheus', 'Grafana'],
       },
       {
         title: 'AI-enabled home automation',
         eyebrow: 'Home Automation',
         // CV wording.
-        summary: `Home Assistant + N8N + local LLM orchestration for private,
-low-latency automation. Keeps inference and data on-prem.`,
+        summary: `Home Assistant, N8N, and a local LLM running together for
+private automation that doesn't round-trip to anyone's cloud.`,
         stack: ['Home Assistant', 'N8N', 'Local LLM'],
       },
     ],

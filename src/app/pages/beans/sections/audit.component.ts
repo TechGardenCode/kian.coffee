@@ -9,16 +9,16 @@ interface AuditEntry {
 }
 
 const ENTRIES: readonly AuditEntry[] = [
-  { label: 'Tokens — palette, color, type, spacing, radii, motion', status: 'stable', note: 'Two-tier model is settled. New raw colors will land on the existing ramps; semantic names will not change.' },
-  { label: 'Tokens — elevation', status: 'stable', note: 'Five depths each, light / dark independent. No more shadows planned.' },
-  { label: 'Forms components — Input, Textarea, Select, Checkbox, Radio, Switch, Slider', status: 'stable', note: 'Public API set. CVA wired; size + invalid + disabled are uniform across the family.' },
-  { label: 'Field + Label wrappers', status: 'stable', note: 'Slot-based composition; help / error text positions are fixed.' },
-  { label: 'Behaviors — mode toggle, scroll spy, tab roving, tooltip, copy', status: 'stable', note: 'Framework-agnostic at the core; Angular adapters in the components/ tier.' },
-  { label: 'Page templates — Page, Hero, Section, Band, Footer CTA, Marketing, Doc', status: 'stable', note: 'Doc landed alongside this page. Article template is still a seam.' },
-  { label: 'Page templates — Article', status: 'wip', note: 'Constrained prose column with table-of-contents. Lands when the first article route exists.' },
-  { label: 'Type-scale tokens', status: 'stable', note: '10 named steps from display-xl to label, exported by beans and aliased into Tailwind via @theme so pages use text-display-xl etc.' },
-  { label: 'Iconography', status: 'planned', note: 'No first-party icon set yet. Pages currently borrow glyphs ad-hoc; a curated set is on the roadmap.' },
-  { label: 'Section markers', status: 'planned', note: 'The dividers and band-end glyphs the doc references are not yet a published primitive.' },
+  { label: 'Tokens — palette, color, type, spacing, radii, motion', status: 'stable', note: 'The two-tier model is settled. Any new raw colors land on the existing ramps. Semantic names won’t change.' },
+  { label: 'Tokens — elevation', status: 'stable', note: 'Five depths, light and dark tuned separately. No more shadows planned.' },
+  { label: 'Forms components — Input, Textarea, Select, Checkbox, Radio, Switch, Slider', status: 'stable', note: 'Public API is set. ControlValueAccessor wired. Size, invalid, and disabled behave the same across all of them.' },
+  { label: 'Field + Label wrappers', status: 'stable', note: 'Slot-based. Help and error text positions are fixed.' },
+  { label: 'Behaviors — mode toggle, scroll spy, tab roving, tooltip, copy', status: 'stable', note: 'The core logic is framework-agnostic. The Angular adapters live in components/.' },
+  { label: 'Page templates — Page, Hero, Section, Band, Footer CTA, Marketing, Doc', status: 'stable', note: 'Doc landed with this page. Article is still a seam.' },
+  { label: 'Page templates — Article', status: 'wip', note: 'Narrow prose column with a table of contents. Ships when the first article route does.' },
+  { label: 'Type-scale tokens', status: 'stable', note: 'Ten steps, from display-xl down to label. Exported by beans and aliased into Tailwind via @theme, so pages use text-display-xl and friends.' },
+  { label: 'Iconography', status: 'planned', note: 'No first-party icon set yet. Pages borrow glyphs ad-hoc for now. A curated set is on the list.' },
+  { label: 'Section markers', status: 'planned', note: 'The dividers and band-end glyphs the doc references aren’t a published part of the system yet.' },
 ];
 
 @Component({
@@ -27,10 +27,10 @@ const ENTRIES: readonly AuditEntry[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <p class="mb-6 max-w-prose font-sans text-base leading-relaxed text-ink-700 dark:text-taupe">
-      Where things stand. Stable means the API and visual treatment
-      are settled and you can build against them; WIP means the shape
-      is right but final details are landing; planned means it's known
-      and on the list, but not built yet.
+      Where things stand. Stable means the API and visual treatment are
+      settled — go ahead and build against it. WIP means the shape is
+      there but I'm still landing details. Planned means it's on the
+      list but doesn't exist yet.
     </p>
     <div class="flex flex-col gap-2">
       @for (entry of entries; track entry.label) {

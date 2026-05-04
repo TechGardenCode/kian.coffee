@@ -1,10 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import {
-  KcPageDoc,
+  KcPageMarketing,
+  KcPageHero,
   KcPageSection,
-  type KcPageDocSection,
+  KcPageAnchorNav,
+  type KcPageAnchorNavSection,
 } from '@kian.coffee/beans';
+import { RevealDirective } from '../../shared/motion/reveal.directive';
+import { EyebrowComponent } from '../../shared/ui/eyebrow.component';
 import { SeoService } from '../../shared/seo/seo.service';
 import { BeansFoundationsComponent } from './sections/foundations.component';
 import { BeansComponentsComponent } from './sections/components.component';
@@ -13,8 +16,7 @@ import { BeansTemplatesComponent } from './sections/templates.component';
 import { BeansAuditComponent } from './sections/audit.component';
 import { BeansIntroComponent } from './sections/intro.component';
 
-const SECTIONS: readonly KcPageDocSection[] = [
-  { id: 'intro', label: 'Intro' },
+const SECTIONS: readonly KcPageAnchorNavSection[] = [
   { id: 'foundations', label: 'Foundations' },
   { id: 'palette', label: 'Palette', depth: 2 },
   { id: 'color', label: 'Color', depth: 2 },
@@ -34,9 +36,12 @@ const SECTIONS: readonly KcPageDocSection[] = [
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    RouterLink,
-    KcPageDoc,
+    RevealDirective,
+    EyebrowComponent,
+    KcPageMarketing,
+    KcPageHero,
     KcPageSection,
+    KcPageAnchorNav,
     BeansIntroComponent,
     BeansFoundationsComponent,
     BeansComponentsComponent,
@@ -45,52 +50,41 @@ const SECTIONS: readonly KcPageDocSection[] = [
     BeansAuditComponent,
   ],
   template: `
-    <kc-page-doc [sections]="sections" #doc="kcPageDoc">
-      <aside slot="nav" class="hidden lg:block" aria-label="Section navigation">
-        <div class="flex flex-col gap-4 lg:sticky lg:top-12 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto py-12">
-          <p class="label text-ink-500 dark:text-taupe-dim">Design system</p>
+    <kc-page-marketing>
+      <kc-page-anchor-nav slot="anchor-nav" [sections]="sections" heading="Design system" />
 
-          <ol class="m-0 flex list-none flex-col gap-1 border-l border-ink-900/10 p-0 dark:border-foam/10">
-            @for (s of sections; track s.id) {
-              <li class="block" [class.pl-3]="s.depth === 2">
-                <a
-                  [routerLink]="[]"
-                  [fragment]="s.id"
-                  class="-ml-px block border-l border-transparent px-3 py-2 font-sans text-sm leading-snug text-ink-700 no-underline transition-colors hover:text-ink-900 dark:text-taupe dark:hover:text-foam"
-                  [class.!border-accent]="doc.activeId() === s.id"
-                  [class.!text-accent]="doc.activeId() === s.id"
-                  [class.font-medium]="doc.activeId() === s.id"
-                >{{ s.label }}</a>
-              </li>
-            }
-          </ol>
-        </div>
-      </aside>
-
-      <kc-page-section anchor="intro" title="Beans" kicker="@kian.coffee/beans">
+      <kc-page-hero>
+        <app-eyebrow label="/beans" index="05" />
+        <h1
+          appReveal
+          class="font-display text-5xl md:text-7xl leading-[1.05] tracking-tight text-ink-900 dark:text-foam"
+        >
+          Beans.<br />
+          <span class="text-accent">@kian.coffee/beans</span>
+        </h1>
         <app-beans-intro />
-      </kc-page-section>
+      </kc-page-hero>
 
-      <kc-page-section anchor="foundations" title="Foundations" kicker="Tokens & primitives">
+      <kc-page-section anchor="foundations" title="Foundations" kicker="Tokens, color, type, scale">
         <app-beans-foundations />
       </kc-page-section>
 
-      <kc-page-section anchor="components" title="Components" kicker="Forms tier">
+      <kc-page-section anchor="components" title="Components" kicker="Forms">
         <app-beans-components />
       </kc-page-section>
 
-      <kc-page-section anchor="behaviors" title="Behaviors" kicker="Interaction primitives">
+      <kc-page-section anchor="behaviors" title="Behaviors" kicker="Small interaction patterns">
         <app-beans-behaviors />
       </kc-page-section>
 
-      <kc-page-section anchor="templates" title="Templates" kicker="Page substrates">
+      <kc-page-section anchor="templates" title="Templates" kicker="Page shells">
         <app-beans-templates />
       </kc-page-section>
 
       <kc-page-section anchor="audit" title="Audit" kicker="What's stable, what isn't">
         <app-beans-audit />
       </kc-page-section>
-    </kc-page-doc>
+    </kc-page-marketing>
   `,
 })
 export class BeansComponent implements OnInit {
@@ -102,7 +96,7 @@ export class BeansComponent implements OnInit {
     this.seo.apply({
       title: 'Beans — design system',
       description:
-        'The kian.coffee design system: tokens, components, behaviors, and page templates. The substrate every page on this site is built from.',
+        'The kian.coffee design system. Tokens, components, behaviors, and page templates. What every page on this site is built from.',
       path: '/beans',
       ogType: 'article',
       jsonLd: {

@@ -84,7 +84,7 @@ export class ContactComponent implements OnInit {
   ngOnInit(): void {
     this.seo.apply({
       title: 'Contact',
-      description: 'Get in touch — email, LinkedIn, GitHub.',
+      description: 'Get in touch. Email, LinkedIn, or GitHub.',
       path: '/contact',
     });
   }

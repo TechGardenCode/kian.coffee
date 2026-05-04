@@ -86,7 +86,7 @@ export class UsesComponent implements OnInit {
     this.seo.apply({
       title: 'Uses',
       description:
-        'What I actually use — editor, hardware, homelab rack, terminal tools, and coffee setup.',
+        'What I actually use day-to-day. Editor, hardware, homelab rack, terminal tools, coffee setup.',
       path: '/uses',
     });
   }

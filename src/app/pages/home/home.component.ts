@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.seo.apply({
       title: 'Home',
       description:
-        'Kian Alikhani — full-stack IC architect at Mastercard. Homelab, side projects, and current work.',
+        'Kian Alikhani. Full-stack architect at Mastercard. Homelab, side projects, and what I’m working on now.',
       path: '/',
       ogType: 'profile',
       jsonLd: personJsonLd(),

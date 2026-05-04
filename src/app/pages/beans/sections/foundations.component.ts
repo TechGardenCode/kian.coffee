@@ -169,9 +169,9 @@ const ELEVATION_ROWS = [
       <p class="label mb-3 text-ink-500 dark:text-taupe-dim">02.01</p>
       <h3 class="mb-4 font-display text-2xl font-medium tracking-tight text-ink-900 dark:text-foam">Palette</h3>
       <p class="max-w-prose font-sans text-base leading-relaxed text-ink-700 dark:text-taupe">
-        The raw palette. Every semantic token below resolves to a value
-        from one of these ramps. Cream and roast are the substrate;
-        accent is the only chromatic family.
+        The raw palette. Every semantic token below points back to a step
+        on one of these ramps. Cream and roast do the heavy lifting.
+        Accent is the only color in the system.
       </p>
       <div class="mt-6 flex flex-col gap-6">
         @for (row of paletteRows; track row.name) {
@@ -198,9 +198,9 @@ const ELEVATION_ROWS = [
       <p class="label mb-3 text-ink-500 dark:text-taupe-dim">02.02</p>
       <h3 class="mb-4 font-display text-2xl font-medium tracking-tight text-ink-900 dark:text-foam">Color (semantic)</h3>
       <p class="max-w-prose font-sans text-base leading-relaxed text-ink-700 dark:text-taupe">
-        Surface, text, border, and accent tokens. Each shows its
-        light-mode and dark-mode resolved values side-by-side, so the
-        page is informative regardless of which mode you're in.
+        Surface, text, border, accent. Each token shows both its light
+        and dark value side by side, so the page makes sense whichever
+        mode you're in.
       </p>
       @for (group of semanticGroups; track group.heading) {
         <div class="mt-6">
@@ -234,9 +234,10 @@ const ELEVATION_ROWS = [
       <p class="label mb-3 text-ink-500 dark:text-taupe-dim">02.03</p>
       <h3 class="mb-4 font-display text-2xl font-medium tracking-tight text-ink-900 dark:text-foam">Typography</h3>
       <p class="max-w-prose font-sans text-base leading-relaxed text-ink-700 dark:text-taupe">
-        Three families. Fraunces sets the editorial voice in display.
-        Inter handles long-form body. JetBrains Mono is the system
-        voice — labels, code, mono numerals.
+        Three families. Fraunces is the editorial voice, used for
+        display. Inter does the long-form work. JetBrains Mono is the
+        system voice for labels, code, and anything that wants to feel
+        like terminal output.
       </p>
       <div class="mt-6 flex flex-col gap-4">
         <div class="flex flex-col gap-3 rounded-md border border-ink-900/10 bg-cream-50 p-5 dark:border-foam/10 dark:bg-roast-850">
@@ -268,9 +269,10 @@ const ELEVATION_ROWS = [
       <p class="label mb-3 text-ink-500 dark:text-taupe-dim">02.04</p>
       <h3 class="mb-4 font-display text-2xl font-medium tracking-tight text-ink-900 dark:text-foam">Type scale</h3>
       <p class="max-w-prose font-sans text-base leading-relaxed text-ink-700 dark:text-taupe">
-        Reference sizes used across the site. Hero copy is fluid in
-        production via <code class="font-mono text-sm">clamp()</code>;
-        these are the desktop targets.
+        Reference sizes for the whole site. Hero text uses
+        <code class="font-mono text-sm">clamp()</code> in production so
+        it scales with the viewport; what you see here are the desktop
+        targets.
       </p>
       <div class="mt-6">
         @for (step of typeScale; track step.token) {
@@ -290,10 +292,9 @@ const ELEVATION_ROWS = [
       <p class="label mb-3 text-ink-500 dark:text-taupe-dim">02.05</p>
       <h3 class="mb-4 font-display text-2xl font-medium tracking-tight text-ink-900 dark:text-foam">Spacing</h3>
       <p class="max-w-prose font-sans text-base leading-relaxed text-ink-700 dark:text-taupe">
-        Ten steps. Never use a value not on the scale. Page-level
-        rhythm uses 9 and 10; interior rhythm uses 1 through 7. Bar
-        widths below are literal — what you see is the actual
-        token value.
+        Ten steps, and never anything off the scale. Page-level rhythm
+        pulls from 9 and 10. Everything inside a component sticks to 1
+        through 7. Bar widths below are literal.
       </p>
       <div class="mt-6">
         @for (row of spaceRows; track row.token) {
@@ -313,8 +314,9 @@ const ELEVATION_ROWS = [
       <p class="label mb-3 text-ink-500 dark:text-taupe-dim">02.06</p>
       <h3 class="mb-4 font-display text-2xl font-medium tracking-tight text-ink-900 dark:text-foam">Radii</h3>
       <p class="max-w-prose font-sans text-base leading-relaxed text-ink-700 dark:text-taupe">
-        Six radii. Pill is reserved for fully-rounded elements
-        (badges, switches); xl is reserved for hero-scale surfaces.
+        Six radii. Pill is for things that should be fully round (badges,
+        switches). XL is reserved for hero surfaces. Everything else
+        picks from the middle.
       </p>
       <div class="mt-6 grid gap-3 grid-cols-[repeat(auto-fill,minmax(8rem,1fr))]">
         @for (r of radiiRows; track r.token) {
@@ -334,8 +336,8 @@ const ELEVATION_ROWS = [
       <p class="label mb-3 text-ink-500 dark:text-taupe-dim">02.07</p>
       <h3 class="mb-4 font-display text-2xl font-medium tracking-tight text-ink-900 dark:text-foam">Elevation</h3>
       <p class="max-w-prose font-sans text-base leading-relaxed text-ink-700 dark:text-taupe">
-        Five depths. Light- and dark-mode shadows are tuned
-        independently because dark surfaces need stronger separation.
+        Five depths. Light and dark shadows are tuned separately
+        because dark surfaces need more contrast to read as raised.
       </p>
       <div class="mt-6 grid gap-6 rounded-md bg-cream-200 p-6 dark:bg-roast-950 grid-cols-[repeat(auto-fill,minmax(10rem,1fr))]">
         @for (e of elevationRows; track e.token) {

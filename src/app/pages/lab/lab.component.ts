@@ -6,6 +6,8 @@ import {
   KcPageSection,
   KcPageBand,
   KcPageFooterCta,
+  KcPageAnchorNav,
+  type KcPageAnchorNavSection,
 } from '@kian.coffee/beans';
 import { RevealDirective } from '../../shared/motion/reveal.directive';
 import { EyebrowComponent } from '../../shared/ui/eyebrow.component';
@@ -37,6 +39,7 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
     KcPageSection,
     KcPageBand,
     KcPageFooterCta,
+    KcPageAnchorNav,
     PlatformStackDiagram,
     GitOpsFlowDiagram,
     HardwareTopologyDiagram,
@@ -45,6 +48,8 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
   ],
   template: `
     <kc-page-marketing>
+      <kc-page-anchor-nav slot="anchor-nav" [sections]="sections" heading="On this page" />
+
       <kc-page-hero>
         <app-eyebrow label="/lab" index="03" />
         <h1
@@ -55,13 +60,12 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
           <span class="text-accent">run like a cloud provider.</span>
         </h1>
         <p appReveal class="max-w-2xl font-sans text-lg leading-relaxed text-ink-700 dark:text-taupe">
-          Three Talos Kubernetes clusters — core, dev, and prod — with a
-          fourth prod cluster planned for a second AZ. Every cluster runs
-          a 3-node etcd quorum. Three Technitium DNS instances sit behind
-          a keepalived VIP. The edge is split into internal and public
-          Envoy Gateways. Declarative from the metal up, delivered by
-          GitOps, observed by a self-hosted LGTM stack. This site is
-          served from it.
+          Three Talos Kubernetes clusters today: core, dev, and prod. A
+          fourth is coming once the second site is live. Etcd has three
+          votes everywhere. DNS rides a VIP. The edge splits into
+          internal and public gateways. The whole thing is declared in
+          git, delivered by ArgoCD, watched by a self-hosted LGTM stack.
+          This site is served from it.
         </p>
       </kc-page-hero>
 
@@ -75,9 +79,9 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
           <span aria-hidden="true" class="mt-0.5 text-accent">●</span>
           <div class="font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
             <strong class="text-ink-900 dark:text-foam">The secondary AZ is offline.</strong>
-            Hardware is mid-move between sites, so production is running
-            single-AZ until it's back. Stats, diagrams, and principles
-            below describe the current state alongside the multi-AZ plan.
+            Hardware is in the middle of moving between sites, so prod
+            is running on one AZ until it's back. Everything below shows
+            the current state next to the multi-AZ plan.
           </div>
         </div>
       </section>
@@ -136,10 +140,11 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
       >
         <app-eyebrow slot="eyebrow" label="Diagram 02" index="03" />
         <p appReveal class="mb-10 max-w-3xl font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
-          Every app ships the same way. Push to main; CI builds and publishes
-          an image; a dispatch event tells the homelab repo to bump the tag;
-          ArgoCD reconciles; Talos rolls. Prod promotions go through an
-          auto-generated PR that a human still has to merge.
+          Every app ships the same way. Push to main, CI builds and
+          publishes an image, a dispatch event tells the homelab repo
+          to bump the tag, ArgoCD reconciles, Talos rolls. Prod
+          promotions go through an auto-generated PR that a human still
+          has to merge.
         </p>
         <div appReveal class="diagram-frame">
           <app-gitops-flow-diagram />
@@ -154,12 +159,13 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
       >
         <app-eyebrow slot="eyebrow" label="Diagram 03" index="04" />
         <p appReveal class="mb-10 max-w-3xl font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
-          Three tiers of physical compute. Production runs directly on
-          bare-metal EliteDesks, so there's no hypervisor in the critical
-          path. The Proxmox hosts carry the core and dev clusters as VMs.
-          Edge services (DNS, load balancer) and storage run on Raspberry
-          Pis and TrueNAS boxes. The second AZ's bare-metal tier will
-          mirror this tier once the hardware move completes.
+          Three tiers of physical compute. Production runs straight on
+          bare-metal EliteDesks, so there's no hypervisor in the
+          critical path. The Proxmox hosts carry the core and dev
+          clusters as VMs. Edge services like DNS and load balancing,
+          plus storage, sit on Raspberry Pis and TrueNAS boxes. The
+          second AZ's bare-metal tier will mirror this one once the
+          move finishes.
         </p>
         <div appReveal class="diagram-frame">
           <app-hardware-topology-diagram />
@@ -174,11 +180,11 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
       >
         <app-eyebrow slot="eyebrow" label="Diagram 04" index="05" />
         <p appReveal class="mb-10 max-w-3xl font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
-          Web traffic arrives only through an outbound-only Cloudflare Tunnel;
-          there are no inbound port forwards for any HTTP service. Six VLANs
-          segment by trust tier. The firewall denies between tiers by default,
-          with explicit allows where they're required (Trusted Clients →
-          Servers, plus a few IoT exceptions).
+          Web traffic only enters through a Cloudflare Tunnel that
+          opens outbound. No HTTP service has an inbound port forward.
+          Six VLANs segment by trust tier. The firewall denies between
+          tiers by default and only allows what's needed (Trusted
+          Clients → Servers, plus a few IoT exceptions).
         </p>
         <div appReveal class="diagram-frame">
           <app-network-topology-diagram />
@@ -193,9 +199,9 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
       >
         <app-eyebrow slot="eyebrow" label="Diagram 05" index="06" />
         <p appReveal class="mb-10 max-w-3xl font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
-          Reliability work is never done. Left column is what's already
-          redundant; right column is what still runs as a single instance,
-          and the next step queued up for each one.
+          Reliability is never finished. The left column is what's
+          already redundant. The right column is what still runs as a
+          single instance, with the next step lined up for each one.
         </p>
         <div appReveal class="diagram-frame">
           <app-ha-redundancy-diagram />
@@ -210,11 +216,11 @@ import { LAB_HOST_GROUPS, LAB_HOST_COUNT } from '../../content/lab.generated';
       >
         <app-eyebrow slot="eyebrow" label="The roster" index="07" />
         <p appReveal class="mb-10 max-w-3xl font-sans text-body-md leading-relaxed text-ink-700 dark:text-taupe">
-          Bare-metal Talos nodes are configured declaratively via
-          <span class="font-mono">talosctl</span>, so they appear in the
-          cluster topology above but not in this host roster. The roster below
-          is dynamically generated from the homelab's source-of-truth
-          inventory — it reflects whatever is currently deployed.
+          Bare-metal Talos nodes are configured through
+          <span class="font-mono">talosctl</span>, so they show up in
+          the cluster topology above but not in this roster. The roster
+          below is generated from the homelab's inventory file, so it
+          reflects whatever is actually deployed.
         </p>
 
         <div appReveal class="grid gap-6 md:grid-cols-2">
@@ -294,11 +300,22 @@ export class LabComponent implements OnInit {
   readonly hostGroups = LAB_HOST_GROUPS;
   readonly hostCountKicker = `${LAB_HOST_COUNT} Ansible-managed hosts`;
 
+  readonly sections: readonly KcPageAnchorNavSection[] = [
+    { id: 'directions', label: 'Directions' },
+    { id: 'stack', label: 'Stack' },
+    { id: 'delivery', label: 'Delivery' },
+    { id: 'hardware', label: 'Hardware' },
+    { id: 'network', label: 'Network' },
+    { id: 'ha', label: 'HA' },
+    { id: 'nodes', label: 'Nodes' },
+    { id: 'stack-breakdown', label: 'Stack breakdown' },
+  ];
+
   ngOnInit(): void {
     this.seo.apply({
       title: 'Lab',
       description:
-        'The homelab — three Talos Kubernetes clusters on Proxmox hypervisors and bare-metal EliteDesks, delivered by GitOps, observed by a self-hosted LGTM stack. This site is served from it.',
+        'Three Talos Kubernetes clusters on Proxmox and bare-metal EliteDesks. GitOps end-to-end, watched by a self-hosted LGTM stack. This site is served from it.',
       path: '/lab',
     });
   }

@@ -13,10 +13,11 @@ import {
   imports: [CopyButtonComponent, TabRovingDirective, TooltipDirective],
   template: `
     <p class="mb-6 max-w-prose font-sans text-base leading-relaxed text-ink-700 dark:text-taupe">
-      Behaviors are the interaction primitives — small directives that
-      add framework-agnostic UX patterns on top of plain elements. The
-      page itself demos two of them passively: the header's mode
-      toggle, and this page's left-rail scroll-spy.
+      Behaviors are the small directives that add interaction patterns
+      to plain elements: keyboard handling, focus management, the kind
+      of thing that's tedious to rewrite per component. The page itself
+      demos two of them quietly: the mode toggle in the header, and the
+      scroll-spy on the left rail of this page.
     </p>
 
     <div class="flex flex-col gap-6">
@@ -24,9 +25,9 @@ import {
       <article class="flex flex-col gap-1 rounded-md border border-ink-900/10 bg-cream-50 p-6 dark:border-foam/10 dark:bg-roast-850">
         <h3 class="m-0 font-display text-xl font-medium text-ink-900 dark:text-foam">Mode toggle</h3>
         <p class="m-0 font-sans text-sm leading-relaxed text-ink-700 dark:text-taupe">
-          Light / dark switching, persisted to <code class="font-mono text-xs">localStorage</code>.
-          The header (top right) is the canonical site instance — flip
-          it and watch every specimen on this page swap.
+          Light/dark switching, persisted to <code class="font-mono text-xs">localStorage</code>.
+          The toggle in the header is the real one. Flip it and every
+          specimen on this page swaps with it.
         </p>
       </article>
 
@@ -34,9 +35,9 @@ import {
       <article class="flex flex-col gap-1 rounded-md border border-ink-900/10 bg-cream-50 p-6 dark:border-foam/10 dark:bg-roast-850">
         <h3 class="m-0 font-display text-xl font-medium text-ink-900 dark:text-foam">Scroll spy</h3>
         <p class="m-0 font-sans text-sm leading-relaxed text-ink-700 dark:text-taupe">
-          <code class="font-mono text-xs">IntersectionObserver</code>-driven "which section is
-          in view." The left nav rail on this page is wired to it —
-          scroll up and down and watch the active link follow.
+          <code class="font-mono text-xs">IntersectionObserver</code> watching for which section
+          is on screen. The left nav on this page is wired to it. Scroll
+          and the active link follows.
         </p>
       </article>
 
@@ -47,7 +48,7 @@ import {
           <p class="m-0 font-sans text-sm leading-relaxed text-ink-700 dark:text-taupe">
             Roving tabindex for tablists and toolbars. Tab into the
             group below, then use the arrow keys: focus moves between
-            items without leaving the group. <kbd class="rounded border border-ink-900/20 bg-cream-100 px-1 font-mono text-xs dark:border-foam/20 dark:bg-roast-900">Home</kbd> /
+            items without ever leaving the group. <kbd class="rounded border border-ink-900/20 bg-cream-100 px-1 font-mono text-xs dark:border-foam/20 dark:bg-roast-900">Home</kbd> and
             <kbd class="rounded border border-ink-900/20 bg-cream-100 px-1 font-mono text-xs dark:border-foam/20 dark:bg-roast-900">End</kbd> jump to the ends.
           </p>
         </header>
@@ -68,9 +69,8 @@ import {
         <header class="flex flex-col gap-1">
           <h3 class="m-0 font-display text-xl font-medium text-ink-900 dark:text-foam">Tooltip</h3>
           <p class="m-0 font-sans text-sm leading-relaxed text-ink-700 dark:text-taupe">
-            Hover or focus an element to surface a short label.
-            Viewport-aware: the tooltip flips side automatically when
-            it would clip the edge.
+            Hover or focus to surface a short label. Viewport-aware: it
+            flips to the other side when it'd clip the edge.
           </p>
         </header>
         <div class="flex flex-wrap items-center gap-3">
@@ -90,9 +90,9 @@ import {
         <header class="flex flex-col gap-1">
           <h3 class="m-0 font-display text-xl font-medium text-ink-900 dark:text-foam">Copy to clipboard</h3>
           <p class="m-0 font-sans text-sm leading-relaxed text-ink-700 dark:text-taupe">
-            Single-button copy with confirmed-state feedback. Falls
-            back through <code class="font-mono text-xs">execCommand</code> when the modern
-            clipboard API is unavailable.
+            One button, confirms when it lands. Falls back through
+            <code class="font-mono text-xs">execCommand</code> if the
+            modern clipboard API isn't available.
           </p>
         </header>
         <div class="flex flex-wrap items-center gap-3">
