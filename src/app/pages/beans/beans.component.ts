@@ -59,8 +59,8 @@ const SECTIONS: readonly KcPageAnchorNavSection[] = [
           appReveal
           class="font-display text-5xl md:text-7xl leading-[1.05] tracking-tight text-ink-900 dark:text-foam"
         >
-          Beans.<br />
-          <span class="text-accent">@kian.coffee/beans</span>
+          Single origin.<br />
+          <span class="text-accent">Roasted light or dark.</span>
         </h1>
         <app-beans-intro />
       </kc-page-hero>
