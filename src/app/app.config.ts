@@ -6,6 +6,7 @@ import { createErrorHandler } from '@sentry/angular';
 
 import { routes } from './app.routes';
 import { KianTitleStrategy } from './shared/seo/title-strategy';
+import { BLOG_API_BASE } from './shared/blog/blog-api.token';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,5 +21,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     { provide: TitleStrategy, useClass: KianTitleStrategy },
     { provide: ErrorHandler, useValue: createErrorHandler({ showDialog: false }) },
+    // Browser default: same-origin, gateway path-routes /api/posts to the blog service.
+    { provide: BLOG_API_BASE, useValue: '' },
   ],
 };

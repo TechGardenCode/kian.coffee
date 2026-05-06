@@ -42,6 +42,20 @@ export const routes: Routes = [
     title: 'Beans',
   },
   {
+    path: 'blog',
+    loadComponent: () => import('./pages/blog/blog-index.page').then((m) => m.BlogIndexPage),
+    title: 'Writing',
+  },
+  {
+    path: 'blog/tag/:tag',
+    loadComponent: () => import('./pages/blog/blog-index.page').then((m) => m.BlogIndexPage),
+    title: 'Writing',
+  },
+  {
+    path: 'blog/:slug',
+    loadComponent: () => import('./pages/blog/blog-post.page').then((m) => m.BlogPostPage),
+  },
+  {
     path: 'about',
     redirectTo: 'work',
     pathMatch: 'full',
